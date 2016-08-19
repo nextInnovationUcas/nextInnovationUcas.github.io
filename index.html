@@ -301,10 +301,9 @@
 
       
         
-          
-            <h1 id="如何用github-page与hexo搭建博客"><a href="#如何用github-page与hexo搭建博客" class="headerlink" title="如何用github page与hexo搭建博客"></a>如何用github page与hexo搭建博客</h1><h4 id="需要安装的软件"><a href="#需要安装的软件" class="headerlink" title="需要安装的软件"></a>需要安装的软件</h4><p>1.Git</p>
+          <h1 id="如何用github-page与hexo搭建博客"><a href="#如何用github-page与hexo搭建博客" class="headerlink" title="如何用github page与hexo搭建博客"></a>如何用github page与hexo搭建博客</h1><h4 id="需要安装的软件"><a href="#需要安装的软件" class="headerlink" title="需要安装的软件"></a>需要安装的软件</h4><p>1.Git</p>
 <p>2.Node.js</p>
-<p>3.Hexo</p>
+<p>3.Hexo(感觉组织架构好像ruby on rails :smile )</p>
 <h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><p>1.打开终端，输入</p>
 <p><code>npm install -g hexo</code></p>
 <p>2.创建任一目录，在目录中执行命令<code>hexo init</code>  <code>npm install</code></p>
@@ -312,27 +311,11 @@
 <p>如果在本地查看，则<code>hexo server</code>(hero s)</p>
 <p>查看的地址为localhost:4000.</p>
 <p><strong>注意，所有的hexo指令都必须在建立的目录下执行</strong></p>
-<h4 id="部署hexo到github上"><a href="#部署hexo到github上" class="headerlink" title="部署hexo到github上"></a>部署hexo到github上</h4><p>1.安装插件<code>npm install hexo-deployer-git --save</code></p>
-<p>2.打开博客目录的_config.yml文件，设置deploy的type为git，repository(repo)<br>为：<code>https://github.com/你的id/你的id.github.io.git</code>（需要在type和repo后面加上一个空格再填写）</p>
-<p>3.访问在github上的网页，地址为<a href="https://your_user_name.github.io/" target="_blank" rel="external">https://your_user_name.github.io/</a></p>
-<h4 id="写博客流程"><a href="#写博客流程" class="headerlink" title="写博客流程"></a>写博客流程</h4><p>1.新建博客 <code>hexo new &quot;blog_name&quot;</code></p>
-<p>2.部署流程</p>
-<p><code>hexo clean＃在将文章同步到github仓库前先clean一下</code></p>
-<p><code>hexo g ＃生成静态文件</code></p>
-<p><code>hexo d ＃部署到github上</code></p>
-<p><code>hero s ＃本地预览文章</code></p>
-<h4 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h4><p>1.以next为例，在博客目录执行<code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code>，clone结束后该主题将在自己博客文件夹theme文件下，与之前的主题landscape并立。</p>
-<p>2.在自己博客文件夹第一层中的_config.yml里面修改theme为next</p>
-<p>3.<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">hexo主题</a>，每个主题的配置都在其文件中有说明，如next,其配置文件为<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next主题</a></p>
-<h4 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h4><p>参见参考博客</p>
-<h4 id="其他扩展功能"><a href="#其他扩展功能" class="headerlink" title="其他扩展功能"></a>其他扩展功能</h4><p>参见<a href="http://www.jianshu.com/p/f21d57186704" target="_blank" rel="external">Mac下使用Hexo和Github搭建静态博客</a></p>
-<h4 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h4><p>1.<a href="http://www.jianshu.com/p/e58daafbf358" target="_blank" rel="external">用我三天换你快速构建自己的博客</a></p>
-<p>2.<a href="http://www.jianshu.com/p/f21d57186704" target="_blank" rel="external">Mac下使用Hexo和Github搭建静态博客</a></p>
-<p>3.<a href="http://yebujimo.com/2015/03/15/Mac%E4%B8%8B%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" target="_blank" rel="external">Mac下搭建Hexo博客教程</a></p>
-<p>4.<a href="http://www.jianshu.com/p/643391d2fd2b" target="_blank" rel="external">Mac下使用Hexo和GitHub搭建静态博客</a></p>
-<p>5.<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">hexo官方文档</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/19/how-to-build-blog-by-using-hexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

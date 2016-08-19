@@ -86,35 +86,32 @@
 
 <meta name="description" content="如何用github page与hexo搭建博客需要安装的软件1.Git
 2.Node.js
-3.Hexo
+3.Hexo(感觉组织架构好像ruby on rails :smile )
 安装Hexo1.打开终端，输入
 npm install -g hexo
 2.创建任一目录，在目录中执行命令hexo init  npm install
-3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo generate (hero g)
-如果在本地查看，则hexo">
+3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how-to-build-blog-by-using-hexo">
 <meta property="og:url" content="http://yoursite.com/2016/08/19/how-to-build-blog-by-using-hexo/index.html">
 <meta property="og:site_name" content="Qi's Blog">
 <meta property="og:description" content="如何用github page与hexo搭建博客需要安装的软件1.Git
 2.Node.js
-3.Hexo
+3.Hexo(感觉组织架构好像ruby on rails :smile )
 安装Hexo1.打开终端，输入
 npm install -g hexo
 2.创建任一目录，在目录中执行命令hexo init  npm install
-3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo generate (hero g)
-如果在本地查看，则hexo">
-<meta property="og:updated_time" content="2016-08-19T15:06:52.000Z">
+3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo">
+<meta property="og:updated_time" content="2016-08-19T16:34:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how-to-build-blog-by-using-hexo">
 <meta name="twitter:description" content="如何用github page与hexo搭建博客需要安装的软件1.Git
 2.Node.js
-3.Hexo
+3.Hexo(感觉组织架构好像ruby on rails :smile )
 安装Hexo1.打开终端，输入
 npm install -g hexo
 2.创建任一目录，在目录中执行命令hexo init  npm install
-3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo generate (hero g)
-如果在本地查看，则hexo">
+3.创建新博客hexo new &amp;quot;name&amp;quot; 然后hexo">
 
 
 
@@ -319,7 +316,7 @@ npm install -g hexo
       
         <h1 id="如何用github-page与hexo搭建博客"><a href="#如何用github-page与hexo搭建博客" class="headerlink" title="如何用github page与hexo搭建博客"></a>如何用github page与hexo搭建博客</h1><h4 id="需要安装的软件"><a href="#需要安装的软件" class="headerlink" title="需要安装的软件"></a>需要安装的软件</h4><p>1.Git</p>
 <p>2.Node.js</p>
-<p>3.Hexo</p>
+<p>3.Hexo(感觉组织架构好像ruby on rails :smile )</p>
 <h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><p>1.打开终端，输入</p>
 <p><code>npm install -g hexo</code></p>
 <p>2.创建任一目录，在目录中执行命令<code>hexo init</code>  <code>npm install</code></p>
@@ -327,25 +324,30 @@ npm install -g hexo
 <p>如果在本地查看，则<code>hexo server</code>(hero s)</p>
 <p>查看的地址为localhost:4000.</p>
 <p><strong>注意，所有的hexo指令都必须在建立的目录下执行</strong></p>
+<a id="more"></a>
 <h4 id="部署hexo到github上"><a href="#部署hexo到github上" class="headerlink" title="部署hexo到github上"></a>部署hexo到github上</h4><p>1.安装插件<code>npm install hexo-deployer-git --save</code></p>
 <p>2.打开博客目录的_config.yml文件，设置deploy的type为git，repository(repo)<br>为：<code>https://github.com/你的id/你的id.github.io.git</code>（需要在type和repo后面加上一个空格再填写）</p>
 <p>3.访问在github上的网页，地址为<a href="https://your_user_name.github.io/" target="_blank" rel="external">https://your_user_name.github.io/</a></p>
-<h4 id="写博客流程"><a href="#写博客流程" class="headerlink" title="写博客流程"></a>写博客流程</h4><p>1.新建博客 <code>hexo new &quot;blog_name&quot;</code></p>
+<h4 id="写博客流程"><a href="#写博客流程" class="headerlink" title="写博客流程"></a>写博客流程</h4><p>1.新建博客 <code>hexo new [layout] &quot;blog_name&quot;</code>。其中layout是可选参数，默认值为post。有哪些layout呢，请到<em>scaffolds</em>目录下查看，这些文件名称就是layout名称。当然你可以添加自己的layout，方法就是添加一个文件即可，同时你也可以编辑现有的layout，比如post的layout默认是<em>hexo\scaffolds\post.md</em></p>
 <p>2.部署流程</p>
 <p><code>hexo clean＃在将文章同步到github仓库前先clean一下</code></p>
 <p><code>hexo g ＃生成静态文件</code></p>
 <p><code>hexo d ＃部署到github上</code></p>
 <p><code>hero s ＃本地预览文章</code></p>
+<h4 id="自定义页面"><a href="#自定义页面" class="headerlink" title="自定义页面"></a>自定义页面</h4><p>执行new page命令，<code>hero new page &quot;about&quot;</code>。在<em>hexo\source\</em>下会生成<em>about</em>目录，里面有个index.md，直接编辑就可以了，然后在主题的<em>_config.yml中将其配置显示出来。上述步骤，也可以手工生成，在hexo/source/下手工新建</em>about<em>和</em>index.md*也是完全等价的。</p>
 <h4 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h4><p>1.以next为例，在博客目录执行<code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code>，clone结束后该主题将在自己博客文件夹theme文件下，与之前的主题landscape并立。</p>
 <p>2.在自己博客文件夹第一层中的_config.yml里面修改theme为next</p>
-<p>3.<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">hexo主题</a>，每个主题的配置都在其文件中有说明，如next,其配置文件为<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next主题</a></p>
+<p>3.<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">hexo主题</a>，每个主题的配置都在其文件中有说明，如next,其配置文件为<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external"><strong><em>next主题</em></strong></a></p>
 <h4 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h4><p>参见参考博客</p>
 <h4 id="其他扩展功能"><a href="#其他扩展功能" class="headerlink" title="其他扩展功能"></a>其他扩展功能</h4><p>参见<a href="http://www.jianshu.com/p/f21d57186704" target="_blank" rel="external">Mac下使用Hexo和Github搭建静态博客</a></p>
 <h4 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h4><p>1.<a href="http://www.jianshu.com/p/e58daafbf358" target="_blank" rel="external">用我三天换你快速构建自己的博客</a></p>
 <p>2.<a href="http://www.jianshu.com/p/f21d57186704" target="_blank" rel="external">Mac下使用Hexo和Github搭建静态博客</a></p>
 <p>3.<a href="http://yebujimo.com/2015/03/15/Mac%E4%B8%8B%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" target="_blank" rel="external">Mac下搭建Hexo博客教程</a></p>
 <p>4.<a href="http://www.jianshu.com/p/643391d2fd2b" target="_blank" rel="external">Mac下使用Hexo和GitHub搭建静态博客</a></p>
-<p>5.<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">hexo官方文档</a></p>
+<p>5.<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external"><strong><em>hexo官方文档</em></strong></a></p>
+<p>6.<a href="http://col.dog/2015/11/12/hello-world/" target="_blank" rel="external"><strong><em>基于 Hexo 和 GitHub Pages 搭建博客</em></strong></a></p>
+<p>7.<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external"><strong><em>hexo你的博客</em></strong></a></p>
+<p>8.<a href="http://www.jianshu.com/p/739bf1305e66" target="_blank" rel="external">使用Hexo搭建博客（四），博客的部件和插件</a></p>
 
       
     </div>
@@ -492,7 +494,7 @@ npm install -g hexo
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何用github-page与hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">如何用github page与hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要安装的软件"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">需要安装的软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署hexo到github上"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">部署hexo到github上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写博客流程"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">写博客流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择主题"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">选择主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置域名"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">配置域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他扩展功能"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">其他扩展功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考博客"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">参考博客</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何用github-page与hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">如何用github page与hexo搭建博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要安装的软件"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">需要安装的软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署hexo到github上"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">部署hexo到github上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写博客流程"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">写博客流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义页面"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">自定义页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择主题"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">选择主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置域名"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">配置域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他扩展功能"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">其他扩展功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考博客"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">参考博客</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
