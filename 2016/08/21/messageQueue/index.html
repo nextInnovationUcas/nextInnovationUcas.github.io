@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="messageQueue," />
 
 
 
@@ -84,19 +84,43 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="MessageQueue定义什么是消息队列，以下有几个形象的解释。
+
+消息队列，顾名思义 首先是个队列。队列的操作有入队和出队，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。
+使用场景：
+
+当你不需要立即获得结果，但是并发量又不能无限大的时候             
+
+
+
+  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/08/19/hello-world/index.html">
+<meta property="og:title" content="messageQueue">
+<meta property="og:url" content="http://yoursite.com/2016/08/21/messageQueue/index.html">
 <meta property="og:site_name" content="Qi's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-08-19T14:13:08.000Z">
+<meta property="og:description" content="MessageQueue定义什么是消息队列，以下有几个形象的解释。
+
+消息队列，顾名思义 首先是个队列。队列的操作有入队和出队，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。
+使用场景：
+
+当你不需要立即获得结果，但是并发量又不能无限大的时候             
+
+
+
+  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户">
+<meta property="og:updated_time" content="2016-08-21T06:47:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="messageQueue">
+<meta name="twitter:description" content="MessageQueue定义什么是消息队列，以下有几个形象的解释。
+
+消息队列，顾名思义 首先是个队列。队列的操作有入队和出队，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。
+使用场景：
+
+当你不需要立即获得结果，但是并发量又不能无限大的时候             
+
+
+
+  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户">
 
 
 
@@ -117,9 +141,9 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/19/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/21/messageQueue/"/>
 
-  <title> Hello World | Qi's Blog </title>
+  <title> messageQueue | Qi's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +283,7 @@ Quick">
             
             
               
-                Hello World
+                messageQueue
               
             
           </h1>
@@ -271,8 +295,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T16:42:43+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-08-21T10:00:23+08:00" content="2016-08-21">
+              2016-08-21
             </time>
           </span>
 
@@ -282,8 +306,8 @@ Quick">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/19/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/19/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/08/21/messageQueue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/messageQueue/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -306,15 +330,54 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h1><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>什么是消息队列，以下有几个形象的解释。</p>
+<ul>
+<li><p>消息队列，顾名思义 首先是个队列。队列的操作有<code>入队</code>和<code>出队</code>，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。</p>
+<p>使用场景：</p>
+<blockquote>
+<p>当你不需要立即获得结果，但是并发量又不能无限大的时候             </p>
+</blockquote>
+</li>
+</ul>
+<p>  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户端，显然并发不能无穷大，于是你就需要把写日志的请求放入到消息队列里，在消费者那边依次把队列中产生的日志写到数据库里。</p>
+<p>  至于怎么实现消息队列，其实你本身一个普通的队列就行呀~看你需要什么附加功能而已。</p>
+<ul>
+<li><p>消息队列有无数开源实现，一般没必要自己实现。zmq也好rabbitmq也好甚至redis也好，找一个合适的装上用就行，就好像rdbms/nosql一样</p>
+<p>技术都是解决问题的，消息队列解决的是将<strong><em>突发大量请求转换为后端能承受的队列请求</em></strong>，比如你的服务器一秒能处理100个订单，但秒杀活动1秒进来1000个订单，持续10秒，在后端能力无法增加的情况下，你可以用消息队列将总共10000个请求压在队列里，后台consumer按原有能力处理，100秒后处理完所有请求（而不是直接宕机丢失订单数据）</p>
+</li>
+<li><p>通俗的说，就是一个容器，你把消息丢进去，不需要立即处理。然后有个程序去从你的容器里面把消息一条条读出来处理。消息队列，可以是activeMQ，kafka之类的，也可以是数据库的一张任务表。</p>
+<p>个人觉得消息队列，主要有两个作用：</p>
+<p>1)降低耦合</p>
+<p>2)消息可以暂时存在在消息队列中，等待消息接收者根据自身的负载处理能力控制处理消息的处理速度，减小在大并发访问时候的压力。</p>
+</li>
+</ul>
+<a id="more"></a>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削锋等问题。实现高性能，高可用，可伸缩和最终一致性架构。是大型分布式系统不可缺少的中间件。</p>
+<p>目前在生产环境，使用较多的消息队列有ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ等。</p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>异步处理，应用解耦，流量削锋和消息通讯四个场景。</p>
+<h4 id="JMS消息服务"><a href="#JMS消息服务" class="headerlink" title="JMS消息服务"></a>JMS消息服务</h4><p>JMS（JAVA Message Service,java消息服务）API是一个消息服务的标准/规范，允许应用程序组件基于JavaEE平台创建、发送、接收和读取消息。它使分布式通信耦合度更低，消息服务更加可靠以及异步性。</p>
+<p>在EJB架构中，有消息bean可以无缝的与JM消息服务集成。在J2EE架构模式中，有消息服务者模式，用于实现消息与应用直接的解耦。</p>
+<ol>
+<li><p>消息模型</p>
+<p>在JMS标准中，有两种消息模型P2P（Point to Point）,Publish/Subscribe(Pub/Sub)。</p>
+<ol>
+<li><p>P2P模式</p>
+<p>P2P模式包含三个角色：消息队列（Queue），发送者(Sender)，接收者(Receiver)。每个消息都被发送到一个特定的队列，接收者从队列中获取消息。队列保留着消息，直到他们被消费或超时。</p>
+<p>P2P的特点</p>
+<ul>
+<li>每个消息只有一个消费者（Consumer）(即一旦被消费，消息就不再在消息队列中)</li>
+<li>发送者和接收者之间在时间上没有依赖性，也就是说当发送者发送了消息之后，不管接收者有没有正在运行，它不会影响到消息被发送到队列</li>
+<li>接收者在成功接收消息之后需向队列应答成功</li>
+</ul>
+<p>如果希望发送的每个消息都会被成功处理的话，那么需要P2P模式。</p>
+</li>
+<li><p>Pub/Sub模式</p>
+</li>
+</ol>
+</li>
+<li><p>​</p>
+</li>
+</ol>
 
       
     </div>
@@ -335,17 +398,27 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/messageQueue/" rel="tag">#messageQueue</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/08/20/meassageQueue-based-on-redis/" rel="next" title="meassageQueue-based-on-redis">
+                <i class="fa fa-chevron-left"></i> meassageQueue-based-on-redis
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/19/how-to-build-blog-by-using-hexo/" rel="prev" title="how-to-build-blog-by-using-hexo">
-                how-to-build-blog-by-using-hexo <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/21/skills-of-mac-os/" rel="prev" title="skills of mac-os">
+                skills of mac-os <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -372,8 +445,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/19/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2016/08/19/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/08/21/messageQueue/"
+           data-title="messageQueue" data-url="http://yoursite.com/2016/08/21/messageQueue/">
       </div>
     
   </div>
@@ -464,7 +537,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MessageQueue"><span class="nav-number">1.</span> <span class="nav-text">MessageQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用场景"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JMS消息服务"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">JMS消息服务</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
