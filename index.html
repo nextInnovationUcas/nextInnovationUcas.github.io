@@ -327,12 +327,14 @@
 
       
         
-          
-            <h1 id="hexo配置七牛作为图床"><a href="#hexo配置七牛作为图床" class="headerlink" title="hexo配置七牛作为图床"></a>hexo配置七牛作为图床</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>配置七牛的同步插件hexo-qiniu-sync遇到坑了啊，怎么谷歌都查不到。按照配置来走，执行hexo qiniu sync可以同步本地图片到七牛，再执行hexo clean, hexo g都没有问题，但是再hexo s和hexo d就出错，hexo s直接提示没有该命令，hexo d则提示<code>ERROR Deployer not found: git</code>，可是当把_config.yml文件里面的hexo-qiniu-sync配置文件删除，则hero s和hero d都没问题了。查了说可能是没有安装hexo-deployer-git 的问题啊，但事实上我安装了，更何况之前没安装插件前都是没问题的。</p>
-<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p>心塞塞，搞了好久没配好，直接贴链接吧</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>已经在git上提问原作者了，等回复中。如果不行，手动上传到七牛，或使用七牛官方的同步工具。</p>
-
-          
+          <h1 id="hexo配置七牛作为图床"><a href="#hexo配置七牛作为图床" class="headerlink" title="hexo配置七牛作为图床"></a>hexo配置七牛作为图床</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>配置七牛的同步插件hexo-qiniu-sync遇到坑了啊，怎么谷歌都查不到。按照配置来走，执行hexo qiniu sync可以同步本地图片到七牛，再执行hexo clean, hexo g都没有问题，但是再hexo s和hexo d就出错，hexo s直接提示没有该命令，hexo d则提示<code>ERROR Deployer not found: git</code>，可是当把_config.yml文件里面的hexo-qiniu-sync配置文件删除，则hero s和hero d都没问题了。查了说可能是没有安装hexo-deployer-git 的问题啊，但事实上我安装了，更何况之前没安装插件前都是没问题的。</p>
+<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-hexo-qiniu:sad.jpg" alt=""></p>
+<p>心塞塞，搞了好久没配好，直接贴链接吧</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/22/hexo-qiniu/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -524,6 +526,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/messageQueue/" itemprop="url" rel="index">
+                    <span itemprop="name">messageQueue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -1003,7 +1024,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
