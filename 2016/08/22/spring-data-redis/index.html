@@ -1,0 +1,748 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis,spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Spring data redisSpring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。官网：http://p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-data-redis">
+<meta property="og:url" content="http://yoursite.com/2016/08/22/spring-data-redis/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="Spring data redisSpring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。官网：http://p">
+<meta property="og:updated_time" content="2016-08-22T14:15:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring-data-redis">
+<meta name="twitter:description" content="Spring data redisSpring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。官网：http://p">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/22/spring-data-redis/"/>
+
+  <title> spring-data-redis | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                spring-data-redis
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T19:23:27+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/spring-data-redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/spring-data-redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Spring-data-redis"><a href="#Spring-data-redis" class="headerlink" title="Spring data redis"></a>Spring data redis</h1><p>Spring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。<br>官网：<a href="http://projects.spring.io/spring-data-redis/" target="_blank" rel="external">http://projects.spring.io/spring-data-redis/</a><br>项目地址：<a href="https://github.com/spring-projects/spring-data-redis" target="_blank" rel="external">https://github.com/spring-projects/spring-data-redis</a></p>
+<a id="more"></a>
+<h2 id="spring-data-redis功能介绍"><a href="#spring-data-redis功能介绍" class="headerlink" title="spring-data-redis功能介绍"></a>spring-data-redis功能介绍</h2><p>jedis客户端在编程实施方面存在如下不足：</p>
+<ol>
+<li>connection管理缺乏自动化，connection-pool的设计缺少必要的容器支持。</li>
+<li>数据操作需要关注“序列化”/“反序列化”，因为jedis的客户端API接受的数据类型为string和byte，对结构化数据(json,xml,pojo等)操作需要额外的支持。</li>
+<li>事务操作纯粹为硬编码。</li>
+<li>pub/sub功能，缺乏必要的设计模式支持，对于开发者而言需要关注的太多。</li>
+</ol>
+<p>spring-data-redis针对jedis提供了如下功能：</p>
+<ol>
+<li><p>连接池自动管理，提供了一个高度封装的“RedisTemplate”类</p>
+</li>
+<li><p>针对jedis客户端中大量api进行了归类封装,将同一类型操作封装为operation接口</p>
+<p>​    ValueOperations：简单K-V操作<br>​    SetOperations：set类型数据操作<br>​    ZSetOperations：zset类型数据操作<br>​    HashOperations：针对map类型的数据操作<br>​    ListOperations：针对list类型的数据操作</p>
+</li>
+<li><p>提供了对key的“bound”(绑定)便捷化操作API，可以通过bound封装指定的key，然后进行一系列的操作而无须“显式”的再次指定Key，即BoundKeyOperations：</p>
+<p>​    BoundValueOperations<br>​    BoundSetOperations<br>​    BoundListOperations<br>​    BoundSetOperations<br>​    BoundHashOperations</p>
+</li>
+<li><p>将事务操作封装，有容器控制。</p>
+</li>
+<li><p>针对数据的“序列化/反序列化”，提供了多种可选择策略(RedisSerializer)</p>
+<p>​    1)JdkSerializationRedisSerializer：</p>
+<p>​    POJO对象的存取场景，使用JDK本身序列化机制，将pojo类通过ObjectInputStream/ObjectOutputStream进行序列化操作，最终redis-server中将存储字节序列。是目前最常用的序列化策略。<br>​    2)StringRedisSerializer：</p>
+<p>​    Key或者value为字符串的场景，根据指定的charset对数据的字节序列编码成string，是“new String(bytes, charset)”和“string.getBytes(charset)”的直接封装。是最轻量级和高效的策略。<br>​    3)JacksonJsonRedisSerializer：</p>
+<p>​    jackson-json工具提供了javabean与json之间的转换能力，可以将pojo实例序列化成json格式存储在redis中，也可以将json格式的数据转换成pojo实例。因为jackson工具在序列化和反序列化时，需要明确指定Class类型，因此此策略封装起来稍微复杂。【需要jackson-mapper-asl工具支持】<br>​     4)OxmSerializer：提供了将javabean与xml之间的转换能力，目前可用的三方支持包括jaxb，apache-xmlbeans；redis存储的数据将是xml工具。不过使用此策略，编程将会有些难度，而且效率最低；不建议使用。【需要spring-oxm模块的支持】<br>​</p>
+<p>针对“序列化和发序列化”中JdkSerializationRedisSerializer和StringRedisSerializer是最基础的策略，原则上，我们可以将数据存储为任何格式以便应用程序存取和解析(其中应用包括app，hadoop等其他工具)，不过在设计时仍然不推荐直接使用“JacksonJsonRedisSerializer”和“OxmSerializer”，因为无论是json还是xml，他们本身仍然是String。如果你的数据需要被第三方工具解析，那么数据应该使用StringRedisSerializer而不是JdkSerializationRedisSerializer。如果你的数据格式必须为json或者xml，那么在编程级别，在redisTemplate配置中仍然使用StringRedisSerializer，在存储之前或者读取之后，使用“SerializationUtils”工具转换转换成json或者xml。</p>
+</li>
+<li><p>基于设计模式，和JMS开发思路，将pub/sub的API设计进行了封装，使开发更加便捷。</p>
+</li>
+<li><p>spring-data-redis中，并没有对sharding提供良好的封装，如果你的架构是基于sharding，那么你需要自己去实现，这也是sdr和jedis相比，唯一缺少的特性。</p>
+</li>
+</ol>
+<h4 id="serializer策略"><a href="#serializer策略" class="headerlink" title="serializer策略"></a>serializer策略</h4><p>sdr提供了4种内置的serializer：</p>
+<ul>
+<li>JdkSerializationRedisSerializer：使用JDK的序列化手段(serializable接口，ObjectInputStrean，ObjectOutputStream)，数据以字节流存储</li>
+<li>StringRedisSerializer：字符串编码，数据以string存储</li>
+<li>JacksonJsonRedisSerializer：json格式存储</li>
+<li>OxmSerializer：xml格式存储</li>
+</ul>
+<p>其中JdkSerializationRedisSerializer和StringRedisSerializer是最基础的序列化策略，其中“JacksonJsonRedisSerializer”与“OxmSerializer”都是基于stirng存储，因此它们是较为“高级”的序列化(最终还是使用string解析以及构建java对象)。</p>
+<p>RedisTemplate中需要声明4种serializer，默认为“JdkSerializationRedisSerializer”：</p>
+<ul>
+<li>keySerializer ：对于普通K-V操作时，key采取的序列化策略</li>
+<li>valueSerializer：value采取的序列化策略</li>
+<li>hashKeySerializer： 在hash数据结构中，hash-key的序列化策略</li>
+<li>hashValueSerializer：hash-value的序列化策略</li>
+</ul>
+<p>无论如何，建议key/hashKey采用StringRedisSerializer。</p>
+<h4 id="redisTemplate和Serializer详解"><a href="#redisTemplate和Serializer详解" class="headerlink" title="redisTemplate和Serializer详解"></a>redisTemplate和Serializer详解</h4><p>1.为什么使用Serializer</p>
+<p>因为redis是以key-value的形式将数据存在内存中，key就是简单的string，key似乎没有长度限制，不过原则上应该尽可能的短小且可读性强，无论是否基于持久存储，key在服务的整个生命周期中都会在内存中，因此减小key的尺寸可以有效的节约内存，同时也能优化key检索的效率。</p>
+<p>value在redis中，存储层面仍然基于string，在逻辑层面，可以是string/set/list/map，不过redis为了性能考虑，使用不同的“encoding”数据结构类型来表示它们。(例如：linkedlist，ziplist等)。</p>
+<p>所以可以理解为，其实redis在存储数据时，都把数据转化成了byte[]数组的形式，那么在存取数据时，需要将数据格式进行转化，那么就要用到序列化和反序列化了，这也就是为什么需要配置Serializer的原因。</p>
+<p>2.使用Serializer</p>
+<p>有两种方法：</p>
+<ul>
+<li><p>在redistemplate里面配置Serializer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ValueOperations&lt;String, User&gt; valueops = redisTemplate</div><div class="line">                .opsForValue();</div><div class="line">valueops.set(user.getId(), user);</div></pre></td></tr></table></figure>
+</li>
+<li><p>不在redistemplate中配置Serializer，而是在Service的实现类中单独指定Serializer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">boolean</span> result = redisTemplate.execute(<span class="keyword">new</span> RedisCallback&lt;Boolean&gt;() &#123;</div><div class="line">      <span class="function"><span class="keyword">public</span> Boolean <span class="title">doInRedis</span><span class="params">(RedisConnection redisConnection)</span> <span class="keyword">throws</span> DataAccessException </span>&#123; </div><div class="line">          RedisSerializer&lt;String&gt; redisSerializer = redisTemplate .getStringSerializer(); </div><div class="line">          <span class="keyword">byte</span>[] key = redisSerializer.serialize(user.getId());</div><div class="line">          <span class="keyword">byte</span>[] value = redisSerializer.serialize(user.getName()); </div><div class="line">          <span class="keyword">return</span> redisConnection.setNX(key, value); &#125; &#125;); </div><div class="line">     <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3.RedisTemplate</p>
+<p>通过RedisTemplate可以调用ValueOperations和ListOperations等等方法，分别是对Redis命令的高级封装。但是ValueOperations等等这些命令最终是要转化成为RedisCallback来执行的。也就是说通过使用RedisCallback可以实现更强的功能，具体使用方法可以查看API文档。</p>
+<p>如果你使用过jedisPool连接池，在数据操作之前，你需要pool.getResource()即从连接池中获取“链接资源”(Jedis),在操作之后，你需要(必须)调用pool.returnResource()将资源归还个连接池。但是，spring-data-redis中，我们似乎并没有直接操作pool，那么spring是如何做到pool管理的呢？？一句话：spring的“看门绝技”–callback。</p>
+<blockquote>
+<p>public <t> T execute(RedisCallback<t> action)：这个方法是redisTemplate中执行操作的底层方法，任何基于redisTemplate之上的调用(比如，valueOperations)最终都会被封装成RedisCallback，redisTemplate在execute方法中将会直接使用jedis客户端API进行与server通信，而且在如果使用了连接池，则会在操作之后执行returnSource。</t></t></p>
+</blockquote>
+<h4 id="基本功能使用实例"><a href="#基本功能使用实例" class="headerlink" title="基本功能使用实例"></a>基本功能使用实例</h4><p>添加jar依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </div><div class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>spring 配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span></div><div class="line">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span>  </div><div class="line">    <span class="attr">xmlns:p</span>=<span class="string">"http://www.springframework.org/schema/p"</span>  </div><div class="line">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  </span></div><div class="line">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.slimsmart.redis.spring"</span>  </span></div><div class="line">        <span class="attr">annotation-config</span>=<span class="string">"true"</span> /&gt;  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jedisPoolConfig"</span> <span class="attr">class</span>=<span class="string">"redis.clients.jedis.JedisPoolConfig"</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxTotal"</span> <span class="attr">value</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdle"</span> <span class="attr">value</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWaitMillis"</span> <span class="attr">value</span>=<span class="string">"15000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minEvictableIdleTimeMillis"</span> <span class="attr">value</span>=<span class="string">"300000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"numTestsPerEvictionRun"</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"timeBetweenEvictionRunsMillis"</span> <span class="attr">value</span>=<span class="string">"60000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testOnBorrow"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testOnReturn"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testWhileIdle"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jedisConnectionFactory"</span>  </span></div><div class="line">        <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.connection.jedis.JedisConnectionFactory"</span>  </div><div class="line">        <span class="attr">destroy-method</span>=<span class="string">"destroy"</span>&gt;  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hostName"</span> <span class="attr">value</span>=<span class="string">"192.168.100.205"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"port"</span> <span class="attr">value</span>=<span class="string">"6379"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"timeout"</span> <span class="attr">value</span>=<span class="string">"15000"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"database"</span> <span class="attr">value</span>=<span class="string">"0"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"usePool"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"poolConfig"</span> <span class="attr">ref</span>=<span class="string">"jedisPoolConfig"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </div><div class="line">  </div><div class="line">    <span class="comment">&lt;!-- redis template definition p表示对该bean里面的属性进行注入，格式为p:属性名=注入的对象 效果与在bean里面使用&lt;property&gt;标签一样 --&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"redisTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.core.RedisTemplate"</span>  </span></div><div class="line">        <span class="attr">p:connection-factory-ref</span>=<span class="string">"jedisConnectionFactory"</span>&gt;  </div><div class="line">        <span class="comment">&lt;!-- 序列化方式 建议key/hashKey采用StringRedisSerializer。 --&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"keySerializer"</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">bean</span>  </span></div><div class="line">                <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.serializer.StringRedisSerializer"</span> /&gt;  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hashKeySerializer"</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">bean</span>  </span></div><div class="line">                <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.serializer.StringRedisSerializer"</span> /&gt;  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"valueSerializer"</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">bean</span>  </span></div><div class="line">                <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"</span> /&gt;  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hashValueSerializer"</span>&gt;</span>  </div><div class="line">            <span class="tag">&lt;<span class="name">bean</span>  </span></div><div class="line">                <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"</span> /&gt;  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </div><div class="line">    <span class="comment">&lt;!-- 对string操作的封装 --&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"stringRedisTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.data.redis.core.StringRedisTemplate"</span>  </span></div><div class="line">        <span class="attr">p:connection-factory-ref</span>=<span class="string">"jedisConnectionFactory"</span> /&gt;  </div><div class="line"><span class="comment">&lt;!--         &lt;bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/&gt; --&gt;</span>  </div><div class="line">          </div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>实体类</p>
+<p>Order类实现了序列化接口，属性有id，orderNo，Price和CreateDate。此处略。</p>
+<p>redis操作类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;  </div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.core.RedisOperations;  </div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.core.RedisTemplate;  </div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.core.ValueOperations;  </div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;  </div><div class="line">  </div><div class="line"><span class="meta">@Repository</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDao</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="meta">@Autowired</span>  </div><div class="line">    <span class="keyword">private</span> RedisTemplate&lt;String,Order&gt; redisTemplate;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(Order order)</span> </span>&#123;  </div><div class="line">        <span class="comment">/*redisTemplate.opsForList(); </span></div><div class="line">        redisTemplate.opsForSet(); </div><div class="line">        redisTemplate.opsForHash()*/  </div><div class="line">        ValueOperations&lt;String, Order&gt; valueOper = redisTemplate.opsForValue();  </div><div class="line">        valueOper.set(order.getId(), order);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> Order <span class="title">read</span><span class="params">(String id)</span> </span>&#123;  </div><div class="line">        ValueOperations&lt;String, Order&gt; valueOper = redisTemplate.opsForValue();  </div><div class="line">        <span class="keyword">return</span> valueOper.get(id);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(String id)</span> </span>&#123;  </div><div class="line">        ValueOperations&lt;String, Order&gt; valueOper = redisTemplate.opsForValue();  </div><div class="line">        RedisOperations&lt;String,Order&gt;  RedisOperations  = valueOper.getOperations();  </div><div class="line">        RedisOperations.delete(id);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Spring-data-Redis-Pub-Sub"><a href="#Spring-data-Redis-Pub-Sub" class="headerlink" title="Spring data Redis-Pub/Sub"></a>Spring data Redis-Pub/Sub</h4><p>1.Pub/Sub</p>
+<p>为了解耦发布者(publisher)和订阅者(subscriber)之间的关系，Redis 使用了 channel (频道)作为两者的中介 —— 发布者将信息直接发布给 channel ，而 channel 负责将信息发送给适当的订阅者，发布者和订阅者之间没有相互关系，也不知道对方的存在。</p>
+<p>其实从Pub/Sub的机制来看，它更像是一个广播系统，多个Subscriber可以订阅多个Channel，多个Publisher可以往多个Channel中发布消息。可以这么简单的理解：</p>
+<p>Subscriber：收音机（只不过这个收音机可以收到多个频道，并以队列方式显示）</p>
+<p>Publisher：电台（电台可以往不同的FM频道中发消息）</p>
+<p>Channel：不同频率的FM频道</p>
+<p>2.持久化</p>
+<p>Redis的Pub Sub功能（或许是暂时）不支持持久化，意思就是消息在管道中是即发即失的，Subscriber端一收到消息，消息即从管道中删除。所以如果是对消息的准确性要求比较高或者是有持久化的需求，Redis就不是那么合适了，期待以后的版本加入持久化功能。</p>
+<p>1) Redis中”pub/sub”的消息,为”即发即失”,server不会保存消息,如果publish的消息,没有任何client处于”subscribe”状态,消息将会被丢弃。如果client在subcribe时,链接断开后重连,那么此期间的消息也将丢失。Redis server将会”尽力”将消息发送给处于subscribe状态的client,但是仍不会保证每条消息都能被正确接收.</p>
+<p>2) 如果期望pub/sub的消息时持久的,那么需要借助额外的功能.参见”<a href="http://shift-alt-ctrl.iteye.com/blog/1867454" target="_blank" rel="external">pub/sub持久化订阅</a>“</p>
+<p>3.应用场景</p>
+<p>1）一个Publisher,多个Subscriber</p>
+<p>主要应用：通知，公告</p>
+<p>2）多个Publisher,一个Subscriber</p>
+<p>主要应用：排行榜，投票，计数</p>
+<p>3）多个Publisher，多个Subscriber</p>
+<p>主要应用：群聊，聊天</p>
+<p>可参考Spring data redis主页的开源项目retwisj。</p>
+<p>Github地址：<a href="https://github.com/spring-projects/spring-data-keyvalue-examples/tree/master/retwisj" target="_blank" rel="external">https://github.com/spring-projects/spring-data-keyvalue-examples/tree/master/retwisj</a></p>
+<p>从上述几种用法来看，根据不同的限制条件，限制Publisher、Subscriber和Channel的数量，可以实现不同的功能，其实完全可以把Pub/Sub理解为Socket编程，用Socket也可以实现上述功能，但是Redis提供了相应的封装和底层实现，不管是安全性、健壮性的等各方面都有不错的表现，以及未来的一些拓展，个人觉得Redis是个不错的选择。</p>
+<p>4.demo展示</p>
+<p>参见这篇<a href="http://www.cnblogs.com/edwinchen/p/3836239.html" target="_blank" rel="external">Spring Data Redis—Pub/Sub（附Web项目源码）</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1.<a href="http://blog.csdn.net/zhu_tianwei/article/details/44923001" target="_blank" rel="external">Redis 集成Spring（spring-data-redis）</a></p>
+<p>2.spring-data-redis的基本使用实例，看这篇<a href="http://www.cnblogs.com/edwinchen/p/3816938.html" target="_blank" rel="external">Spring Data Redis简介以及项目Demo，RedisTemplate和 Serializer详解</a></p>
+<p>3.使用spring-data-redis编写pub/sub，看这篇 <a href="http://shift-alt-ctrl.iteye.com/blog/1887700" target="_blank" rel="external">Spring-data-redis: pub/sub消息订阅</a></p>
+<p>4.使用spring-data-redis编写事务和pipeline，看这篇 <a href="http://shift-alt-ctrl.iteye.com/blog/1887473" target="_blank" rel="external">Spring-data-redis: 事务与pipeline</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+            <a href="/tags/spring/" rel="tag">#spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/hexo-qiniu/" rel="next" title="hexo-qiniu">
+                <i class="fa fa-chevron-left"></i> hexo-qiniu
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/22/redis/" rel="prev" title="redis">
+                redis <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/22/spring-data-redis/"
+           data-title="spring-data-redis" data-url="http://yoursite.com/2016/08/22/spring-data-redis/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-data-redis"><span class="nav-number">1.</span> <span class="nav-text">Spring data redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-data-redis功能介绍"><span class="nav-number">1.1.</span> <span class="nav-text">spring-data-redis功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#serializer策略"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">serializer策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redisTemplate和Serializer详解"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">redisTemplate和Serializer详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本功能使用实例"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">基本功能使用实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-data-Redis-Pub-Sub"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">Spring data Redis-Pub/Sub</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.2.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

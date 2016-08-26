@@ -258,6 +258,543 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/26/the-guidebook-of-redis/" itemprop="url">
+                  the guidebook of redis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-26T02:15:45+08:00" content="2016-08-26">
+              2016-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/26/the-guidebook-of-redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/the-guidebook-of-redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="The-GuideBook-Of-Redis——Redis入门指南"><a href="#The-GuideBook-Of-Redis——Redis入门指南" class="headerlink" title="The GuideBook Of Redis——Redis入门指南"></a>The GuideBook Of Redis——Redis入门指南</h1><p>本博客为《Redis入门指南》一书的读书笔记。</p>
+<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><h4 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h4><p>redis 以字典结构存储数据，并允许其他应用通过TCP协议读写字典中的内容。 redis的键值有五种类型，这跟常见的关系数据库的二维表的存储结构有较大差异。在redis中，存储方式和对多种类型的支持和其在开发程序中非常相似。</p>
+<h4 id="内存存储与持久化"><a href="#内存存储与持久化" class="headerlink" title="内存存储与持久化"></a>内存存储与持久化</h4><p>所有数据都存储在内存中，也可以讲内存中的数据异步写入到硬盘中。</p>
+<h4 id="功能丰富"><a href="#功能丰富" class="headerlink" title="功能丰富"></a>功能丰富</h4><p>redis可以为每个键设置ttl,可以限定数据占用的最大内存空间，这些特点可以作为缓存系统来使用；</p>
+<p>redis支持阻塞式读取，支持发布订阅，所以可以实现队列系统。</p>
+<p>redis vs memcached:</p>
+<p>redis 是单线程模型，memcached支持多线程。如果需要用到高级的数据结构或者是持久化等功能，则redis较为出色。</p>
+<h4 id="简单稳定"><a href="#简单稳定" class="headerlink" title="简单稳定"></a>简单稳定</h4><p>简单体现在，如要在关系数据库中获取posts表内id为1的纪录的title的字段，则sql语句为<code>select title from posts where id =1 limit 1</code>，在redis中，则是<code>hget post:1 title</code></p>
+<h2 id="第二章准备"><a href="#第二章准备" class="headerlink" title="第二章准备"></a>第二章准备</h2><h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><p>redis-cli : shutdown 或者 kill redis-pid</p>
+<h3 id="多数据库"><a href="#多数据库" class="headerlink" title="多数据库"></a>多数据库</h3><p>一个redis实例提供了多个用来存储数据的字典，客户端可以指定将数据存储在哪个字典中。默认支持16个数据字典。客户端自动选择0号数据库，但可以通过select命令更换数据库。但它与关系数据库又有所不同。</p>
+<ul>
+<li>不支持自定义数据库名</li>
+<li>不支持为每个数据库设置不同的密码，要么可以全部访问，要么都不可以</li>
+<li>多个数据库之间不是完全隔离，如flushall可以清空所有数据库中的数据</li>
+</ul>
+<p>所以这更像是命名空间，而不适合存储不同应用程序的数据。不适宜使用0号存储a应用的数据，1号存储b应用的数据。不同的应用应该使用不同的redis实例，由于redis非常轻量级，不用担心多个redis实例会额外占用很多内存。</p>
+<h2 id="第三章入门"><a href="#第三章入门" class="headerlink" title="第三章入门"></a>第三章入门</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><p>键名的命名最好是：对象类型：对象id：对象属性，如果有多个单词，不用_，而用.来分隔。</p>
+<h3 id="散列类型"><a href="#散列类型" class="headerlink" title="散列类型"></a>散列类型</h3><p>redis里面的数据类型不支持嵌套。</p>
+<p>散列类型适合存储对象，使用对象类别和id构成键名，使用字段表示对象的属性，而字段值则存储属性值。在关系数据库中，要求所有的纪录都拥有同样的属性，无法单独为某条纪录增减属性，如某条纪录要增加date属性，则该表中所有的纪录都要增加该属性。但散列表不存在这个问题。散列中，有些地方说键名是指字段(字段)，如hkeys key，hkeys中的key其实指字段，但后面那个key是指键名。</p>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>列表类型内部是使用双向链表实现的，所以向列表两端添加元素的时候时间复杂度为O(1)，但是代价是通过索引访问元素比较慢。所以适合实现诸如”新鲜事”或”日志”这样很少访问中间元素的应用。</p>
+<p>可以用列表来模拟栈和队列，栈用LPUSH和LPOP或者RPUSH和RPOP来实现，队列用LPUSH和RPOP或RPUSH和LPOP。</p>
+<p>LRANGE key start stop。包含stop，起始索引从0开始。支持负索引，表示从右边开始计算，-1表示最右边第一个，-2表示最右边第二个。所以LRANGE number 0 -1可以获取列表中所有元素。</p>
+<h4 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h4><p>集合类型在redis内部是使用值为空的散列表实现的。</p>
+<h4 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h4><p>有序集合类型是使用散列表和跳跃表实现的，即使读取位于中间部分的数据速度也很快，时间复杂度是O(log(N))。列表不能简单地调整某个元素的位置，但是有序集合可以通过更改这个元素的分数。</p>
+<p>实现诸如“按点击量排序”和“按时间排序”，可以把点击量和时间分别作为分数。</p>
+<h2 id="第四章进阶"><a href="#第四章进阶" class="headerlink" title="第四章进阶"></a>第四章进阶</h2><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>如果一个事务中的某个命令执行出错，redis会怎么处理？</p>
+<p>(1)语法错误</p>
+<p>分版本，2.6之前的版本会忽略有语法错误的命名，执行事务中正确的命令。</p>
+<p>2.6.5这个版本(书中的版本）如果命名有语法错误，则一个都不会执行。</p>
+<p>(2)运行错误</p>
+<p>#### </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/25/Margaret-Hamilton/" itemprop="url">
+                  Margaret Hamilton
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-25T00:58:50+08:00" content="2016-08-25">
+              2016-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/interesting/" itemprop="url" rel="index">
+                    <span itemprop="name">interesting</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/25/Margaret-Hamilton/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/25/Margaret-Hamilton/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="A-woman-named-Margaret-Hamilton"><a href="#A-woman-named-Margaret-Hamilton" class="headerlink" title="A woman named Margaret Hamilton"></a>A woman named Margaret Hamilton</h1><p>今天看了火星救援，然后随便搜索了下NASA，然后就看到这样一则故事，膜拜ing。</p>
+<p>照片镇楼</p>
+<p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-25-Margaret-Hamilton-1.jpg" alt=""></p>
+<p>​    阿波罗计划的首席软件工程师玛格丽特·汉密尔顿站在阿波罗项目中导航计算机源代码旁边，正是这些代码把人送上了月球。</p>
+<p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-25-Margaret-Hamilton-2.png" alt=""></p>
+<p>我们来看看为什么这些代码是神操作：</p>
+<ol>
+<li><p>火箭和飞船上的代码开发难度完爆其他人说的电脑上的代码（不管是磁心线还是打孔卡片），在计算机还没有发展完善以前，火箭代码是没法 debug 的喔，总不能每改一段代码就发一颗新火箭吧。打孔卡片虽然逼格高，但是总不会程序出了 bug 就炸飞几千万美元的设备吧。火箭和飞船的程序员们肯定通过纸笔度过了很多不眠不休的夜晚。</p>
+</li>
+<li><p>那个时候晶体管计算机还没发展完善，很多东西没有统一，大家做一个计算机出来就自带一套汇编。而阿波罗飞船上包含着许多不同的计算机模块，避障模块是 A 公司产的，中央处理器是 B 公司产的……为了给不同的模块编程，少说得学三五套汇编语言。手下的程序员专门负责某个模块，只用学一套，但是玛格丽特自己作为项目的 leader，应该得是每一套都基本可以弄懂、会写、还不搞混吧。当然，这一点相比于其他事情已经是小事了。</p>
+</li>
+<li><p>人类实现的第一个卡尔曼滤波器（线性系统的最优估计观测器）是在阿波罗计划中实现的，作者是斯坦利施密特，不过我猜玛格丽特作为首席工程师也是参与讨论和开发的，代码一定也在这一摞厚厚的纸当中。为什么开发卡尔曼滤波器就比比尔盖茨写 Basic 解释器更屌呢，根据吴军老师《文明之光》第二册（哎呀妈呀这一段太屌了，每次和别人讲都觉得热血沸腾），斯坦利施密特是和卡尔曼讨论阿波罗的轨迹预测问题时发现卡尔曼滤波器的妙用的。卡尔曼滤波器是一个我觉得很高大上的东西，因为和一般的程序不同，他用到了深刻的数学和数值计算工具。轨迹预测的话，三维位置，三维速度？如果是这样的，那么他们的代码里包含对六阶矩阵的乘法、求逆矩阵（LU 分解或者 QR 分解）。当然也许他们只预测位置，那么三维矩阵求逆就好办了一些，然而我觉得，我们可是在谈几百万美元的大飞船啊怎么可能没有带速度的运动模型，应该还是搞六维的吧。让现在任何一个工程师拿 C 手写矩阵分解，估计都会让他痛苦好几天的，别说上古时代只有晶体管计算机和汇编语言了。</p>
+<p>大家应该能想想出更多艰难的事情了。。。</p>
+</li>
+<li><p>最神操作的当然是“女神玛格丽特对自己人生的选择” =。=</p>
+<p>大家可以自行百度她的照片，真人很漂亮，在 1969 年就已经引领了黑丝连衣裙的流行女神装扮，中年之后依然知性优雅。明明靠脸就能够生活得很好了，却选择了程序员的职业生涯，而且还领导了人类历史上最伟大的软件工程，这个人生真是……我辈只能佩服得五体投地。</p>
+<p>​</p>
+</li>
+</ol>
+<p>所以每次我写好程序到飞行器里忐忑不安地准备测试的时候，我都会想一想我的女神，然后鼓励自己：这没什么难的，你的卡尔曼滤波器是用 Eigen 写的，安全的很；你的飞行器也就几万块钱，便宜得很……</p>
+<p>延伸阅读，请移步：</p>
+<p>1.<a href="http://www.ifanr.com/572951" target="_blank" rel="external">255 亿美元的登月计划差点搞砸，幸亏这个美女出手</a></p>
+<p>2.<a href="http://daily.zhihu.com/story/4800557" target="_blank" rel="external">膜拜女神程序员，可以靠脸吃饭的人用代码把人类送上了月球</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/22/redis/" itemprop="url">
+                  redis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T22:15:46+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="roll-in-redis"><a href="#roll-in-redis" class="headerlink" title="roll-in-redis"></a>roll-in-redis</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》</p>
+<p>学习路线参考 <a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html">redis学习路线</a>，huangz大牛写的～</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/22/redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/22/spring-data-redis/" itemprop="url">
+                  spring-data-redis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T19:23:27+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/spring-data-redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/spring-data-redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Spring-data-redis"><a href="#Spring-data-redis" class="headerlink" title="Spring data redis"></a>Spring data redis</h1><p>Spring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。<br>官网：<a href="http://projects.spring.io/spring-data-redis/">http://projects.spring.io/spring-data-redis/</a><br>项目地址：<a href="https://github.com/spring-projects/spring-data-redis">https://github.com/spring-projects/spring-data-redis</a></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/22/spring-data-redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/22/hexo-qiniu/" itemprop="url">
                   hexo-qiniu
                 </a>
@@ -328,7 +865,7 @@
       
         
           <h1 id="hexo配置七牛作为图床"><a href="#hexo配置七牛作为图床" class="headerlink" title="hexo配置七牛作为图床"></a>hexo配置七牛作为图床</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>配置七牛的同步插件hexo-qiniu-sync遇到坑了啊，怎么谷歌都查不到。按照配置来走，执行hexo qiniu sync可以同步本地图片到七牛，再执行hexo clean, hexo g都没有问题，但是再hexo s和hexo d就出错，hexo s直接提示没有该命令，hexo d则提示<code>ERROR Deployer not found: git</code>，可是当把_config.yml文件里面的hexo-qiniu-sync配置文件删除，则hero s和hero d都没问题了。查了说可能是没有安装hexo-deployer-git 的问题啊，但事实上我安装了，更何况之前没安装插件前都是没问题的。</p>
-<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-hexo-qiniu:sad.jpg" alt=""></p>
+<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-hexo-qiniu-sad.jpg" alt=""></p>
 <p>心塞塞，搞了好久没配好，直接贴链接吧</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/22/hexo-qiniu/#more" rel="contents">
@@ -591,7 +1128,7 @@
 <li><p>消息队列有无数开源实现，一般没必要自己实现。zmq也好rabbitmq也好甚至redis也好，找一个合适的装上用就行，就好像rdbms/nosql一样</p>
 <p>技术都是解决问题的，消息队列解决的是将<strong><em>突发大量请求转换为后端能承受的队列请求</em></strong>，比如你的服务器一秒能处理100个订单，但秒杀活动1秒进来1000个订单，持续10秒，在后端能力无法增加的情况下，你可以用消息队列将总共10000个请求压在队列里，后台consumer按原有能力处理，100秒后处理完所有请求（而不是直接宕机丢失订单数据）</p>
 </li>
-<li><p>通俗的说，就是一个容器，你把消息丢进去，不需要立即处理。然后有个程序去从你的容器里面把消息一条条读出来处理。消息队列，可以是activeMQ，kafka之类的，也可以是数据库的一张任务表。</p>
+<li><p>通俗的说，<strong>就是一个容器，你把消息丢进去，不需要立即处理。然后有个程序去从你的容器里面把消息一条条读出来处理</strong>。消息队列，可以是activeMQ，kafka之类的，也可以是数据库的一张任务表。</p>
 <p>个人觉得消息队列，主要有两个作用：</p>
 <p>1)降低耦合</p>
 <p>2)消息可以暂时存在在消息队列中，等待消息接收者根据自身的负载处理能力控制处理消息的处理速度，减小在大并发访问时候的压力。</p>
@@ -1016,7 +1553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1024,7 +1561,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1033,7 +1570,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

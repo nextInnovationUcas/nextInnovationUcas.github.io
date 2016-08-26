@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
+学习路线参考 redis学习路线，huangz大牛写的～">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://yoursite.com/2016/08/22/redis/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
+学习路线参考 redis学习路线，huangz大牛写的～">
+<meta property="og:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg">
+<meta property="og:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-data-strcture.png">
+<meta property="og:updated_time" content="2016-08-25T19:14:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
+学习路线参考 redis学习路线，huangz大牛写的～">
+<meta name="twitter:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/22/redis/"/>
+
+  <title> redis | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redis
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T22:15:46+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="roll-in-redis"><a href="#roll-in-redis" class="headerlink" title="roll-in-redis"></a>roll-in-redis</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》</p>
+<p>学习路线参考 <a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html" target="_blank" rel="external">redis学习路线</a>，huangz大牛写的～</p>
+<a id="more"></a>
+<h2 id="redis-in-action"><a href="#redis-in-action" class="headerlink" title="redis in action"></a>redis in action</h2><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><h4 id="1-1-redis简介"><a href="#1-1-redis简介" class="headerlink" title="1.1 redis简介"></a>1.1 redis简介</h4><h5 id="1-1-1-redis-与其它数据库和缓存服务器的比较"><a href="#1-1-1-redis-与其它数据库和缓存服务器的比较" class="headerlink" title="1.1.1 redis 与其它数据库和缓存服务器的比较"></a>1.1.1 redis 与其它数据库和缓存服务器的比较</h5><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg" alt=""></p>
+<h5 id="1-1-2-附加特性"><a href="#1-1-2-附加特性" class="headerlink" title="1.1.2 附加特性"></a>1.1.2 附加特性</h5><p>在使用类似Redis这样的内存数据库时，一个首先要考虑的问题就是“当服务器被关闭时，服务器存储的数据将何去何从呢？”Redis拥有两种不同形式的持久化方法，它们都可以用小而紧凑的格式将存储在内存中的数据写入到磁盘：第一种持久化方法为时间点转储（point-in-time dump），转储操作既可以在“指定时间段内有指定数量的写操作执行”这一条件被满足时执行，又可以通过调用两条转储到磁盘（dump-to-disk）命令中的任何一条来执行；第二种持久化方法将所有修改了数据库的命令都写入到一个只追加（append-only）文件里面，用户可以根据数据的重要程度，将只追加写入设置为从不同步（sync）、每秒钟同步一次或者每写入一个命令就同步一次。</p>
+<p>另外，尽管Redis的性能很好，但受限于Redis的内存存储设计，有时候只使用一台Redis服务器可能没有办法处理所有请求。因此，为了扩展Redis的读性能，并为Redis提供故障转移（failover）支持，Redis实现了主从复制特性：执行复制的从服务器会连接上主服务器，接收主服务器发送的完整数据库的初始副本（copy）；之后主服务器执行的写命令，都会被发送给所有连接着的从服务器去执行，从而实时地更新从服务器的数据集。因为从服务器包含的数据会不断地进行更新，所以客户端可以向任意一个从服务器发送读请求，以此来避免对主服务器进行集中式的访问。</p>
+<h4 id="1-2数据结构简介"><a href="#1-2数据结构简介" class="headerlink" title="1.2数据结构简介"></a>1.2数据结构简介</h4><p>redis提供的5种结构</p>
+<p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-data-strcture.png" alt=""></p>
+<h4 id="1-3简单的文章投票网址的后端"><a href="#1-3简单的文章投票网址的后端" class="headerlink" title="1.3简单的文章投票网址的后端"></a>1.3简单的文章投票网址的后端</h4><p>参见原书</p>
+<h4 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h4><p>Redis是一个可以用来解决问题的工具，它拥有其他数据库所不具备的数据结构，并且因为它是内存数据库（这使得Redis的速度非常快），具有远程（这使得Redis可以连接多个客户端和服务器）、持久化（这使得服务器可以在重启之后仍然保持重启之前的数据）和可扩展（通过主从复制和分片）等多个特性，使得用户可以以熟悉的方式来为各种不同的问题构建解决方案（如考虑使用哪种Redis数据结构来解决这个问题比较好）。</p>
+<h3 id="第二章使用redis构建Web应用"><a href="#第二章使用redis构建Web应用" class="headerlink" title="第二章使用redis构建Web应用"></a>第二章使用redis构建Web应用</h3><p>一个Web服务器对请求进行响应的典型步骤如下：</p>
+<ol>
+<li>服务器对客户端发来的请求（request）进行解析。</li>
+<li>请求被转发给一个预定义的处理器（handler）。</li>
+<li>处理器可能会从数据库中取出数据。</li>
+<li>处理器根据取出的数据对模板（template）进行渲染（render）。</li>
+<li>处理器向客户端返回渲染后的内容作为对请求的响应（response）。</li>
+</ol>
+<h4 id="2-1登陆和cookie缓存"><a href="#2-1登陆和cookie缓存" class="headerlink" title="2.1登陆和cookie缓存"></a>2.1登陆和cookie缓存</h4><p>对于用来登录的cookie，有两种常见的方法可以将登录信息存储在cookie里面：一种是签名（signed）cookie，另一种是令牌（token）cookie。</p>
+<p><em>签名cookie</em>通常会存储用户名，可能还有他们的用户ID、用户最后一次成功登录的时间，以及网站觉得有用的其他任何信息。除了用户的相关信息之外，签名cookie还包含一个签名，服务器可以使用这个签名来验证浏览器发送的信息是否未经改动（比如将cookie中的登录用户名改成另一个用户）。</p>
+<p><em>令牌cookie</em>会在cookie里面存储一串随机字节作为令牌，服务器可以根据令牌在数据库中查找令牌的拥有者。随着时间的推移，旧令牌会被新令牌取代。</p>
+<h5 id="2-2使用redis实现购物车"><a href="#2-2使用redis实现购物车" class="headerlink" title="2.2使用redis实现购物车"></a>2.2使用redis实现购物车</h5><p>使用cookie实现购物车——也就是将整个购物车都存储到cookie里面的做法非常常见，这种做法的一大优点是无须对数据库进行写入就可以实现购物车功能，而缺点则是程序需要重新解析和验证（validate）cookie，确保cookie的格式正确，并且包含的商品都是真正可购买的商品。cookie购物车还有一个缺点：因为浏览器每次发送请求都会连cookie一起发送，所以如果购物车cookie的体积比较大，那么请求发送和处理的速度可能会有所降低。</p>
+<p>在这里，可以将购物车的信息存储到Redis里面，并且使用与用户会话cookie相同的cookie ID来引用购物车。购物车的定义非常简单：每个用户的购物车都是一个散列，这个散列存储了商品ID与商品订购数量之间的映射。</p>
+<h5 id="2-3网页缓存"><a href="#2-3网页缓存" class="headerlink" title="2.3网页缓存"></a>2.3网页缓存</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cache_request</span><span class="params">(conn, request, callback)</span>:</span></div><div class="line">    <span class="comment"># 对于不能被缓存的请求，直接调用回调函数。</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> can_cache(conn, request):</div><div class="line">        <span class="keyword">return</span> callback(request)</div><div class="line"></div><div class="line">    <span class="comment"># 将请求转换成一个简单的字符串键，方便之后进行查找。</span></div><div class="line">    page_key = <span class="string">'cache:'</span> + hash_request(request)</div><div class="line">    <span class="comment"># 尝试查找被缓存的页面。</span></div><div class="line">    content = conn.get(page_key)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> content:</div><div class="line">        <span class="comment"># 如果页面还没有被缓存，那么生成页面。</span></div><div class="line">        content = callback(request)</div><div class="line">        <span class="comment"># 将新生成的页面放到缓存里面。</span></div><div class="line">        conn.setex(page_key, content, <span class="number">300</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 返回页面。</span></div><div class="line">    <span class="keyword">return</span> content</div></pre></td></tr></table></figure>
+<h5 id="2-4-数据行缓存"><a href="#2-4-数据行缓存" class="headerlink" title="2.4 数据行缓存"></a>2.4 数据行缓存</h5><p>为了展示数据行缓存的作用，我们假设Fake Web Retailer为了清空旧库存和吸引客户消费，决定开始新一轮的促销活动：这个活动每天都会推出一些特价商品供用户抢购，所有特价商品的数量都是限定的，卖完即止。在这种情况下，网站是不能对整个促销页面进行缓存的，因为这可能会导致用户看到错误的特价商品剩余数量，但是每次载入页面都从数据库里面取出特价商品的剩余数量的话，又会给数据库带来巨大的压力，并导致我们需要花费额外的成本来扩展数据库。</p>
+<p>为了应对促销活动带来的大量负载，我们需要对数据行（即页面所需要的数据信息）进行缓存，具体的做法是：编写一个持续运行的守护进程函数，让这个函数将指定的数据行缓存到Redis里面，并不定期地对这些缓存进行更新。</p>
+<h5 id="2-5-网页分析"><a href="#2-5-网页分析" class="headerlink" title="2.5 网页分析"></a>2.5 网页分析</h5><h3 id="第三章redis"><a href="#第三章redis" class="headerlink" title="第三章redis"></a>第三章redis</h3><h4 id="3-1字符串"><a href="#3-1字符串" class="headerlink" title="3.1字符串"></a>3.1字符串</h4><p>在redis中，字符串可以存储以下三种类型的值：字符串，整数，浮点数。</p>
+<p>字符串有两项操作，一项是自增自减，这个是适用于数字，常用的命令有INCR，DECR，INCRBY，DECRBY，INCRBYFLOAT等等；还一项是对字符串的部分内容进行读取或写入，即截断操作，主要命令有APPEND，GETRANGE，SETRANGE，GETBIT，SETBIT，BITCOUNT，BITOP等等。</p>
+<h4 id="3-2-列表"><a href="#3-2-列表" class="headerlink" title="3.2 列表"></a>3.2 列表</h4><h4 id="3-3-集合"><a href="#3-3-集合" class="headerlink" title="3.3 集合"></a>3.3 集合</h4><h4 id="3-4散列"><a href="#3-4散列" class="headerlink" title="3.4散列"></a>3.4散列</h4><p><code>HGET</code>命令和<code>HSET</code>命令分别是<code>HMGET</code>命令和<code>HMSET</code>命令的单参数版本（MGET和GET也是如此，M表示多个参数的意思），这些命令的唯一区别在于单参数版本每次执行只能处理一个键值对，而多参数版本每次执行可以处理多个键值对。</p>
+<h4 id="3-5有序集合"><a href="#3-5有序集合" class="headerlink" title="3.5有序集合"></a>3.5有序集合</h4><p>默认排序是从小到大，升序排列。<code>ZREV*</code>开头的命令就是按照降序排序。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th style="text-align:left">用例和描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZADD</td>
+<td style="text-align:left">ZADD key-name score member [score member …]——将带有给定分值的成员添加到有序集合里面。<strong>Redis标准是先输入分值、后输入成员，但python正好相反</strong>。</td>
+</tr>
+<tr>
+<td>ZINTERSTORE</td>
+<td style="text-align:left">ZINTERSTORE dest-key key-count key [key …][WEIGHTS weight [weight …]] [AGGREGATE SUM\</td>
+<td>MIN\</td>
+<td>MAX]——对给定的有序集合执行类似于集合的交集运算</td>
+</tr>
+<tr>
+<td>ZUNIONSTORE</td>
+<td style="text-align:left">ZUNIONSTORE dest-key key-count key [key …][WEIGHTS weight [weight …]] [AGGREGATE SUM\</td>
+<td>MIN\</td>
+<td>MAX]——对给定的有序集合执行类似于集合的并集运算</td>
+</tr>
+<tr>
+<td>ZREVRANK</td>
+<td style="text-align:left">ZREVRANK key-name member——返回有序集合里成员member所处的位置，成员按照分值从大到小排列</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>ZINTERSTORE和ZUNIONSTORE默认使用的聚合函数为sum，</li>
+<li>用户可以在执行并集运算和交集运算的时候传入不同的聚合函数，    共有 sum、min、max 三个聚合函数可选。</li>
+<li>用户还可以把集合作为输入传给ZINTERSTORE和ZUNIONSTORE，命令会将集合看作是成员分值全为1的有序集合来处理。</li>
+</ol>
+<h4 id="3-6-发布与订阅"><a href="#3-6-发布与订阅" class="headerlink" title="3.6 发布与订阅"></a>3.6 发布与订阅</h4><p>redis的发布与订阅有以下两个问题：</p>
+<p>1.不稳定</p>
+<p>对于旧版Redis来说，如果一个客户端订阅了某个或某些频道，但它读取消息的速度却不够快的话，那么不断积压的消息就会使得Redis输出缓冲区的体积变得越来越大，这可能会导致Redis的速度变慢，甚至直接崩溃。也可能会导致Redis被操作系统强制杀死，甚至导致操作系统本身不可用。新版的Redis不会出现这种问题，因为它会自动断开不符合<code>client-output-buffer-limit pubsub</code>配置选项要求的订阅客户端。</p>
+<p>2.数据传送不是很可靠</p>
+<p>如果客户端在执行订阅操作的过程中断线，那么客户端将丢失在断线期间发送的所有消息。</p>
+<h4 id="3-7其它命令"><a href="#3-7其它命令" class="headerlink" title="3.7其它命令"></a>3.7其它命令</h4><h5 id="3-7-1排序"><a href="#3-7-1排序" class="headerlink" title="3.7.1排序"></a>3.7.1排序</h5><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用例和描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SORT</td>
+<td>`SORT source-key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern …]] [ASC\</td>
+<td>DESC] [ALPHA] [STOREdest-key]` ——根据给定的选项，对输入列表、集合或者有序集合进行排序，然后返回或者存储排序的结果</td>
+</tr>
+</tbody>
+</table>
+<p>使用<code>SORT</code>命令提供的选项可以实现以下功能：根据降序而不是默认的升序来排序元素；将元素看作是数字来进行排序，或者将元素看作是二进制字符串来进行排序（比如排序字符串<code>&#39;110&#39;</code>和<code>&#39;12&#39;</code>的结果就跟排序数字<code>110</code>和<code>12</code>的结果不一样）；使用被排序元素之外的其他值作为权重来进行排序，甚至从输入的列表、集合或者有序集合那里获取外部值等等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; conn.rpush(&apos;sort-input&apos;, 23, 15, 110, 7) </div><div class="line"># 首先将一些元素添加到列表里面。</div><div class="line">4                                                               </div><div class="line">&gt;&gt;&gt; conn.sort(&apos;sort-input&apos;)                                     # 根据数字大小对元素进行排序。</div><div class="line">[&apos;7&apos;, &apos;15&apos;, &apos;23&apos;, &apos;110&apos;]                                        </div><div class="line">&gt;&gt;&gt; conn.sort(&apos;sort-input&apos;, alpha=True)                         # 根据字母表顺序对元素进行排序。</div><div class="line">[&apos;110&apos;, &apos;15&apos;, &apos;23&apos;, &apos;7&apos;]                                        </div><div class="line">&gt;&gt;&gt; conn.hset(&apos;d-7&apos;, &apos;field&apos;, 5)                                # 添加一些用于执行排序操作和获取操作的附加数据。</div><div class="line">1L                                                              </div><div class="line">&gt;&gt;&gt; conn.hset(&apos;d-15&apos;, &apos;field&apos;, 1)                               </div><div class="line">1L                                                              </div><div class="line">&gt;&gt;&gt; conn.hset(&apos;d-23&apos;, &apos;field&apos;, 9)                               </div><div class="line">1L                                                              </div><div class="line">&gt;&gt;&gt; conn.hset(&apos;d-110&apos;, &apos;field&apos;, 3)                              </div><div class="line">1L                                                              </div><div class="line">&gt;&gt;&gt; conn.sort(&apos;sort-input&apos;, by=&apos;d-*-&gt;field&apos;)                    # 将散列的域（field）用作权重，对sort-input列表进行排序。</div><div class="line">[&apos;15&apos;, &apos;110&apos;, &apos;7&apos;, &apos;23&apos;]                                        </div><div class="line">&gt;&gt;&gt; conn.sort(&apos;sort-input&apos;, by=&apos;d-*-&gt;field&apos;, get=&apos;d-*-&gt;field&apos;)  # 获取外部数据作为返回值，而不返回被排序的元素。</div><div class="line">[&apos;1&apos;, &apos;3&apos;, &apos;5&apos;, &apos;9&apos;]</div></pre></td></tr></table></figure>
+<h5 id="3-7-2-基本的redis事务"><a href="#3-7-2-基本的redis事务" class="headerlink" title="3.7.2 基本的redis事务"></a>3.7.2 基本的redis事务</h5><p>什么是redis的基本事务？</p>
+<p>Redis的基本事务（basic transaction）需要用到<code>MULTI</code>命令和<code>EXEC</code>命令，这种事务可以让一个客户端在不被其他客户端打断的情况下执行多个命令。和关系数据库那种可以在执行的过程中进行回滚（rollback）的事务不同，在Redis里面，被<code>MULTI</code>命令和<code>EXEC</code>命令包围的所有命令会一个接一个地执行，直到所有命令都执行完毕为止。当一个事务执行完毕之后，Redis才会处理其他客户端的命令。</p>
+<p>要在Redis里面执行事务，我们首先需要执行<code>MULTI</code>命令，然后输入那些我们想要在事务里面执行的命令，最后再执行<code>EXEC</code>命令。当Redis从一个客户端那里接收到<code>MULTI</code>命令时，Redis会将这个客户端之后发送的所有命令都放入到一个队列里面，直到这个客户端发送<code>EXEC</code>命令为止，然后Redis就会在不被打断的情况下，一个接一个地执行存储在队列里面的命令。从语义上来说，Redis事务在Python客户端上面是由<em>流水线</em>（pipeline）实现的：对连接对象调用<code>piepline()</code>方法创建一个事务，在这个事务正确使用的情况下，会用<code>MULTI</code>和<code>EXEC</code>包裹起一连串的多个命令。另外，为了减少Redis与客户端之间的通信往返次数，提升执行多个命令时的性能，Python的Redis客户端会存储起事务包含的多个命令，然后在事务执行时一次性地将所有命令都发送给Redis。</p>
+<h5 id="3-7-3-键的过期时间"><a href="#3-7-3-键的过期时间" class="headerlink" title="3.7.3 键的过期时间"></a>3.7.3 键的过期时间</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">示例和描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PERSIST</td>
+<td style="text-align:center"><code>PERSIST key-name</code>——移除键的过期时间</td>
+</tr>
+<tr>
+<td style="text-align:center">TTL</td>
+<td style="text-align:center"><code>TTL key-name</code>——返回给定键距离过期还有多少秒</td>
+</tr>
+<tr>
+<td style="text-align:center">EXPIRE</td>
+<td style="text-align:center"><code>EXPIRE key-name seconds</code>——让键<code>key-name</code>在给定的             seconds秒之后过期</td>
+</tr>
+<tr>
+<td style="text-align:center">EXPIREAT</td>
+<td style="text-align:center"><code>EXPIREAT key-name timestamp</code>——将给定键的过期时间设置为给定的UNIX时间戳</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第四章-数据安全与性能保障"><a href="#第四章-数据安全与性能保障" class="headerlink" title="第四章 数据安全与性能保障"></a>第四章 数据安全与性能保障</h2><p>待续…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/spring-data-redis/" rel="next" title="spring-data-redis">
+                <i class="fa fa-chevron-left"></i> spring-data-redis
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/25/Margaret-Hamilton/" rel="prev" title="Margaret Hamilton">
+                Margaret Hamilton <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/22/redis/"
+           data-title="redis" data-url="http://yoursite.com/2016/08/22/redis/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#roll-in-redis"><span class="nav-number">1.</span> <span class="nav-text">roll-in-redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-in-action"><span class="nav-number">1.2.</span> <span class="nav-text">redis in action</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章"><span class="nav-number">1.2.1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-redis简介"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 redis简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-1-redis-与其它数据库和缓存服务器的比较"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">1.1.1 redis 与其它数据库和缓存服务器的比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-2-附加特性"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">1.1.2 附加特性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2数据结构简介"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.2数据结构简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3简单的文章投票网址的后端"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3简单的文章投票网址的后端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-小结"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">1.4 小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章使用redis构建Web应用"><span class="nav-number">1.2.2.</span> <span class="nav-text">第二章使用redis构建Web应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1登陆和cookie缓存"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.1登陆和cookie缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2使用redis实现购物车"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">2.2使用redis实现购物车</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3网页缓存"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">2.3网页缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-数据行缓存"><span class="nav-number">1.2.2.1.3.</span> <span class="nav-text">2.4 数据行缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-网页分析"><span class="nav-number">1.2.2.1.4.</span> <span class="nav-text">2.5 网页分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章redis"><span class="nav-number">1.2.3.</span> <span class="nav-text">第三章redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1字符串"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">3.1字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-列表"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">3.2 列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-集合"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.3 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4散列"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">3.4散列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5有序集合"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">3.5有序集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-发布与订阅"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">3.6 发布与订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7其它命令"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">3.7其它命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-1排序"><span class="nav-number">1.2.3.7.1.</span> <span class="nav-text">3.7.1排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-2-基本的redis事务"><span class="nav-number">1.2.3.7.2.</span> <span class="nav-text">3.7.2 基本的redis事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-3-键的过期时间"><span class="nav-number">1.2.3.7.3.</span> <span class="nav-text">3.7.3 键的过期时间</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-数据安全与性能保障"><span class="nav-number">1.3.</span> <span class="nav-text">第四章 数据安全与性能保障</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
