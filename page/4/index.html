@@ -258,8 +258,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/22/spring-data-redis/" itemprop="url">
-                  spring-data-redis
+                <a class="post-title-link" href="/2016/10/12/maven/" itemprop="url">
+                  maven
                 </a>
               
             
@@ -272,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T19:23:27+08:00" content="2016-08-22">
-              2016-08-22
+            <time itemprop="dateCreated" datetime="2016-10-12T20:21:39+08:00" content="2016-10-12">
+              2016-10-12
             </time>
           </span>
 
@@ -286,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
                   </a>
                 </span>
 
@@ -302,254 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/22/spring-data-redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/spring-data-redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Spring-data-redis"><a href="#Spring-data-redis" class="headerlink" title="Spring data redis"></a>Spring data redis</h1><p>Spring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。<br>官网：<a href="http://projects.spring.io/spring-data-redis/">http://projects.spring.io/spring-data-redis/</a><br>项目地址：<a href="https://github.com/spring-projects/spring-data-redis">https://github.com/spring-projects/spring-data-redis</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/spring-data-redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/hexo-qiniu/" itemprop="url">
-                  hexo-qiniu
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T13:48:39+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/22/hexo-qiniu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/hexo-qiniu/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="hexo配置七牛作为图床"><a href="#hexo配置七牛作为图床" class="headerlink" title="hexo配置七牛作为图床"></a>hexo配置七牛作为图床</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>配置七牛的同步插件hexo-qiniu-sync遇到坑了啊，怎么谷歌都查不到。按照配置来走，执行hexo qiniu sync可以同步本地图片到七牛，再执行hexo clean, hexo g都没有问题，但是再hexo s和hexo d就出错，hexo s直接提示没有该命令，hexo d则提示<code>ERROR Deployer not found: git</code>，可是当把_config.yml文件里面的hexo-qiniu-sync配置文件删除，则hero s和hero d都没问题了。查了说可能是没有安装hexo-deployer-git 的问题啊，但事实上我安装了，更何况之前没安装插件前都是没问题的。</p>
-<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-hexo-qiniu-sad.jpg" alt=""></p>
-<p>心塞塞，搞了好久没配好，直接贴链接吧</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/hexo-qiniu/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/21/skills-of-mac-os/" itemprop="url">
-                  skills of mac-os
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T10:24:27+08:00" content="2016-08-21">
-              2016-08-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/skills-of-mac-os/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/skills-of-mac-os/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/maven/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/maven/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -574,12 +328,9 @@
       
         
           
-            <h1 id="关于mac的一些使用技巧"><a href="#关于mac的一些使用技巧" class="headerlink" title="关于mac的一些使用技巧"></a>关于mac的一些使用技巧</h1><h3 id="软件篇"><a href="#软件篇" class="headerlink" title="软件篇"></a>软件篇</h3><p>1.设置命令行启动命令，可以使用软链接，也可以alias。alias的语法规则是alias[别名]=[指令名称]，如<code>alias la=&#39;ls -a&#39;</code> 所以设置typora可以用<code>alias typora=&#39;open -a &quot;Typora&quot;</code> .</p>
-<p>设置sublime可以这样:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s &quot;/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/sublime</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alias sublime=&apos;open -a &quot;Sublime Text 2&quot;&apos;</div></pre></td></tr></table></figure>
-<p>2.有时间再补充，参考这篇<a href="http://qiaoin.github.io/2016/03/11/%E5%85%B3%E4%BA%8EMAC%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" target="_blank" rel="external">关于MAC的一些配置</a></p>
+            <h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p>1.archetype</p>
+<p>最常用的骨架是maven-archetype-quickstart和maven-archetype-webapp骨架。maven-archetype-quickstart骨架是用来创建一个Java Project，而maven-archetype-webapp骨架则是用来创建一个JavaWeb Project。</p>
+<p><a href="http://www.cnblogs.com/LinkinPark/p/5232995.html" target="_blank" rel="external">Maven的Archetype简介</a></p>
 
           
         
@@ -629,8 +380,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/21/messageQueue/" itemprop="url">
-                  messageQueue
+                <a class="post-title-link" href="/2016/10/09/elasticsearch/" itemprop="url">
+                  elasticsearch
                 </a>
               
             
@@ -643,8 +394,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T10:00:23+08:00" content="2016-08-21">
-              2016-08-21
+            <time itemprop="dateCreated" datetime="2016-10-09T14:20:47+08:00" content="2016-10-09">
+              2016-10-09
             </time>
           </span>
 
@@ -657,8 +408,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/messageQueue/" itemprop="url" rel="index">
-                    <span itemprop="name">messageQueue</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -673,8 +424,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/21/messageQueue/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/messageQueue/" itemprop="commentsCount"></span>
+                <a href="/2016/10/09/elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/elasticsearch/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -698,32 +449,112 @@
 
       
         
-          <h1 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h1><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>什么是消息队列，以下有几个形象的解释。</p>
-<ul>
-<li><p>消息队列，顾名思义 首先是个队列。队列的操作有<code>入队</code>和<code>出队</code>，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。</p>
-<p>使用场景：</p>
+          
+            <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><p>官网地址：<a href="https://www.elastic.co/learn" target="_blank" rel="external">https://www.elastic.co/learn</a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>安装elasticsearch，可视化管理工具marvel，kibana。</p>
+<p>在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head。</p>
+<p><a href="http://www.cnblogs.com/hanyinglong/p/5409003.html" target="_blank" rel="external">Elasticsearch初步使用(安装、Head配置、分词器配置)</a></p>
+<p>安装head:</p>
+<p><code>bin/plugin install mobz/elasticsearch-head</code></p>
+<p>进入head:<a href="http://localhost:9200/_plugin/head/" target="_blank" rel="external">http://localhost:9200/_plugin/head/</a> </p>
+<p>查看插件的url可以参照上面。推荐使用head，好用多了。</p>
 <blockquote>
-<p>当你不需要立即获得结果，但是并发量又不能无限大的时候             </p>
+<p>启动ElasticSearch很简单，执行安装目录下bin/elasticsearch即可；ElasticSearch 1.0.0的启动机制有一些变化，默认在前台运行，-d参数表示在后台运行；另外还提供-p参数，后接文件名，保存当前ElasticSearch进程的pid，方便关闭进程；使用ps aux|grep elasticsearch可以查看是否启动 </p>
 </blockquote>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/elasticsearch -d -p /tmp/es.pid</div><div class="line">$ kill `cat /tmp/es.pid`</div></pre></td></tr></table></figure>
+<p>servicewrapper插件不支持2.x的版本，所以不使用其来控制es。</p>
+<p>关闭es</p>
+<p>前台运行:可以通过”CTRL+C”组合键来停止运行<br>后台运行，可以通过”kill -9 进程号”停止.也可以通过REST API接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -XPOST http://主机IP：9200/_cluster/nodes/_shutdown</div></pre></td></tr></table></figure>
+<p>来关闭整个集群，通过:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -XPOST http://主机IP：9200/_cluster/nodes/节点标示符(如es-node1)/_shutdown</div></pre></td></tr></table></figure>
+<p>来关闭单个节点。也可以通过head来关闭。</p>
+<p>注：shutdown接口已经被弃用。</p>
+<p><a href="http://www.cnblogs.com/ae6623/p/5110927.html" target="_blank" rel="external">ElasticSearch关闭重启命令</a></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>可以参见<a href="http://blog.csdn.net/sinat_28224453/article/details/51134978。" target="_blank" rel="external">http://blog.csdn.net/sinat_28224453/article/details/51134978。</a></p>
+<p><a href="http://www.qixing318.com/article/elasticsearch-distributed-search-engine-used-in-the-installation-of-the-linux-platform.html" target="_blank" rel="external">http://www.qixing318.com/article/elasticsearch-distributed-search-engine-used-in-the-installation-of-the-linux-platform.html</a></p>
+<p><a href="http://bigbo.github.io/pages/2015/04/10/elasticsearch_config/" target="_blank" rel="external">elasticsearch配置小记</a></p>
+<h3 id="2-分词"><a href="#2-分词" class="headerlink" title="2.分词"></a>2.分词</h3><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik git地址</a></p>
+<p>如果版本对不上，可以改ik的pom文件的es版本号。</p>
+<p>分词教程：</p>
+<p><a href="http://zhaoyanblog.com/archives/495.html" target="_blank" rel="external">elasticsearch的实现全文检索</a></p>
+<p><a href="http://keenwon.com/1404.html" target="_blank" rel="external">为Elasticsearch添加中文分词，对比分词器效果</a></p>
+<p><a href="http://www.cnblogs.com/xing901022/p/5235993.html" target="_blank" rel="external">Elasticsearch——分词器对String的作用</a></p>
+<blockquote>
+<h3 id="field-must-be-set-when-search-analyzer-is-set"><a href="#field-must-be-set-when-search-analyzer-is-set" class="headerlink" title="field must be set when search_analyzer is set"></a>field must be set when search_analyzer is set</h3><ul>
+<li>请求参数：<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”indexAnalyzer”:”ik”,”searchAnalyzer”:”ik”}}}}’</li>
+<li>问题日志：<br>{“error”:{“root_cause”:[{“type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”}],”type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”},”status”:400}</li>
+<li>问题解决：参考旧版本教程的坑，V2.3.4的参数改了，应为<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”analyzer”:”ik”,”search_analyzer”:”ik”}}}}’</li>
 </ul>
-<p>  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户端，显然并发不能无穷大，于是你就需要把写日志的请求放入到消息队列里，在消费者那边依次把队列中产生的日志写到数据库里。</p>
-<p>  至于怎么实现消息队列，其实你本身一个普通的队列就行呀~看你需要什么附加功能而已。</p>
-<ul>
-<li><p>消息队列有无数开源实现，一般没必要自己实现。zmq也好rabbitmq也好甚至redis也好，找一个合适的装上用就行，就好像rdbms/nosql一样</p>
-<p>技术都是解决问题的，消息队列解决的是将<strong><em>突发大量请求转换为后端能承受的队列请求</em></strong>，比如你的服务器一秒能处理100个订单，但秒杀活动1秒进来1000个订单，持续10秒，在后端能力无法增加的情况下，你可以用消息队列将总共10000个请求压在队列里，后台consumer按原有能力处理，100秒后处理完所有请求（而不是直接宕机丢失订单数据）</p>
-</li>
-<li><p>通俗的说，<strong>就是一个容器，你把消息丢进去，不需要立即处理。然后有个程序去从你的容器里面把消息一条条读出来处理</strong>。消息队列，可以是activeMQ，kafka之类的，也可以是数据库的一张任务表。</p>
-<p>个人觉得消息队列，主要有两个作用：</p>
-<p>1)降低耦合</p>
-<p>2)消息可以暂时存在在消息队列中，等待消息接收者根据自身的负载处理能力控制处理消息的处理速度，减小在大并发访问时候的压力。</p>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/21/messageQueue/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+</blockquote>
+<p>Mapping语法：</p>
+<blockquote>
+<p>curl -XPUT localhost:9200/索引名称/类型名称/_mapping?pretty -d ‘{“类型名称”:{“properties”:{“字段名称”:{“type”:”字段类型”,”store”:”是否存储”,”index”:”索引方式、是否分析”}}}}’</p>
+</blockquote>
+<p>分词的配置，推荐在创建mapping的时候，对index analyzer进行ik_max_word,对查询则ik_smart。参见<a href="http://blog.csdn.net/molong1208/article/details/50557253" target="_blank" rel="external">Elasticsearch中使用ik分词器 java api</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">index:</div><div class="line">  analysis:                   </div><div class="line">    analyzer:      </div><div class="line">      ik:</div><div class="line">          alias: [ik_analyzer]</div><div class="line">          type: ik</div><div class="line">      ik_max_word:</div><div class="line">          type: ik</div><div class="line">          use_smart: false</div><div class="line">      ik_smart:</div><div class="line">          type: ik</div><div class="line">          use_smart: true</div><div class="line">index.analysis.analyzer.default.type: ik</div></pre></td></tr></table></figure>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><h4 id="elasticsearch-mapper-attachments"><a href="#elasticsearch-mapper-attachments" class="headerlink" title="elasticsearch-mapper-attachments"></a>elasticsearch-mapper-attachments</h4><p><a href="https://github.com/elastic/elasticsearch-mapper-attachments" target="_blank" rel="external">https://github.com/elastic/elasticsearch-mapper-attachments</a></p>
+<p><a href="http://elasticsearch.cn/article/49" target="_blank" rel="external">通过elasticsearch-mapper attachment插件实现文件建立索引</a></p>
+<p><a href="http://www.voidcn.com/blog/jingkyks/article/p-3255066.html" target="_blank" rel="external">elasticsearch索引文档-attachment</a></p>
+<h4 id="tika"><a href="#tika" class="headerlink" title="tika"></a>tika</h4><p><a href="http://blog.csdn.net/wxwzy738/article/details/8882391" target="_blank" rel="external">Tika文本提取工具的使用(word、pdf、excel等)</a></p>
+<p> <a href="http://blog.csdn.net/pelick/article/details/8520352" target="_blank" rel="external">Apache Tika:通用的内容分析工具</a></p>
+<p><a href="https://yq.aliyun.com/articles/28250" target="_blank" rel="external">【NLP】Tika 文本预处理：抽取各种格式文件内容</a></p>
+<p><a href="https://wizardforcel.gitbooks.io/tutorialspoint-java/content/tika/119.html" target="_blank" rel="external">Tika教程</a></p>
+<h4 id="基于内容的推荐"><a href="#基于内容的推荐" class="headerlink" title="基于内容的推荐"></a>基于内容的推荐</h4><p>more like this 关键字段</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1-在java中使用elasticSearch"><a href="#1-在java中使用elasticSearch" class="headerlink" title="1)在java中使用elasticSearch"></a>1)在java中使用elasticSearch</h4><p> <a href="https://www.elastic.co/blog/found-java-clients-for-elasticsearch" target="_blank" rel="external">https://www.elastic.co/blog/found-java-clients-for-elasticsearch</a></p>
+<p>官方java api的翻译版</p>
+<p><a href="https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html" target="_blank" rel="external">https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html</a></p>
+<p>源码 api : <a href="http://javadoc.kyubu.de/elasticsearch/v1.7.3/" target="_blank" rel="external">http://javadoc.kyubu.de/elasticsearch/v1.7.3/</a></p>
+<h5 id="1-native-client"><a href="#1-native-client" class="headerlink" title="1.native client"></a>1.native client</h5><p><a href="http://www.cnblogs.com/bmaker/p/5472035.html" target="_blank" rel="external">elasticsearch 2种客户端的区别</a></p>
+<p><a href="http://www.cnblogs.com/lujiao_cs/p/3700375.html" target="_blank" rel="external">ElasticSearch 之 Client</a></p>
+<h5 id="2-jest"><a href="#2-jest" class="headerlink" title="2.jest"></a>2.jest</h5><p><a href="http://itindex.net/detail/54095-elasticsearch-restful-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E" target="_blank" rel="external">elasticsearch RESTful搜索引擎-(java jest 使用[入门])</a></p>
+<h5 id="3-spring-data-elasticsearch"><a href="#3-spring-data-elasticsearch" class="headerlink" title="3.spring-data-elasticsearch"></a>3.spring-data-elasticsearch</h5><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">spring-data-elasticsearch git地址</a></p>
+<p><a href="https://www.gitbook.com/book/giraffe0813/spring-data-elasticsearch/details" target="_blank" rel="external">spring-data-elasticsearch gitBook</a></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="调用restful-api"><a href="#调用restful-api" class="headerlink" title="调用restful api"></a>调用restful api</h4><p><a href="https://yq.aliyun.com/articles/33987" target="_blank" rel="external">ElasticSearch实战－编码实践</a></p>
+<h4 id="java-api实例"><a href="#java-api实例" class="headerlink" title="java api实例"></a>java api实例</h4><p><a href="http://minirick.duapp.com/yong-elasticsearchwei-ni-de-xiang-mu-ti-gong-chui-zhi-sou-suo-fu-wu/" target="_blank" rel="external">用elasticsearch为你的项目提供垂直搜索服务</a></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>1)es小结 : <a href="http://blog.inet198.cn/?wojiushiwo987/article/details/52244917" target="_blank" rel="external">Elasticsearch学习，请先看这一篇</a></p>
+<p>2)Elasticsearch 现在主要的应用场景有三块。</p>
+<p>1.站内搜索，主要和 Solr 竞争，属于后起之秀。</p>
+<p>2.NoSQL json文档数据库，主要抢占 Mongo 的市场，它在读写性能上优于 Mongo（见文末比较链接），同时也支持地理位置查询，还方便地理位置和文本混合查询，属于歪打正着。</p>
+<p>3.监控，统计以及日志类时间序的数据的存储和分析以及可视化，这方面是引领者。</p>
+<p><a href="http://lutaf.com/158.htm" target="_blank" rel="external">开源搜索引擎评估:lucene sphinx elasticsearch</a></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>建议阅读源码</p>
+<p><a href="https://my.oschina.net/original123/blog/734095" target="_blank" rel="external">搜索引擎框架－elasticsearch</a></p>
+<h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p><a href="http://www.cnblogs.com/huangfox/p/3543134.html" target="_blank" rel="external">elasticsearch口水篇</a></p>
+<p><a href="http://blog.csdn.net/geloin/article/details/8934289" target="_blank" rel="external">分布式搜索Elasticsearch——项目过程（二）</a></p>
+<h5 id="restful系列教程"><a href="#restful系列教程" class="headerlink" title="restful系列教程"></a>restful系列教程</h5><p>(ElasticSearch权威教程)<a href="http://www.cnblogs.com/richaaaard/category/783901.html" target="_blank" rel="external">ElasticSearch 2</a></p>
+<h5 id="java-api系列教程"><a href="#java-api系列教程" class="headerlink" title="java api系列教程"></a>java api系列教程</h5><p><a href="http://blog.csdn.net/ljc2008110/article/details/48652937" target="_blank" rel="external">ElasticSearch的Java API</a></p>
+<p><a href="http://blog.csdn.net/laigood12345/article/category/1113868/" target="_blank" rel="external">elasticsearch</a></p>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a href="http://udn.yyuap.com/doc/mastering-elasticsearch/chapter-8/index.html" target="_blank" rel="external">elasticsearch教程</a></p>
+<p><a href="http://riching.iteye.com/blog/1921625" target="_blank" rel="external">使用java访问elasticsearch创建索引</a></p>
+<p><a href="https://segmentfault.com/a/1190000006431332" target="_blank" rel="external">Elasticsearch，为了搜索</a></p>
+<p><a href="http://siddontang.com/2015/01/18/elasticsearch-note/" target="_blank" rel="external">Elasticsearch学习笔记</a></p>
+<p><a href="http://www.importnew.com/19418.html" target="_blank" rel="external">搜索引擎solr和elasticsearch</a></p>
+<p><a href="http://www.open-open.com/lib/view/open1452046497511.html#articleHeader3" target="_blank" rel="external">使用 Elasticsearch 实现博客站内搜索</a></p>
+<p>问题：</p>
+<p><a href="http://m.blog.csdn.net/article/details?id=42462863" target="_blank" rel="external">elasticsearch出现TranslogCorruptedException导致shard不能启动的问题修复</a></p>
+<p>配置远程访问：</p>
+<p>在服务器的es的config文件里面把network.host改为0.0.0.0</p>
+<p><a href="http://kuka.im/2016/05/25/2016-05-25-Elasticsearch%E9%9B%86%E7%BE%A4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="external">ES集群遇到的问题</a></p>
+<p>es启动出现问题</p>
+<p>一定不要用ctrl+z，要ctrl+c去停止，前者只是暂停，不是终止。</p>
+<blockquote>
+<p>CTRL-Z和CTRL-C都是中断命令,但是他们的作用却不一样.<br>CTRL-C是强制中断程序的执行,<br>而CTRL-Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg/bg操作继续前台或后台的任务,fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.<br>例如:<br>当你vi一个文件是,如果需要用shell执行别的操作,但是你又不打算关闭vi,因为你得<br>存盘推出,你可以简单的按下CTRL-Z,shell会将vi进程挂起~,当你结束了那个shell操作之后,你可以用fg命令继续vi你的文件.</p>
+<p><strong>ctrl-d: </strong>( Terminate input, or exit shell ) 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；</p>
+</blockquote>
+<h3 id="Elasticsearch与mysql的实时增量更新"><a href="#Elasticsearch与mysql的实时增量更新" class="headerlink" title="Elasticsearch与mysql的实时增量更新"></a>Elasticsearch与mysql的实时增量更新</h3><p>想要增量同步，有一些先决条件。首先数据库中要维护一个update_time的时间戳，这个字段表示了该记录的最后更新时间。然后定时执行一个任务，这个任务中执行的sql就是根据时间戳判断该记录是否应该被更新。</p>
+<p>出自系列教程<a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/column/details/deep-elasticsearch.html" target="_blank" rel="external">深入理解elasticsearch</a></p>
+<h5 id="将mysql导入到es中"><a href="#将mysql导入到es中" class="headerlink" title="将mysql导入到es中"></a>将mysql导入到es中</h5><p>常用的插件是elasticsearch-jdbc, elasticsearch-river-MySQL , <a href="http://lib.csdn.net/base/go" target="_blank" rel="external">Go</a>-mysql-elasticsearch, logstash-input-jdbc这四种。之间的比较参见这篇<a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/51771621" target="_blank" rel="external">mysql 与elasticsearch实时同步常用插件及优缺点对比</a></p>
+<h5 id="logstash-input-jdbc"><a href="#logstash-input-jdbc" class="headerlink" title="logstash-input-jdbc"></a>logstash-input-jdbc</h5><p><a href="https://www.zghhome.cn/?p=258" target="_blank" rel="external">使用logstash将数据库的数据导入elasticsearch</a></p>
+<p>参数说明参见：<a href="http://www.cnblogs.com/licongyu/p/5383334.html" target="_blank" rel="external">logstash input jdbc连接数据库</a></p>
+<p><a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/51747266" target="_blank" rel="external">logstash-input-jdbc实现mysql 与elasticsearch实时同步深入详解</a></p>
+<p>官方说明：</p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html#plugins-inputs-jdbc-type" target="_blank" rel="external">https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html#plugins-inputs-jdbc-type</a></p>
+<p><a href="https://github.com/logstash-plugins/logstash-input-jdbc" target="_blank" rel="external">https://github.com/logstash-plugins/logstash-input-jdbc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">  jdbc &#123;</div><div class="line">    jdbc_driver_library =&gt; &quot;/path/to/mysql-connector-java-5.1.33-bin.jar&quot;</div><div class="line">    jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">    jdbc_connection_string =&gt; &quot;jdbc:mysql://host:port/database&quot;</div><div class="line">    jdbc_user =&gt; &quot;user&quot;</div><div class="line">    jdbc_password =&gt; &quot;password&quot;</div><div class="line">  # or jdbc_password_filepath =&gt; &quot;/path/to/my/password_file&quot;</div><div class="line">    clean_run =&gt; false</div><div class="line">    use_column_value =&gt; true</div><div class="line">    tracking_column =&gt; BUG_ID</div><div class="line">    record_last_run =&gt; true</div><div class="line">    last_run_metadata_path =&gt; &quot;/etc/logstash/run_metadata.d/my_info&quot;</div><div class="line">    lowercase_column_names =&gt; false</div><div class="line">    statement_filepath =&gt; &quot;/etc/logstash/statement_file.d/my_info.sql&quot;</div><div class="line">    schedule =&gt; &quot;* * * * *&quot;</div><div class="line">    jdbc_paging_enabled =&gt; &quot;true&quot;</div><div class="line">    jdbc_page_size =&gt; &quot;50000&quot;</div><div class="line">    type =&gt; &quot;es_type&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">filter &#123;</div><div class="line">  [some filters here]</div><div class="line">&#125;</div><div class="line"></div><div class="line">output &#123;</div><div class="line">  stdout &#123;</div><div class="line">    codec =&gt; rubydebug</div><div class="line">  &#125;</div><div class="line">  elasticsearch_http &#123;</div><div class="line">    host =&gt; &quot;host&quot;</div><div class="line">    index =&gt; &quot;es_index&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="将不同类型的数据导入到elasticsearch中"><a href="#将不同类型的数据导入到elasticsearch中" class="headerlink" title="将不同类型的数据导入到elasticsearch中"></a>将不同类型的数据导入到elasticsearch中</h5><p><a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/52304223" target="_blank" rel="external">如何将不同类型数据导入Elaticsearch中</a></p>
+
+          
         
       
     </div>
@@ -771,8 +602,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/20/meassageQueue-based-on-redis/" itemprop="url">
-                  meassageQueue-based-on-redis
+                <a class="post-title-link" href="/2016/10/08/linux相关/" itemprop="url">
+                  linux相关
                 </a>
               
             
@@ -785,8 +616,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T09:18:39+08:00" content="2016-08-20">
-              2016-08-20
+            <time itemprop="dateCreated" datetime="2016-10-08T16:50:33+08:00" content="2016-10-08">
+              2016-10-08
             </time>
           </span>
 
@@ -799,8 +630,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MessageQueue/" itemprop="url" rel="index">
-                    <span itemprop="name">MessageQueue</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -815,8 +646,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/20/meassageQueue-based-on-redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/meassageQueue-based-on-redis/" itemprop="commentsCount"></span>
+                <a href="/2016/10/08/linux相关/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/linux相关/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -840,16 +671,12 @@
 
       
         
-          <h1 id="基于redis构建消息队列"><a href="#基于redis构建消息队列" class="headerlink" title="基于redis构建消息队列"></a>基于redis构建消息队列</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一般来说，消息队列有两种场景：</p>
-<p>1.生产者消费者模式</p>
-<p>生产者生产消息放到队列里，多个消费者同时监听队列，谁先抢到消息谁就会从队列中取走消息；即对于每个消息只能被最多一个消费者拥有。（常用于处理高并发写操作）</p>
-<p>2.发布者订阅者模式</p>
-<p>发布者生产消息放到队列里，多个监听队列的消费者都会收到同一份消息；即正常情况下每个消费者收到的消息应该都是一样的。（常用来作为日志收集中一份原始数据对多个应用场景）</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/20/meassageQueue-based-on-redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h1 id="Linux-相关"><a href="#Linux-相关" class="headerlink" title="Linux 相关"></a>Linux 相关</h1><p><a href="http://blog.chinaunix.net/uid-30804390-id-5716107.html" target="_blank" rel="external">首次安装ubuntu遇到的几个问题</a></p>
+<p><a href="http://blog.csdn.net/five3/article/details/50623953" target="_blank" rel="external">如何设置停止更新支持的ubuntu更新源</a></p>
+<p><a href="http://blog.csdn.net/cashcat2004/article/details/50043725" target="_blank" rel="external">Ubuntu 更新Source.list源</a></p>
+<h3 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h3>
+          
         
       
     </div>
@@ -897,8 +724,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/19/how-to-build-blog-by-using-hexo/" itemprop="url">
-                  how-to-build-blog-by-using-hexo
+                <a class="post-title-link" href="/2016/09/26/javaWeb/" itemprop="url">
+                  javaWeb
                 </a>
               
             
@@ -911,19 +738,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T22:07:57+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-09-26T10:34:58+08:00" content="2016-09-26">
+              2016-09-26
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javaee/" itemprop="url" rel="index">
+                    <span itemprop="name">javaee</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/19/how-to-build-blog-by-using-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/19/how-to-build-blog-by-using-hexo/" itemprop="commentsCount"></span>
+                <a href="/2016/09/26/javaWeb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/javaWeb/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -947,21 +793,31 @@
 
       
         
-          <h1 id="如何用github-page与hexo搭建博客"><a href="#如何用github-page与hexo搭建博客" class="headerlink" title="如何用github page与hexo搭建博客"></a>如何用github page与hexo搭建博客</h1><h4 id="需要安装的软件"><a href="#需要安装的软件" class="headerlink" title="需要安装的软件"></a>需要安装的软件</h4><p>1.Git</p>
-<p>2.Node.js</p>
-<p>3.Hexo(感觉组织架构好像ruby on rails :smile )</p>
-<h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><p>1.打开终端，输入</p>
-<p><code>npm install -g hexo</code></p>
-<p>2.创建任一目录，在目录中执行命令<code>hexo init</code>  <code>npm install</code></p>
-<p>3.创建新博客<code>hexo new &quot;name&quot;</code> 然后<code>hexo generate</code> (hero g)</p>
-<p>如果在本地查看，则<code>hexo server</code>(hero s)</p>
-<p>查看的地址为localhost:4000.</p>
-<p><strong>注意，所有的hexo指令都必须在建立的目录下执行</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/19/how-to-build-blog-by-using-hexo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h1 id="JAVA-EE"><a href="#JAVA-EE" class="headerlink" title="JAVA EE"></a>JAVA EE</h1><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><h4 id="1-1-maven目录"><a href="#1-1-maven目录" class="headerlink" title="1.1 maven目录"></a>1.1 maven目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">$&#123;basedir&#125;</div><div class="line">src</div><div class="line">	main</div><div class="line">		java         源文件 </div><div class="line">		resources    资源文件</div><div class="line">		filters   资源过滤文件</div><div class="line">		config   配置文件</div><div class="line">		scripts   脚本文件</div><div class="line">		webapp   web应用文件，/WEB-INF</div><div class="line">	test</div><div class="line">		java    测试源文件</div><div class="line">		resources    测试资源文件</div><div class="line">		filters    测试资源过滤文件</div><div class="line">	it       集成测试</div><div class="line">	assembly    组件（Assembly）描述符所在的目录</div><div class="line">	site    站点文件</div><div class="line">target</div><div class="line">	generated-sources</div><div class="line">	classes  /resources目录下的也在此</div><div class="line">	generated-test-sources</div><div class="line">	test-classes</div><div class="line">	xxx.jar</div><div class="line">	+ project-1.0</div><div class="line">	|  + META-INF</div><div class="line">	|  + WEB-INF</div><div class="line">	|  |  + classes</div><div class="line">	|  |  * web.xml</div><div class="line">	|  * index.jsp</div><div class="line">	+ maven-archiver</div><div class="line">	   * pom.properties</div><div class="line">	+ war</div><div class="line">	   + work</div><div class="line">	|  |  * webapp-cache.xml</div><div class="line">	* project.war</div><div class="line">pom.xml</div><div class="line">LICENSE.txt</div><div class="line">NOTICE.txt 该项目依赖的库的注意事项</div><div class="line">README.txt</div></pre></td></tr></table></figure>
+<p>构建Maven项目的时候，如果没有进行特殊的配置，Maven会按照标准的目录结构查找和处理各种类型文件。</p>
+<p><strong>src/main/java和src/test/java </strong></p>
+<p>这两个目录中的所有*.java文件会分别在comile和test-comiple阶段被编译，编译结果分别放到了target/classes和targe/test-classes目录中，但是这两个目录中的其他文件都会被忽略掉。 </p>
+<p><strong>src/main/resouces和src/test/resources</strong></p>
+<p>这两个目录中的文件也会分别被复制到target/classes和target/test-classes目录中。</p>
+<p><strong>target/classes</strong></p>
+<p>打包插件默认会把这个目录中的所有内容打入到jar包或者war包中。</p>
+<p>以上参见<a href="http://www.cnblogs.com/pixy/p/4798089.html" target="_blank" rel="external">maven资源文件的相关配置</a></p>
+<h4 id="1-2-tomcat的目录"><a href="#1-2-tomcat的目录" class="headerlink" title="1.2 tomcat的目录"></a>1.2 tomcat的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bin：存放各种不同平台开启与关闭Tomcat的脚本文件。</div><div class="line">lib：存tomcat与web应用的Jar包</div><div class="line">conf：存放tomcat的配置文件</div><div class="line">webapps：web应用的发布目录</div><div class="line">work：tomcat把由各种jsp生成的servlet文件存放的地方</div><div class="line">logs：tomcat存放日志文件的地方</div><div class="line">temp：tomcat存放临时文件的地方</div></pre></td></tr></table></figure>
+<h4 id="1-3-web的目录"><a href="#1-3-web的目录" class="headerlink" title="1.3 web的目录"></a>1.3 web的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">—war/  </div><div class="line">    + META-INF/  </div><div class="line">    + WEB-INF/  </div><div class="line">    |  + classes/  </div><div class="line">    |  |  + ServletA.class  </div><div class="line">    |  |  + config.properties  </div><div class="line">    |  |  + ...  </div><div class="line">    |  + lib/</div><div class="line">    |  |  + XXX.jar</div><div class="line">    |  + web.xml  </div><div class="line">    + img/  </div><div class="line">    + css/  </div><div class="line">    + js/  </div><div class="line">    + index.html  </div><div class="line">    + sample.jsp</div></pre></td></tr></table></figure>
+<p>在Eclipse中开发j2ee项目，所有的jsp文件都是放在WebRoot目录下面，用户需要把所有用到的jar包放到WEB-INF（WebRoot的子目录）目录下的lib目录下（这就是没有用maven管理的缺点，所有jar都要自己去找）；Eclipse编译时，会把<a href="http://lib.csdn.net/base/17" target="_blank" rel="external">Java</a>源代码产生的class文件放到WEB-INF目录的classes目录下。所以大家在应用服务器中指定虚拟目录时，直接指定到这个WebRoot目录就行了，这样在调试过程中，如果只修改了jsp文件，则不需要重启服务器，刷新页面，就可以看到修改后的效果。</p>
+<p>参见<a href="http://blog.csdn.net/rj042/article/details/6834557" target="_blank" rel="external">更改maven打包文件的默认输出</a></p>
+<h3 id="2-部署问题"><a href="#2-部署问题" class="headerlink" title="2.部署问题"></a>2.部署问题</h3><p>在Eclipse中，默认会把Web项目放到Eclipse的工作空间下的.metadata.plugins\org.eclipse.wst.server.core\tmp0(或者是tmp1)\wtpwebapps\下。可以在项目的部署那修改server Location，则会部署到tomcat的webapps目录下，这样就不需要启动eclipse，直接去访问tomcat目录的web项目了。当然如果是maven项目，则直接把war包拷贝到tomcat的发布目录下就可。</p>
+<h4 id="2-1-Tomcat部署Web应用方法总结"><a href="#2-1-Tomcat部署Web应用方法总结" class="headerlink" title="2.1 Tomcat部署Web应用方法总结"></a>2.1 Tomcat部署Web应用方法总结</h4><p>在Tomcat中部署<a href="http://lib.csdn.net/base/13" target="_blank" rel="external">Java Web</a>应用程序有两种方式：静态部署和动态部署。</p>
+<h5 id="2-1-1-静态部署"><a href="#2-1-1-静态部署" class="headerlink" title="2.1.1 静态部署"></a>2.1.1 静态部署</h5><p>1.利用Tomcat自动部署</p>
+<p>将PetWeb目录拷贝到$CATALINA_HOME/webapps下，然后启动服务器就可以了，Tomcat启动时将自动加载应用。</p>
+<p>2.修改Server.xml文件部署</p>
+<p>3.增加自定义web部署文件</p>
+<p>4.Web应用以.war文件的形式部署</p>
+<h5 id="2-1-2-动态部署"><a href="#2-1-2-动态部署" class="headerlink" title="2.1.2 动态部署"></a>2.1.2 动态部署</h5><p>动态部署是指可以在服务器启动之后部署web应用程序，而不用重新启动服务器。动态部署要用到服务器提供的manager.war文件。</p>
+<p>详细参见 <a href="http://blog.csdn.net/yangxueyong/article/details/6130065" target="_blank" rel="external">Tomcat部署Web应用方法总结</a></p>
+<h3 id="创建SSM项目"><a href="#创建SSM项目" class="headerlink" title="创建SSM项目"></a>创建SSM项目</h3>
+          
         
       
     </div>
@@ -1009,8 +865,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/19/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/09/22/编写高质量代码－改善java程序的151个建议/" itemprop="url">
+                  编写高质量代码－改善java程序的151个建议
                 </a>
               
             
@@ -1023,19 +879,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T16:42:43+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-09-22T17:36:04+08:00" content="2016-09-22">
+              2016-09-22
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/19/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/19/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/09/22/编写高质量代码－改善java程序的151个建议/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/编写高质量代码－改善java程序的151个建议/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1060,15 +935,681 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h1 id="编写高质量代码－改善java程序的151个建议"><a href="#编写高质量代码－改善java程序的151个建议" class="headerlink" title="编写高质量代码－改善java程序的151个建议"></a>编写高质量代码－改善java程序的151个建议</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/21/vps/" itemprop="url">
+                  vps
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T11:19:28+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vps/" itemprop="url" rel="index">
+                    <span itemprop="name">vps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/21/vps/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/vps/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="vps"><a href="#vps" class="headerlink" title="vps"></a>vps</h1><p><a href="http://www.path8.net/tn/archives/5370" target="_blank" rel="external">vps新手入门全攻略：基础知识，选购，配置环境，日常管理及精品vps主机商推荐</a></p>
+<p><a href="http://www.vpser.net/vps-howto" target="_blank" rel="external">VPS新手指南/教程</a>（很详细地列出了各个方面需要的知识）</p>
+<p><a href="http://www.jianshu.com/p/2f51144c35c9" target="_blank" rel="external">如何在 VPS 上搭建 VPN 来翻墙</a></p>
+<p><a href="https://jecvay.com/2014/12/learning-vps-1.html" target="_blank" rel="external">从零开始VPS (一): 挑个好的服务器</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/20/xpath/" itemprop="url">
+                  xpath
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-20T15:49:07+08:00" content="2016-09-20">
+              2016-09-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/xpath/" itemprop="url" rel="index">
+                    <span itemprop="name">xpath</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/20/xpath/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/20/xpath/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="xpath"><a href="#xpath" class="headerlink" title="xpath"></a>xpath</h1><p>在标准的xpath里面，text()可以获取当前节点下所有的文本，但是xsoup只能获取当前节点下的文本，如果文本嵌套在子孙节点，就无法获取，必须调用allText(),tidyText()等方法。另外，轴，如child::node()在标准里面是可以的，但是在框架里面是不行的。<br>参考：</p>
+<p><a href="https://github.com/zhegexiaohuozi/JsoupXpath" target="_blank" rel="external">JsoupXpath</a><br><a href="http://webmagic.io/docs/zh/posts/ch4-basic-page-processor/xsoup.html" target="_blank" rel="external">抽取工具简介</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/19/java-核心技术I卷/" itemprop="url">
+                  java 核心技术I卷
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T11:34:00+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/java-核心技术I卷/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/java-核心技术I卷/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JAVA核心技术I卷"><a href="#JAVA核心技术I卷" class="headerlink" title="JAVA核心技术I卷"></a>JAVA核心技术I卷</h1><h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><h4 id="5-1-类、超类和子类"><a href="#5-1-类、超类和子类" class="headerlink" title="5.1 类、超类和子类"></a>5.1 类、超类和子类</h4><h5 id="5-1-4-阻止继承：final类和方法"><a href="#5-1-4-阻止继承：final类和方法" class="headerlink" title="5.1.4 阻止继承：final类和方法"></a>5.1.4 阻止继承：final类和方法</h5><p>final类里面，所有的方法默认都是final类型的，但是成员变量不是这样。</p>
+<h5 id="5-1-5-强制类型转换"><a href="#5-1-5-强制类型转换" class="headerlink" title="5.1.5 强制类型转换"></a>5.1.5 强制类型转换</h5><p>在Java中由于继承和向上转型，子类可以非常自然地转换成父类，但是父类转换成子类则需要强制转换。因为子类拥有比父类更多的属性、更强的功能，所以父类转换为子类需要强制。那么，是不是只要是父类转换为子类就会成功呢？其实不然，他们之间的强制类型转换是有条件的。</p>
+<p> 当我们用一个类型的构造器构造出一个对象时，这个对象的类型就已经确定的，也就说它的本质是不会再发生变化了。在Java中我们可以通过继承、向上转型的关系使用父类类型来引用它，这个时候我们是使用功能较弱的类型引用功能较强的对象，这是可行的。但是将功能较弱的类型强制转功能较强的对象时，就不一定可以行了。</p>
+<p>举个例子来说明。比如系统中存在Father、Son两个对象。首先我们先构造一个Son对象，然后用一个Father类型变量引用它：</p>
+<pre><code>Father father = new Son();
+</code></pre><p>在这里Son 对象实例被向上转型为father了，但是请注意这个Son对象实例在内存中的本质还是Son类型的，只不过它的能力临时被消弱了而已，如果我们想变强怎么办？将其对象类型还原！</p>
+<pre><code>Son son = (Son)father;
+
+这条语句是可行的，其实father引用仍然是Father类型的，只不过是将它的能力加强了，将其加强后转交给son引用了，Son对象实例在son的变量的引用下，恢复真身，可以使用全部功能了。
+
+前面提到父类强制转换成子类并不是总是成功，那么在什么情况下它会失效呢？  
+
+当引用类型的真实身份是父类本身的类型时，强制类型转换就会产生错误。例如：
+
+Father father = new  Father();
+
+Son son = (Son) father;
+
+这个系统会抛出`ClassCastException异常信息。`
+</code></pre><p>所以编译器在编译时只会检查类型之间是否存在继承关系，有则通过；而在运行时就会检查它的真实类型，是则通过，否则抛出ClassCastException异常。</p>
+<p><code>所以在继承中，子类可以自动转型为父类，但是父类强制转换为子类时只有当引用类型真正的身份为子类时才会强制转换成功，否则失败。</code></p>
+<p>以上参见<a href="http://www.cnblogs.com/chenssy/p/3393160.html" target="_blank" rel="external">java提高篇(十一)—–强制类型转换</a></p>
+<p>所以在将超类转换为子类之前，应该使用instanceof进行检查.</p>
+<h5 id="5-1-6抽象类"><a href="#5-1-6抽象类" class="headerlink" title="5.1.6抽象类"></a>5.1.6抽象类</h5><p>抽象类里面不全是抽象方法，也可以有非抽象方法。</p>
+<h4 id="5-2-Object-所有类的超类"><a href="#5-2-Object-所有类的超类" class="headerlink" title="5.2 Object:所有类的超类"></a>5.2 Object:所有类的超类</h4><h5 id="5-2-1-equals方法"><a href="#5-2-1-equals方法" class="headerlink" title="5.2.1 equals方法"></a>5.2.1 equals方法</h5><p>1.equals():</p>
+<p>超类Object中有这个equals()方法，该方法主要用于比较两个对象是否相等。使用Object的equals()方法是比较两个对象的内存地址是否相等，即若object1.equals(object2)为true，则表示equals1和equals2实际上是引用同一个对象。但是我们必须要清楚我们很大部分时间都是进行两个对象的比较，这个时候Object的equals()方法就不可以了，实际上JDK中，String、Math等封装类都对equals()方法进行了重写。如String的equals()方法是进行内容比较，而不是引用比较。</p>
+<p>2.在equals()中使用getClass进行类型判断:</p>
+<p>我们在覆写equals()方法时，一般都是推荐使用getClass来进行类型判断，不是使用instanceof。</p>
+<p>参见<a href="http://www.cnblogs.com/chenssy/p/3416195.html" target="_blank" rel="external">java提高篇(十三)—–equals()方法总结</a></p>
+<p>3.equals()与==</p>
+<ol>
+<li>使用==比较原生类型如：boolean、int、char等等，使用equals()比较对象。</li>
+<li>==返回true如果两个引用指向相同的对象，equals()的返回结果依赖于具体业务实现。</li>
+<li>字符串的对比使用equals()。</li>
+</ol>
+<p>参见<a href="http://www.importnew.com/6804.html" target="_blank" rel="external">equals与”==”的区别</a></p>
+<p>5.2.2 相等测试与继承</p>
+<p>如何判断两个object相等，参见文中这章节。</p>
+<h4 id="5-5参数数量可变的方法"><a href="#5-5参数数量可变的方法" class="headerlink" title="5.5参数数量可变的方法"></a>5.5参数数量可变的方法</h4><p>…表示可以接收任意数量的参数，如printf(String fmt,Object… args)，这里的Object…相当于Object[]。</p>
+<h4 id="5-7-反射"><a href="#5-7-反射" class="headerlink" title="5.7 反射"></a>5.7 反射</h4><h3 id="第六章-接口和内部类"><a href="#第六章-接口和内部类" class="headerlink" title="第六章 接口和内部类"></a>第六章 接口和内部类</h3><h4 id="6-1-接口"><a href="#6-1-接口" class="headerlink" title="6.1 接口"></a>6.1 接口</h4><p>接口中的方法默认都是public的，可以包含常量，被自动设为public static final。</p>
+<p>Arrays类中的sort方法可以对对象数组进行排序，但对象所属的类必须实现了Comparable接口。</p>
+<h4 id="6-2-对象克隆"><a href="#6-2-对象克隆" class="headerlink" title="6.2 对象克隆"></a>6.2 对象克隆</h4><p>当拷贝一个变量时，原始变量和拷贝变量引用同一个对象。</p>
+<p>默认的拷贝是浅拷贝，如果是基本类型则拷贝没有问题，但它并没有克隆包含在对象中的内部对象。如果在对象中包含了子对象的引用，拷贝的结果会使得两个域引用同一个子对象。要实现深拷贝，则要实现cloneable接口。</p>
+<h4 id="6-3-接口和回调"><a href="#6-3-接口和回调" class="headerlink" title="6.3 接口和回调"></a>6.3 接口和回调</h4><h4 id="6-4-内部类"><a href="#6-4-内部类" class="headerlink" title="6.4 内部类"></a>6.4 内部类</h4><p>为什么使用内部类？</p>
+<p>1.内部类可以访问该类所在作用域的数据，包括私有的数据；</p>
+<p>2.可以对同一个包中的其他类隐藏起来；</p>
+<p>3.匿名内部类实现回调。</p>
+<h5 id="6-4-5-由外部方法访问final变量"><a href="#6-4-5-由外部方法访问final变量" class="headerlink" title="6.4.5 由外部方法访问final变量"></a>6.4.5 由外部方法访问final变量</h5><p>当某个变量为final，但又不得不进行修改时，可以使用一个数组。参见本节例子。</p>
+<h4 id="6-5-代理"><a href="#6-5-代理" class="headerlink" title="6.5 代理"></a>6.5 代理</h4><h3 id="第12章-泛型程序设计。。。"><a href="#第12章-泛型程序设计。。。" class="headerlink" title="第12章 泛型程序设计。。。"></a>第12章 泛型程序设计。。。</h3><h3 id="第13章-集合"><a href="#第13章-集合" class="headerlink" title="第13章 集合"></a>第13章 集合</h3><h4 id="13-2-具体的集合"><a href="#13-2-具体的集合" class="headerlink" title="13.2 具体的集合"></a>13.2 具体的集合</h4><p>LinkedList使用ListIterator来遍历。虽然可以通过get(index)来随机获取元素，但是效率非常低，每次都要从头开始遍历到指定位置。所有如果需要随机访问，建议数组或arrayList。</p>
+<h3 id="第14章-多线程"><a href="#第14章-多线程" class="headerlink" title="第14章 多线程"></a>第14章 多线程</h3><h4 id="14-3-线程状态"><a href="#14-3-线程状态" class="headerlink" title="14.3 线程状态"></a>14.3 线程状态</h4><h5 id="14-3-4-被终止的线程"><a href="#14-3-4-被终止的线程" class="headerlink" title="14.3.4 被终止的线程"></a>14.3.4 被终止的线程</h5><p>join():等待指定线程的中止。参见<a href="http://blog.csdn.net/bzwm/article/details/3881392" target="_blank" rel="external">浅析 Java Thread.join()</a></p>
+<h4 id="14-4-线程属性"><a href="#14-4-线程属性" class="headerlink" title="14.4 线程属性"></a>14.4 线程属性</h4><h5 id="14-4-2-守护线程"><a href="#14-4-2-守护线程" class="headerlink" title="14.4.2 守护线程"></a>14.4.2 守护线程</h5><p>参见<a href="http://blog.csdn.net/shimiso/article/details/8964414" target="_blank" rel="external">Java中守护线程的总结</a></p>
+<p>在Java中有两类线程：User Thread(用户线程)、Daemon Thread(守护线程) 。用个比较通俗的比如，任何一个守护线程都是整个JVM中所有非守护线程的保姆：只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部工作；只有当最后一个非守护线程结束时，守护线程随着JVM一同结束工作。</p>
+<p>Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它就是一个很称职的守护者。</p>
+<p>User和Daemon两者几乎没有区别，唯一的不同之处就在于虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了。 因为没有了被守护者，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。</p>
+<p>定义：守护线程–也称“服务线程”，在没有用户线程可服务时会自动离开。<br>优先级：守护线程的优先级比较低，用于为系统中的其它对象和线程提供服务。<br>设置：通过setDaemon(true)来设置线程为“守护线程”；将一个用户线程设置为<br>守护线程的方式是在 线程对象创建之前用线程对象的setDaemon方法。<br>example: 垃圾回收线程就是一个经典的守护线程，当我们的程序中不再有任何运行的Thread,程序就不会再产生垃圾，垃圾回收器也就无事可做，所以当垃圾回收线程是JVM上仅剩的线程时，垃圾回收线程会自动离开。它始终在低级别的状态中运行，用于实时监控和管理系统中的可回收资源。<br>生命周期：守护进程是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。也就是说守护线程不依赖于终端，但是依赖于系统，与系统“同生共死”。那Java的守护线程是什么样子的呢。当JVM中所有的线程都是守护线程的时候，JVM就可以退出了；如果还有一个或以上的非守护线程则JVM不会退出。</p>
+<p>14.4.3 未捕获异常处理器</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/18/面试准备/" itemprop="url">
+                  面试准备
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T16:24:48+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/面试准备/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/面试准备/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面试准备"><a href="#面试准备" class="headerlink" title="面试准备"></a>面试准备</h1><h5 id="java高级特性"><a href="#java高级特性" class="headerlink" title="java高级特性"></a>java高级特性</h5><p>1.Java的数据结构相关的类实现原理，比如LinkedList，ArrayList，HashMap，TreeMap这一类的</p>
+<p>2.Java并发包当中的类，它们都有哪些作用，以及它们的实现原理，这些类就是java.concurrent包下面的。</p>
+<p>3.IO包和NIO包中的内容。这部分里面NIO会是重点。</p>
+<p>4.Java的虚拟机的内容。这部分主要包括三部分，GC、类加载机制，以及内存。</p>
+<h5 id="额外加分项"><a href="#额外加分项" class="headerlink" title="额外加分项"></a>额外加分项</h5><ol>
+<li>计算机系统原理。</li>
+<li>网络通信协议（TCP/IP，HTTP等）。</li>
+<li>数据结构与算法。</li>
+<li>著名开源项目的源码。</li>
+<li>你自己有很棒的开源项目。</li>
+<li>你的个人博客。</li>
+</ol>
+<p>参见<a href="http://blog.jobbole.com/99911/" target="_blank" rel="external">如何准备阿里社招面试，顺谈 Java 程序员学习中各阶段的建议</a></p>
+<h3 id="题库"><a href="#题库" class="headerlink" title="题库"></a>题库</h3><p><a href="http://www.importnew.com/17232.html" target="_blank" rel="external">最近5年133个Java面试问题列表</a></p>
+<h3 id="一些有用的网站"><a href="#一些有用的网站" class="headerlink" title="一些有用的网站"></a>一些有用的网站</h3><p><a href="http://www.importnew.com/" target="_blank" rel="external">ImportNew</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/18/Quartz/" itemprop="url">
+                  Quartz
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T15:31:16+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Quartz/" itemprop="url" rel="index">
+                    <span itemprop="name">Quartz</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/Quartz/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/Quartz/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Quartz 是 OpenSymphony 开源组织在任务调度领域的一个开源项目，完全基于 Java 实现。</p>
+<p><a href="http://tech.meituan.com/mt-crm-quartz.html" target="_blank" rel="external">Quartz应用与集群原理分析</a></p>
+<p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-quartz/" target="_blank" rel="external">基于 Quartz 开发企业级任务调度应用</a></p>
 
           
         
@@ -1101,7 +1642,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1142,7 +1683,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1150,7 +1691,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1159,7 +1700,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1196,7 +1737,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="jsjavaScript教程除了JS高级教程，JS实例的前两节。
+JS参考手册javascript api : http://www.runoob.com/jsref/jsref-obj-array.html
+基础语法使用误区浮点型数据使用注意事项JavaScript 中的所有数据都是以 64 位浮点型数据(float) 来存储。
+所有的编程语言，包括 JavaScript，对浮点型数据的精确度都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/javascript/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="jsjavaScript教程除了JS高级教程，JS实例的前两节。
+JS参考手册javascript api : http://www.runoob.com/jsref/jsref-obj-array.html
+基础语法使用误区浮点型数据使用注意事项JavaScript 中的所有数据都是以 64 位浮点型数据(float) 来存储。
+所有的编程语言，包括 JavaScript，对浮点型数据的精确度都">
+<meta property="og:updated_time" content="2016-11-01T02:25:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript">
+<meta name="twitter:description" content="jsjavaScript教程除了JS高级教程，JS实例的前两节。
+JS参考手册javascript api : http://www.runoob.com/jsref/jsref-obj-array.html
+基础语法使用误区浮点型数据使用注意事项JavaScript 中的所有数据都是以 64 位浮点型数据(float) 来存储。
+所有的编程语言，包括 JavaScript，对浮点型数据的精确度都">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/31/javascript/"/>
+
+  <title> javascript | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T23:44:23+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/31/javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/javascript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="js"><a href="#js" class="headerlink" title="js"></a>js</h1><h2 id="javaScript教程"><a href="#javaScript教程" class="headerlink" title="javaScript教程"></a>javaScript教程</h2><p>除了JS高级教程，JS实例的前两节。</p>
+<h3 id="JS参考手册"><a href="#JS参考手册" class="headerlink" title="JS参考手册"></a>JS参考手册</h3><p>javascript api : <a href="http://www.runoob.com/jsref/jsref-obj-array.html" target="_blank" rel="external">http://www.runoob.com/jsref/jsref-obj-array.html</a></p>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><h4 id="使用误区"><a href="#使用误区" class="headerlink" title="使用误区"></a>使用误区</h4><h5 id="浮点型数据使用注意事项"><a href="#浮点型数据使用注意事项" class="headerlink" title="浮点型数据使用注意事项"></a>浮点型数据使用注意事项</h5><p>JavaScript 中的所有数据都是以 64 位<strong>浮点型数据(float)</strong> 来存储。</p>
+<p>所有的编程语言，包括 JavaScript，对浮点型数据的精确度都很难确定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var x = 0.1;</div><div class="line">var y = 0.2;</div><div class="line">var z = x + y            // z 的结果为 0.3</div><div class="line">if (z == 0.3)            // 返回 false</div></pre></td></tr></table></figure>
+<p>我解决以上问题，可以用整数的乘除法来解决：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var z = (x * 10 + y * 10) / 10;       // z 的结果为 0.3</div></pre></td></tr></table></figure>
+<p>用console来调试js。</p>
+<h5 id="Undefined-不是-Null"><a href="#Undefined-不是-Null" class="headerlink" title="Undefined 不是 Null"></a>Undefined 不是 Null</h5><p>在 JavaScript 中, <strong>null</strong> 用于对象, <strong>undefined</strong> 用于变量，属性和方法。</p>
+<p>对象只有被定义才有可能为 null，否则为 undefined。</p>
+<p>如果我们想测试对象是否存在，在对象还没定义时将会抛出一个错误。</p>
+<p>错误的使用方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (myObj !== null &amp;&amp; typeof myObj !== &quot;undefined&quot;)</div></pre></td></tr></table></figure>
+<p>正确的方式是我们需要先使用 typeof 来检测对象是否已定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (typeof myObj !== &quot;undefined&quot; &amp;&amp; myObj !== null)</div></pre></td></tr></table></figure>
+<h4 id="void"><a href="#void" class="headerlink" title="void"></a>void</h4><h5 id="href-”-”与href-”javascript-void-0-”的区别"><a href="#href-”-”与href-”javascript-void-0-”的区别" class="headerlink" title="href=”#”与href=”javascript:void(0)”的区别"></a>href=”#”与href=”javascript:void(0)”的区别</h5><p><strong>#</strong> 包含了一个位置信息，默认的锚是<strong>#top</strong> 也就是网页的上端。</p>
+<p>而javascript:void(0), 仅仅表示一个死链接。</p>
+<p>在页面很长的时候会使用 <strong>#</strong> 来定位页面的具体位置，格式为：<strong># + id</strong>。</p>
+<p>如果你要定义一个死链接请使用 javascript:void(0) 。</p>
+<p>实例</p>
+<p><a href="javascript:void(0);" target="_blank" rel="external">点我没有反应的!</a> </p>
+<p><a href="#pos">点我定位到指定位置!</a><br><br><br>…<br><br> </p>
+<p id="pos">尾部定位点</p>
+
+<h5 id="JavaScript-代码规范"><a href="#JavaScript-代码规范" class="headerlink" title="JavaScript 代码规范"></a>JavaScript 代码规范</h5><p><a href="http://www.runoob.com/js/js-conventions.html" target="_blank" rel="external">http://www.runoob.com/js/js-conventions.html</a></p>
+<h3 id="js闭包"><a href="#js闭包" class="headerlink" title="js闭包"></a>js闭包</h3><h3 id="jS库"><a href="#jS库" class="headerlink" title="jS库"></a>jS库</h3><p>CDN -内容分发网络</p>
+<p>Google 为一系列 JavaScript 库提供了免费的 CDN，<br>但是由于 Google 在中国经常被GFW屏蔽，造成访问不稳定，所以建议使用百度静态资源公共库。<br>如需在您的网页中使用 JavaScript 框架库，只需在 <script> 标签中引用该库即可：<br>引用 jQuery</p>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js">
+</script>
+
+</p><h3 id="HTML-DOM"><a href="#HTML-DOM" class="headerlink" title="HTML DOM"></a>HTML DOM</h3><p>api : <a href="http://www.runoob.com/jsref/dom-obj-document.html" target="_blank" rel="external">http://www.runoob.com/jsref/dom-obj-document.html</a></p>
+<p>当浏览器载入 HTML 文档, 它就会成为 <strong>document 对象</strong>。</p>
+<p>document 对象是HTML文档的根节点与所有其他节点（元素节点，文本节点，属性节点, 注释节点）。</p>
+<p>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</p>
+<p><strong>提示：</strong>Document 对象是 Window 对象的一部分，可通过 window.document 属性对其进行访问。</p>
+<h3 id="JS浏览器BOM"><a href="#JS浏览器BOM" class="headerlink" title="JS浏览器BOM"></a>JS浏览器BOM</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/mysql/" rel="next" title="mysql">
+                <i class="fa fa-chevron-left"></i> mysql
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/jquery/" rel="prev" title="jquery">
+                jquery <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/javascript/"
+           data-title="javascript" data-url="http://yoursite.com/2016/10/31/javascript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js"><span class="nav-number">1.</span> <span class="nav-text">js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javaScript教程"><span class="nav-number">1.1.</span> <span class="nav-text">javaScript教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS参考手册"><span class="nav-number">1.1.1.</span> <span class="nav-text">JS参考手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">1.1.2.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用误区"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">使用误区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#浮点型数据使用注意事项"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">浮点型数据使用注意事项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Undefined-不是-Null"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">Undefined 不是 Null</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#void"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">void</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#href-”-”与href-”javascript-void-0-”的区别"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">href=”#”与href=”javascript:void(0)”的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-代码规范"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">JavaScript 代码规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js闭包"><span class="nav-number">1.1.3.</span> <span class="nav-text">js闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jS库"><span class="nav-number">1.1.4.</span> <span class="nav-text">jS库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-DOM"><span class="nav-number">1.1.5.</span> <span class="nav-text">HTML DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS浏览器BOM"><span class="nav-number">1.1.6.</span> <span class="nav-text">JS浏览器BOM</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

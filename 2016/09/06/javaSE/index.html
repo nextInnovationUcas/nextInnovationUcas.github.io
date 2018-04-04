@@ -100,7 +100,7 @@ class A中包含一个class B的引用b ——背景2
 class B有一个参数为InA的方法test(InA a) ——背景3
 A的对象a调用B的方法传入自己，test(a) ——这一步相当于you call me
 然后b就可以在test方法中调用InA的方法 ——这一步相当">
-<meta property="og:updated_time" content="2016-10-15T08:04:11.000Z">
+<meta property="og:updated_time" content="2016-11-01T06:34:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javaSE">
 <meta name="twitter:description" content="javaSE泛型Java 提高篇(六) — 泛型
@@ -360,6 +360,10 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
 <p>5.使用annotation@NotNull和@Nullable</p>
 <p>6.避免你的代码中不必要的自动包装和自动解包。</p>
 <p>以上参见<a href="http://www.importnew.com/7268.html" target="_blank" rel="external">避免Java应用中NullPointerException的技巧和最佳实践</a></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>replace与replaceALL的区别</p>
+<p>replace : 替换所有匹配到的</p>
+<p>replaceAll：正则替换，replaceFirst：替换第一个匹配到的</p>
+<p>参见<a href="https://my.oschina.net/u/816576/blog/369643" target="_blank" rel="external">java字符串的替换replace、replaceAll、replaceFirst的区别详解</a></p>
 <h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p><a href="http://www.58maisui.com/2016/09/04/288/" target="_blank" rel="external">30个java编程技巧（最佳实践）</a></p>
 <h3 id="ka总结博客"><a href="#ka总结博客" class="headerlink" title="ka总结博客"></a>ka总结博客</h3><p><a href="http://blog.csdn.net/shimiso/article/category/605498" target="_blank" rel="external">javaSE</a></p>
 <p><a href="http://blog.csdn.net/hechurui?viewmode=contents" target="_blank" rel="external">java并发包学习</a></p>
@@ -477,7 +481,7 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -485,7 +489,7 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -494,7 +498,7 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -523,7 +527,7 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javaSE"><span class="nav-number">1.</span> <span class="nav-text">javaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.0.1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调"><span class="nav-number">1.0.2.</span> <span class="nav-text">回调</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final"><span class="nav-number">1.0.3.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NUll"><span class="nav-number">1.0.4.</span> <span class="nav-text">NUll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">1.0.5.</span> <span class="nav-text">技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ka总结博客"><span class="nav-number">1.0.6.</span> <span class="nav-text">ka总结博客</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javaSE"><span class="nav-number">1.</span> <span class="nav-text">javaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.0.1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调"><span class="nav-number">1.0.2.</span> <span class="nav-text">回调</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final"><span class="nav-number">1.0.3.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NUll"><span class="nav-number">1.0.4.</span> <span class="nav-text">NUll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">1.0.5.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">1.0.6.</span> <span class="nav-text">技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ka总结博客"><span class="nav-number">1.0.7.</span> <span class="nav-text">ka总结博客</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -542,7 +546,7 @@ A的对象a调用B的方法传入自己，test(a) ——这一步相当于you ca
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
