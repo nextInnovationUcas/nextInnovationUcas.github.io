@@ -258,6 +258,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/25/ssh-keys/" itemprop="url">
+                  ssh keys
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T17:52:13+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ssh-keys/" itemprop="url" rel="index">
+                    <span itemprop="name">ssh keys</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/25/ssh-keys/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/25/ssh-keys/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ssh-keys"><a href="#ssh-keys" class="headerlink" title="ssh keys"></a>ssh keys</h1><p>配置多个ssh key:</p>
+<p>1.<code>ssh-keygen -t rsa -C &quot;youremail@email.com&quot; -f ~/.ssh/second</code><br>生成新的<code>ssh key</code>并命名为<code>second</code>。或者<code>ssh-keygen -t rsa -C &quot;youremail@email.com&quot;</code> 在询问时定义名称。</p>
+<p>这个命令直接通过-f参数指定了密钥和公钥的文件名，比如-f ~/.ssh/second，其生产的密钥为~/.ssh/second，公钥为~/.ssh/second.pub.</p>
+<p>2.远程主机添加公钥</p>
+<p>把公钥文件中的内容追加到~/.ssh/authorized_keys文件的末尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat ~/.ssh/second.pub</div></pre></td></tr></table></figure>
+<p>注意追加前authorized_keys文件的末尾需要有个换行符。</p>
+<p>3.配置本地config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Default github user(first@mail.com)  默认配置，一般可以省略</div><div class="line">Host github.com</div><div class="line">Hostname github.com</div><div class="line">User git</div><div class="line">Identityfile ~/.ssh/github</div><div class="line"># second user(second@mail.com)  给一个新的Host称呼</div><div class="line">Host second.github.com  // 主机名字，不能重名</div><div class="line">HostName github.com   // 主机所在域名或IP</div><div class="line">User git  // 用户名称</div><div class="line">IdentityFile C:/Users/username/.ssh/id_rsa_second  // 私钥路径</div></pre></td></tr></table></figure>
+<p>其中User后面的值为你访问的git ssh地址的@之前的部分，比如：git@github.com:dongritengfei/beego.git的@前面是git，所以User后面的值为git。Host就是你的git仓库的域名或者IP。</p>
+<p>4.测试链接情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@second.github.com</div></pre></td></tr></table></figure>
+<p>ssh -T 用户名@Host。返回welcome,说明是可以的。</p>
+<p>参考</p>
+<p>多个密钥管理</p>
+<p><a href="https://www.zybuluo.com/yangfch3/note/172120" target="_blank" rel="external">多个 SSH KEY 的管理</a></p>
+<p><a href="http://rongmayisheng.com/post/linux%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAssh%E5%85%AC%E9%92%A5%E5%AF%86%E9%92%A5" target="_blank" rel="external">linux管理多个ssh公钥密钥</a></p>
+<p>配置密钥</p>
+<p><a href="https://segmentfault.com/a/1190000000481249" target="_blank" rel="external">配置ssh密钥认证自动登录</a></p>
+<p>cat -n id_rsa.pub &gt;&gt; authorized_keys。加个换行符比较好</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/24/字符编码/" itemprop="url">
                   字符编码
                 </a>
@@ -1809,188 +1948,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/前人造的轮子/" itemprop="url">
-                  前人造的轮子
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T21:08:27+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/框架/" itemprop="url" rel="index">
-                    <span itemprop="name">框架</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/前人造的轮子/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/前人造的轮子/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前人造的轮子"><a href="#前人造的轮子" class="headerlink" title="前人造的轮子"></a>前人造的轮子</h1><p><a href="http://www.mvnrepository.com/popular" target="_blank" rel="external">Maven Repository: Top Projects at Maven Repository</a></p>
-<p><a href="https://github.com/jiangxincode/cnblogs" target="_blank" rel="external">https://github.com/jiangxincode/cnblogs</a></p>
-<h3 id="1-java篇"><a href="#1-java篇" class="headerlink" title="1.java篇"></a>1.java篇</h3><p><a href="http://www.importnew.com/14429.html" target="_blank" rel="external">推荐！国外程序员整理的Java资源大全</a></p>
-<p><a href="https://www.zhihu.com/question/27720523" target="_blank" rel="external">Java 世界有哪些优秀的第三方开源 jar 包值得推荐使用？</a></p>
-<ol>
-<li><p>log4j/slf4j + logback</p>
-<p>向system.out.println()说永别，刚开始学java的时候总是喜欢依靠system.out.println()的输出来查看异常和调试。后来工作后就果断log4j了，这样项目开发和发布的时候，可以根据自己的需求开关日志级别，把日志打印到远程服务等多种功能。现在这个基本成为标配了。</p>
-</li>
-<li><p>guava</p>
-<p>google出品的第三方工具库。当java.util 提供的数据结构不能满足的时候从这里你可以快速找到大量已经写好的数据结构了，这使得你不用花费心思在一些常用的数据结构上了。比如LRU缓存之类的。只是好几个版本的跨度比较大，兼容也不怎么好。</p>
-</li>
-<li><p>apache commons 包含的组件</p>
-<p>提供各种用途的函数，比如配置、验证、集合、文件上传或XML处理等。</p>
-<p><a href="http://rensanning.iteye.com/blog/1547845" target="_blank" rel="external">Java工具类之Apache的Commons Lang和BeanUtils</a></p>
-<p>1)commons lang</p>
-<p>主要使用StringUtils和ArrayUtils类。</p>
-<p>​</p>
-</li>
-<li><p>netty</p>
-<p>一个网络通信框架,当需要实现自定义协议的时候我就用这个，netty的新版本自带了很多协议的实现版本，这是搞网络快速开发不二的选择。</p>
-</li>
-<li><p>mina</p>
-</li>
-<li><p>httpclient</p>
-<p>基于http协议网络工具</p>
-</li>
-<li><p>jetty</p>
-<p>httpclient 的同一个项目下有一个简易的http server ，但是没有实现servlet。</p>
-</li>
-<li><p>maven</p>
-<p>现在的java已经离不开这个玩意了。你可以自己搭建一个nexus 来做maven私服。当你存在RPC的需求的时候。完全可以把自己的接口部分和client打包上传到maven私服，调用的服务只需要include这个包就可以远程调用你的服务了。在国内配合上dubbo这类 SOA框架。那个效果酸爽的很。完成了实际意义上的接口于实现在网络层级的分离。让java 的package 形成一个网络上的package。需要某个服务的时候，include 直接调用。其他的一律不用管。</p>
-</li>
-<li><p>Disruptor</p>
-<p>高性能的并发框架，一般用来在涉及到 生产者–消费者模型的时候会用到。抛开性能不谈(实际上性能相当棒)它的抽象方式和接口都设计得很好。</p>
-</li>
-<li><p>quartz</p>
-<p>一个调度器，当涉及到多任务定时调用的时候这个框架能帮上非常多。特别在网络游戏服务器中，如果需要定时或者短时定时来做某些事情的时候（用户的长时间buff状态，刷新时间等），quart是一个非常不错的选择。如果时间比较短的话，利用java内置的DelayQueue 也可以。</p>
-</li>
-<li><p>jOOQ</p>
-<p>用来替代hibernate.</p>
-</li>
-<li><p>joda</p>
-<p>最好用的日期时间库，抛弃蹩脚的java.util.Calendar、java.util.Date 吧。</p>
-</li>
-<li><p>Gson</p>
-<p>谷歌提供的解析json的强大jar包，无论你的json多复杂，一个方法搞定，比之前哪些json 的jar包要好用很多，</p>
-</li>
-<li><p>lombok</p>
-<p><a href="http://www.blogjava.net/fancydeepin/archive/2012/07/12/382933.html" target="_blank" rel="external">http://www.blogjava.net/fancydeepin/archive/2012/07/12/382933.html</a></p>
-</li>
-<li><p>FastJSON</p>
-<p>Taobao的JSON类库，我专门和GSON做过性能测试，好像没什么差别，不过FastJSON大部分是静态方法，直接调用就行，使用更顺手吧，然后是——国产</p>
-</li>
-<li><p>jfinal</p>
-</li>
-<li><p>spring&amp;spring data</p>
-</li>
-</ol>
-<h3 id="2-Android篇"><a href="#2-Android篇" class="headerlink" title="2.Android篇"></a>2.Android篇</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2031,7 +1993,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">62</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2039,7 +2001,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2048,7 +2010,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
