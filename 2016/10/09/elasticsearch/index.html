@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="elasticsearch," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ElasticSearch官网地址：https://www.elastic.co/learn
+1.安装安装elasticsearch，可视化管理工具marvel，kibana。在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head.
+安装head:
+bin/plugin -install mobz/elasticsearch-head
+mac环境下Elastic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/elasticsearch/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="ElasticSearch官网地址：https://www.elastic.co/learn
+1.安装安装elasticsearch，可视化管理工具marvel，kibana。在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head.
+安装head:
+bin/plugin -install mobz/elasticsearch-head
+mac环境下Elastic">
+<meta property="og:updated_time" content="2016-10-19T15:35:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch">
+<meta name="twitter:description" content="ElasticSearch官网地址：https://www.elastic.co/learn
+1.安装安装elasticsearch，可视化管理工具marvel，kibana。在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head.
+安装head:
+bin/plugin -install mobz/elasticsearch-head
+mac环境下Elastic">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/09/elasticsearch/"/>
+
+  <title> elasticsearch | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                elasticsearch
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T14:20:47+08:00" content="2016-10-09">
+              2016-10-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/09/elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/elasticsearch/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><p>官网地址：<a href="https://www.elastic.co/learn" target="_blank" rel="external">https://www.elastic.co/learn</a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>安装elasticsearch，可视化管理工具marvel，kibana。在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head.</p>
+<p>安装head:</p>
+<p><code>bin/plugin -install mobz/elasticsearch-head</code></p>
+<p><a href="http://www.jianshu.com/p/b62023eab2ad" target="_blank" rel="external">mac环境下Elasticsearch的搭建</a></p>
+<p><a href="https://segmentfault.com/q/1010000005677244" target="_blank" rel="external">在win10上安装es以及其插件</a></p>
+<p>进入head:<a href="http://localhost:9200/_plugin/head/" target="_blank" rel="external">http://localhost:9200/_plugin/head/</a> </p>
+<p>查看插件的url可以参照上面。推荐使用head，好用多了。</p>
+<h3 id="2-分词"><a href="#2-分词" class="headerlink" title="2.分词"></a>2.分词</h3><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik git地址</a></p>
+<p>如果版本对不上，可以改ik的pom文件的es版本号。</p>
+<p>分词教程：</p>
+<p><a href="http://zhaoyanblog.com/archives/495.html" target="_blank" rel="external">elasticsearch的实现全文检索</a></p>
+<p><a href="http://keenwon.com/1404.html" target="_blank" rel="external">为Elasticsearch添加中文分词，对比分词器效果</a></p>
+<p><a href="http://www.cnblogs.com/xing901022/p/5235993.html" target="_blank" rel="external">Elasticsearch——分词器对String的作用</a></p>
+<p><a href="http://blog.csdn.net/molong1208/article/details/50557253" target="_blank" rel="external">Elasticsearch中使用ik分词器 java api</a></p>
+<blockquote>
+<h3 id="field-must-be-set-when-search-analyzer-is-set"><a href="#field-must-be-set-when-search-analyzer-is-set" class="headerlink" title="field must be set when search_analyzer is set"></a>field must be set when search_analyzer is set</h3><ul>
+<li>请求参数：<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”indexAnalyzer”:”ik”,”searchAnalyzer”:”ik”}}}}’</li>
+<li>问题日志：<br>{“error”:{“root_cause”:[{“type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”}],”type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”},”status”:400}</li>
+<li>问题解决：参考旧版本教程的坑，V2.3.4的参数改了，应为<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”analyzer”:”ik”,”search_analyzer”:”ik”}}}}’</li>
+</ul>
+</blockquote>
+<p>Mapping语法：</p>
+<blockquote>
+<p>curl -XPUT localhost:9200/索引名称/类型名称/_mapping?pretty -d ‘{“类型名称”:{“properties”:{“字段名称”:{“type”:”字段类型”,”store”:”是否存储”,”index”:”索引方式、是否分析”}}}}’</p>
+</blockquote>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><h4 id="elasticsearch-mapper-attachments"><a href="#elasticsearch-mapper-attachments" class="headerlink" title="elasticsearch-mapper-attachments"></a>elasticsearch-mapper-attachments</h4><p><a href="https://github.com/elastic/elasticsearch-mapper-attachments" target="_blank" rel="external">https://github.com/elastic/elasticsearch-mapper-attachments</a></p>
+<p><a href="http://elasticsearch.cn/article/49" target="_blank" rel="external">通过elasticsearch-mapper attachment插件实现文件建立索引</a></p>
+<p><a href="http://www.voidcn.com/blog/jingkyks/article/p-3255066.html" target="_blank" rel="external">elasticsearch索引文档-attachment</a></p>
+<h4 id="tika"><a href="#tika" class="headerlink" title="tika"></a>tika</h4><p><a href="http://blog.csdn.net/wxwzy738/article/details/8882391" target="_blank" rel="external">Tika文本提取工具的使用(word、pdf、excel等)</a></p>
+<p> <a href="http://blog.csdn.net/pelick/article/details/8520352" target="_blank" rel="external">Apache Tika:通用的内容分析工具</a></p>
+<p><a href="https://yq.aliyun.com/articles/28250" target="_blank" rel="external">【NLP】Tika 文本预处理：抽取各种格式文件内容</a></p>
+<p><a href="https://wizardforcel.gitbooks.io/tutorialspoint-java/content/tika/119.html" target="_blank" rel="external">Tika教程</a></p>
+<h4 id="基于内容的推荐"><a href="#基于内容的推荐" class="headerlink" title="基于内容的推荐"></a>基于内容的推荐</h4><p>more like this 关键字段</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1-在java中使用elasticSearch"><a href="#1-在java中使用elasticSearch" class="headerlink" title="1)在java中使用elasticSearch"></a>1)在java中使用elasticSearch</h4><p> <a href="https://www.elastic.co/blog/found-java-clients-for-elasticsearch" target="_blank" rel="external">https://www.elastic.co/blog/found-java-clients-for-elasticsearch</a></p>
+<p>官方java api的翻译版</p>
+<p><a href="https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html" target="_blank" rel="external">https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html</a></p>
+<p>源码 api : <a href="http://javadoc.kyubu.de/elasticsearch/v1.7.3/" target="_blank" rel="external">http://javadoc.kyubu.de/elasticsearch/v1.7.3/</a></p>
+<h5 id="1-native-client"><a href="#1-native-client" class="headerlink" title="1.native client"></a>1.native client</h5><p><a href="http://www.cnblogs.com/bmaker/p/5472035.html" target="_blank" rel="external">elasticsearch 2种客户端的区别</a></p>
+<p><a href="http://www.cnblogs.com/lujiao_cs/p/3700375.html" target="_blank" rel="external">ElasticSearch 之 Client</a></p>
+<h5 id="2-jest"><a href="#2-jest" class="headerlink" title="2.jest"></a>2.jest</h5><p><a href="http://itindex.net/detail/54095-elasticsearch-restful-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E" target="_blank" rel="external">elasticsearch RESTful搜索引擎-(java jest 使用[入门])</a></p>
+<h5 id="3-spring-data-elasticsearch"><a href="#3-spring-data-elasticsearch" class="headerlink" title="3.spring-data-elasticsearch"></a>3.spring-data-elasticsearch</h5><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">spring-data-elasticsearch git地址</a></p>
+<p><a href="https://www.gitbook.com/book/giraffe0813/spring-data-elasticsearch/details" target="_blank" rel="external">spring-data-elasticsearch gitBook</a></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="调用restful-api"><a href="#调用restful-api" class="headerlink" title="调用restful api"></a>调用restful api</h4><p><a href="https://yq.aliyun.com/articles/33987" target="_blank" rel="external">ElasticSearch实战－编码实践</a></p>
+<h4 id="java-api实例"><a href="#java-api实例" class="headerlink" title="java api实例"></a>java api实例</h4><p><a href="http://minirick.duapp.com/yong-elasticsearchwei-ni-de-xiang-mu-ti-gong-chui-zhi-sou-suo-fu-wu/" target="_blank" rel="external">用elasticsearch为你的项目提供垂直搜索服务</a></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Elasticsearch 现在主要的应用场景有三块。</p>
+<p>1.站内搜索，主要和 Solr 竞争，属于后起之秀。</p>
+<p>2.NoSQL json文档数据库，主要抢占 Mongo 的市场，它在读写性能上优于 Mongo（见文末比较链接），同时也支持地理位置查询，还方便地理位置和文本混合查询，属于歪打正着。</p>
+<p>3.监控，统计以及日志类时间序的数据的存储和分析以及可视化，这方面是引领者。</p>
+<p><a href="http://lutaf.com/158.htm" target="_blank" rel="external">开源搜索引擎评估:lucene sphinx elasticsearch</a></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>建议阅读源码</p>
+<p><a href="https://my.oschina.net/original123/blog/734095" target="_blank" rel="external">搜索引擎框架－elasticsearch</a></p>
+<h4 id="mapping"><a href="#mapping" class="headerlink" title="mapping"></a>mapping</h4><p> <a href="http://blog.csdn.net/lvhong84/article/details/23936697" target="_blank" rel="external">elasticsearch中的mapping简介</a></p>
+<h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p><a href="http://www.cnblogs.com/huangfox/p/3543134.html" target="_blank" rel="external">elasticsearch口水篇</a></p>
+<p><a href="http://blog.csdn.net/geloin/article/details/8934289" target="_blank" rel="external">分布式搜索Elasticsearch——项目过程（二）</a></p>
+<p><a href="http://www.cnblogs.com/richaaaard/category/783901.html" target="_blank" rel="external">ElasticSearch 2</a></p>
+<p><a href="http://blog.csdn.net/ljc2008110/article/details/48652937" target="_blank" rel="external">ElasticSearch的Java API</a></p>
+<p><a href="http://blog.csdn.net/laigood12345/article/category/1113868/" target="_blank" rel="external">elasticsearch</a></p>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a href="http://udn.yyuap.com/doc/mastering-elasticsearch/chapter-8/index.html" target="_blank" rel="external">elasticsearch教程</a></p>
+<p><a href="http://riching.iteye.com/blog/1921625" target="_blank" rel="external">使用java访问elasticsearch创建索引</a></p>
+<p><a href="https://segmentfault.com/a/1190000006431332" target="_blank" rel="external">Elasticsearch，为了搜索</a></p>
+<p><a href="http://siddontang.com/2015/01/18/elasticsearch-note/" target="_blank" rel="external">Elasticsearch学习笔记</a></p>
+<p><a href="http://www.importnew.com/19418.html" target="_blank" rel="external">搜索引擎solr和elasticsearch</a></p>
+<p><a href="http://www.open-open.com/lib/view/open1452046497511.html#articleHeader3" target="_blank" rel="external">使用 Elasticsearch 实现博客站内搜索</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elasticsearch/" rel="tag">#elasticsearch</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/08/linux相关/" rel="next" title="linux相关">
+                <i class="fa fa-chevron-left"></i> linux相关
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/12/maven/" rel="prev" title="maven">
+                maven <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/09/elasticsearch/"
+           data-title="elasticsearch" data-url="http://yoursite.com/2016/10/09/elasticsearch/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ElasticSearch"><span class="nav-number">1.</span> <span class="nav-text">ElasticSearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-分词"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.分词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#field-must-be-set-when-search-analyzer-is-set"><span class="nav-number">1.0.3.</span> <span class="nav-text">field must be set when search_analyzer is set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方库"><span class="nav-number">1.0.4.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#elasticsearch-mapper-attachments"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">elasticsearch-mapper-attachments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tika"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">tika</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于内容的推荐"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">基于内容的推荐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.0.5.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在java中使用elasticSearch"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">1)在java中使用elasticSearch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-native-client"><span class="nav-number">1.0.5.1.1.</span> <span class="nav-text">1.native client</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-jest"><span class="nav-number">1.0.5.1.2.</span> <span class="nav-text">2.jest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-spring-data-elasticsearch"><span class="nav-number">1.0.5.1.3.</span> <span class="nav-text">3.spring-data-elasticsearch</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.0.6.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用restful-api"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">调用restful api</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java-api实例"><span class="nav-number">1.0.6.2.</span> <span class="nav-text">java api实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.0.7.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">1.0.8.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mapping"><span class="nav-number">1.0.8.1.</span> <span class="nav-text">mapping</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系列教程"><span class="nav-number">1.0.9.</span> <span class="nav-text">系列教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#教程"><span class="nav-number">1.0.10.</span> <span class="nav-text">教程</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

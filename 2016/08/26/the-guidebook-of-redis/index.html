@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/26/the-guidebook-of-redis/index.html">
 <meta property="og:site_name" content="Qi's Blog">
 <meta property="og:description" content="The GuideBook Of Redis——Redis入门指南本博客为《Redis入门指南》一书的读书笔记。">
-<meta property="og:updated_time" content="2016-08-27T14:39:17.000Z">
+<meta property="og:updated_time" content="2016-08-30T16:23:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="the guidebook of redis">
 <meta name="twitter:description" content="The GuideBook Of Redis——Redis入门指南本博客为《Redis入门指南》一书的读书笔记。">
@@ -355,7 +355,11 @@
 <p>(2)运行错误</p>
 <p>运行错误是指命令执行的时候出现的错误，比如使用散列类型的命令操作集合类型的键。如果事务里 的一条命令出现了运行错误，事务里其它的命令依然会执行，包括出错命令之后的命令。</p>
 <p>但要注意，redis的事务没有关系数据中提供的回滚功能。</p>
-<h4 id="WATCH命令介绍"><a href="#WATCH命令介绍" class="headerlink" title="WATCH命令介绍"></a>WATCH命令介绍</h4><p>watch命令可以监控一个或多个键，一旦其中有一个键被修改或删除，之后的事务久不会执行，监控一直持续到exec命令。</p>
+<h4 id="WATCH命令介绍"><a href="#WATCH命令介绍" class="headerlink" title="WATCH命令介绍"></a>WATCH命令介绍</h4><p>watch命令可以监控一个或多个键，一旦其中有一个键被修改或删除，之后的事务就不会执行。监控一直持续到exec命令。</p>
+<p>WATCH 使得 EXEC命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
+<h3 id="生存时间"><a href="#生存时间" class="headerlink" title="生存时间"></a>生存时间</h3><p>如果使用了watch命令监测了一个拥有生存时间的键，该键时间到期自动删除并不会被watcj命令认为该键被改变。</p>
+<h4 id="实现访问频率限制"><a href="#实现访问频率限制" class="headerlink" title="实现访问频率限制"></a>实现访问频率限制</h4><h4 id="实现缓存"><a href="#实现缓存" class="headerlink" title="实现缓存"></a>实现缓存</h4><p>修改配置文件的maxmemory参数，限制redis最大可用内存大小，当超出了这个限制时redis会依据maxmemory-policy参数制定的策略来删除不需要的键。，直到redis占用的内存小于指定内存。</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><h4 id="sort命令"><a href="#sort命令" class="headerlink" title="sort命令"></a>sort命令</h4><h4 id="BY参数"><a href="#BY参数" class="headerlink" title="BY参数"></a>BY参数</h4><p>语法规则为”by 参考键”，表示为(键名-&gt;字段名)。如果提供了by参数，sort命令将不再依据元素自身的值进行排序，而是对每个元素的值替换参考键的第一个‘＊’并获取其值，然后依据该值进行排序。如果参考键都相同，则会再比较元素本身的值来决定元素的顺序。</p>
 <p>#### </p>
 
       
@@ -470,7 +474,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -478,7 +482,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -487,7 +491,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -516,7 +520,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-GuideBook-Of-Redis——Redis入门指南"><span class="nav-number">1.</span> <span class="nav-text">The GuideBook Of Redis——Redis入门指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章"><span class="nav-number">1.1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.1.1.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存存储与持久化"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">内存存储与持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能丰富"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">功能丰富</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单稳定"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">简单稳定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章准备"><span class="nav-number">1.2.</span> <span class="nav-text">第二章准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#停止redis"><span class="nav-number">1.2.1.</span> <span class="nav-text">停止redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多数据库"><span class="nav-number">1.2.2.</span> <span class="nav-text">多数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章入门"><span class="nav-number">1.3.</span> <span class="nav-text">第三章入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串类型"><span class="nav-number">1.4.1.</span> <span class="nav-text">字符串类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列类型"><span class="nav-number">1.4.2.</span> <span class="nav-text">散列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表类型"><span class="nav-number">1.4.3.</span> <span class="nav-text">列表类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集合类型"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">集合类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有序集合"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">有序集合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章进阶"><span class="nav-number">1.5.</span> <span class="nav-text">第四章进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.5.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误处理"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WATCH命令介绍"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">WATCH命令介绍</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-GuideBook-Of-Redis——Redis入门指南"><span class="nav-number">1.</span> <span class="nav-text">The GuideBook Of Redis——Redis入门指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章"><span class="nav-number">1.1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.1.1.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存存储与持久化"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">内存存储与持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能丰富"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">功能丰富</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单稳定"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">简单稳定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章准备"><span class="nav-number">1.2.</span> <span class="nav-text">第二章准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#停止redis"><span class="nav-number">1.2.1.</span> <span class="nav-text">停止redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多数据库"><span class="nav-number">1.2.2.</span> <span class="nav-text">多数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章入门"><span class="nav-number">1.3.</span> <span class="nav-text">第三章入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串类型"><span class="nav-number">1.4.1.</span> <span class="nav-text">字符串类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列类型"><span class="nav-number">1.4.2.</span> <span class="nav-text">散列类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表类型"><span class="nav-number">1.4.3.</span> <span class="nav-text">列表类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集合类型"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">集合类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有序集合"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">有序集合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章进阶"><span class="nav-number">1.5.</span> <span class="nav-text">第四章进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.5.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误处理"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WATCH命令介绍"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">WATCH命令介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生存时间"><span class="nav-number">1.5.2.</span> <span class="nav-text">生存时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现访问频率限制"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">实现访问频率限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现缓存"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">实现缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">1.5.3.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sort命令"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">sort命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BY参数"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">BY参数</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

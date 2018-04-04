@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javaee," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="JAVA EE1.目录结构1.1 maven目录1234567891011121314151617181920212223242526272829303132333435363738$&amp;#123;basedir&amp;#125;src	main		java         源文件 		resources    资源文件		filters   资源过滤文件		config   配置文件		scripts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaWeb">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/javaWeb/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="JAVA EE1.目录结构1.1 maven目录1234567891011121314151617181920212223242526272829303132333435363738$&amp;#123;basedir&amp;#125;src	main		java         源文件 		resources    资源文件		filters   资源过滤文件		config   配置文件		scripts">
+<meta property="og:updated_time" content="2016-10-15T08:03:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaWeb">
+<meta name="twitter:description" content="JAVA EE1.目录结构1.1 maven目录1234567891011121314151617181920212223242526272829303132333435363738$&amp;#123;basedir&amp;#125;src	main		java         源文件 		resources    资源文件		filters   资源过滤文件		config   配置文件		scripts">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/26/javaWeb/"/>
+
+  <title> javaWeb | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javaWeb
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T10:34:58+08:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javaee/" itemprop="url" rel="index">
+                    <span itemprop="name">javaee</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/26/javaWeb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/javaWeb/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JAVA-EE"><a href="#JAVA-EE" class="headerlink" title="JAVA EE"></a>JAVA EE</h1><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><h4 id="1-1-maven目录"><a href="#1-1-maven目录" class="headerlink" title="1.1 maven目录"></a>1.1 maven目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">$&#123;basedir&#125;</div><div class="line">src</div><div class="line">	main</div><div class="line">		java         源文件 </div><div class="line">		resources    资源文件</div><div class="line">		filters   资源过滤文件</div><div class="line">		config   配置文件</div><div class="line">		scripts   脚本文件</div><div class="line">		webapp   web应用文件，/WEB-INF</div><div class="line">	test</div><div class="line">		java    测试源文件</div><div class="line">		resources    测试资源文件</div><div class="line">		filters    测试资源过滤文件</div><div class="line">	it       集成测试</div><div class="line">	assembly    组件（Assembly）描述符所在的目录</div><div class="line">	site    站点文件</div><div class="line">target</div><div class="line">	generated-sources</div><div class="line">	classes  /resources目录下的也在此</div><div class="line">	generated-test-sources</div><div class="line">	test-classes</div><div class="line">	xxx.jar</div><div class="line">	+ project-1.0</div><div class="line">	|  + META-INF</div><div class="line">	|  + WEB-INF</div><div class="line">	|  |  + classes</div><div class="line">	|  |  * web.xml</div><div class="line">	|  * index.jsp</div><div class="line">	+ maven-archiver</div><div class="line">	   * pom.properties</div><div class="line">	+ war</div><div class="line">	   + work</div><div class="line">	|  |  * webapp-cache.xml</div><div class="line">	* project.war</div><div class="line">pom.xml</div><div class="line">LICENSE.txt</div><div class="line">NOTICE.txt 该项目依赖的库的注意事项</div><div class="line">README.txt</div></pre></td></tr></table></figure>
+<p>构建Maven项目的时候，如果没有进行特殊的配置，Maven会按照标准的目录结构查找和处理各种类型文件。</p>
+<p><strong>src/main/java和src/test/java </strong></p>
+<p>这两个目录中的所有*.java文件会分别在comile和test-comiple阶段被编译，编译结果分别放到了target/classes和targe/test-classes目录中，但是这两个目录中的其他文件都会被忽略掉。 </p>
+<p><strong>src/main/resouces和src/test/resources</strong></p>
+<p>这两个目录中的文件也会分别被复制到target/classes和target/test-classes目录中。</p>
+<p><strong>target/classes</strong></p>
+<p>打包插件默认会把这个目录中的所有内容打入到jar包或者war包中。</p>
+<p>以上参见<a href="http://www.cnblogs.com/pixy/p/4798089.html" target="_blank" rel="external">maven资源文件的相关配置</a></p>
+<h4 id="1-2-tomcat的目录"><a href="#1-2-tomcat的目录" class="headerlink" title="1.2 tomcat的目录"></a>1.2 tomcat的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bin：存放各种不同平台开启与关闭Tomcat的脚本文件。</div><div class="line">lib：存tomcat与web应用的Jar包</div><div class="line">conf：存放tomcat的配置文件</div><div class="line">webapps：web应用的发布目录</div><div class="line">work：tomcat把由各种jsp生成的servlet文件存放的地方</div><div class="line">logs：tomcat存放日志文件的地方</div><div class="line">temp：tomcat存放临时文件的地方</div></pre></td></tr></table></figure>
+<h4 id="1-3-web的目录"><a href="#1-3-web的目录" class="headerlink" title="1.3 web的目录"></a>1.3 web的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">—war/  </div><div class="line">    + META-INF/  </div><div class="line">    + WEB-INF/  </div><div class="line">    |  + classes/  </div><div class="line">    |  |  + ServletA.class  </div><div class="line">    |  |  + config.properties  </div><div class="line">    |  |  + ...  </div><div class="line">    |  + lib/</div><div class="line">    |  |  + XXX.jar</div><div class="line">    |  + web.xml  </div><div class="line">    + img/  </div><div class="line">    + css/  </div><div class="line">    + js/  </div><div class="line">    + index.html  </div><div class="line">    + sample.jsp</div></pre></td></tr></table></figure>
+<p>在Eclipse中开发j2ee项目，所有的jsp文件都是放在WebRoot目录下面，用户需要把所有用到的jar包放到WEB-INF（WebRoot的子目录）目录下的lib目录下（这就是没有用maven管理的缺点，所有jar都要自己去找）；Eclipse编译时，会把<a href="http://lib.csdn.net/base/17" target="_blank" rel="external">Java</a>源代码产生的class文件放到WEB-INF目录的classes目录下。所以大家在应用服务器中指定虚拟目录时，直接指定到这个WebRoot目录就行了，这样在调试过程中，如果只修改了jsp文件，则不需要重启服务器，刷新页面，就可以看到修改后的效果。</p>
+<p>参见<a href="http://blog.csdn.net/rj042/article/details/6834557" target="_blank" rel="external">更改maven打包文件的默认输出</a></p>
+<h3 id="2-部署问题"><a href="#2-部署问题" class="headerlink" title="2.部署问题"></a>2.部署问题</h3><p>在Eclipse中，默认会把Web项目放到Eclipse的工作空间下的.metadata.plugins\org.eclipse.wst.server.core\tmp0(或者是tmp1)\wtpwebapps\下。可以在项目的部署那修改server Location，则会部署到tomcat的webapps目录下，这样就不需要启动eclipse，直接去访问tomcat目录的web项目了。当然如果是maven项目，则直接把war包拷贝到tomcat的发布目录下就可。</p>
+<h4 id="2-1-Tomcat部署Web应用方法总结"><a href="#2-1-Tomcat部署Web应用方法总结" class="headerlink" title="2.1 Tomcat部署Web应用方法总结"></a>2.1 Tomcat部署Web应用方法总结</h4><p>在Tomcat中部署<a href="http://lib.csdn.net/base/13" target="_blank" rel="external">Java Web</a>应用程序有两种方式：静态部署和动态部署。</p>
+<h5 id="2-1-1-静态部署"><a href="#2-1-1-静态部署" class="headerlink" title="2.1.1 静态部署"></a>2.1.1 静态部署</h5><p>1.利用Tomcat自动部署</p>
+<p>将PetWeb目录拷贝到$CATALINA_HOME/webapps下，然后启动服务器就可以了，Tomcat启动时将自动加载应用。</p>
+<p>2.修改Server.xml文件部署</p>
+<p>3.增加自定义web部署文件</p>
+<p>4.Web应用以.war文件的形式部署</p>
+<h5 id="2-1-2-动态部署"><a href="#2-1-2-动态部署" class="headerlink" title="2.1.2 动态部署"></a>2.1.2 动态部署</h5><p>动态部署是指可以在服务器启动之后部署web应用程序，而不用重新启动服务器。动态部署要用到服务器提供的manager.war文件。</p>
+<p>详细参见 <a href="http://blog.csdn.net/yangxueyong/article/details/6130065" target="_blank" rel="external">Tomcat部署Web应用方法总结</a></p>
+<h3 id="创建SSM项目"><a href="#创建SSM项目" class="headerlink" title="创建SSM项目"></a>创建SSM项目</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaee/" rel="tag">#javaee</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/22/编写高质量代码－改善java程序的151个建议/" rel="next" title="编写高质量代码－改善java程序的151个建议">
+                <i class="fa fa-chevron-left"></i> 编写高质量代码－改善java程序的151个建议
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/08/linux相关/" rel="prev" title="linux相关">
+                linux相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/26/javaWeb/"
+           data-title="javaWeb" data-url="http://yoursite.com/2016/09/26/javaWeb/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA-EE"><span class="nav-number">1.</span> <span class="nav-text">JAVA EE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-目录结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-maven目录"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.1 maven目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-tomcat的目录"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">1.2 tomcat的目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-web的目录"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">1.3 web的目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-部署问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.部署问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Tomcat部署Web应用方法总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">2.1 Tomcat部署Web应用方法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-静态部署"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">2.1.1 静态部署</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-动态部署"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">2.1.2 动态部署</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建SSM项目"><span class="nav-number">1.0.3.</span> <span class="nav-text">创建SSM项目</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

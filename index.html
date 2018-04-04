@@ -258,8 +258,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/27/formal-model/" itemprop="url">
-                  formal model
+                <a class="post-title-link" href="/2016/10/19/日志配置/" itemprop="url">
+                  日志配置
                 </a>
               
             
@@ -272,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T22:55:59+08:00" content="2016-08-27">
-              2016-08-27
+            <time itemprop="dateCreated" datetime="2016-10-19T17:19:44+08:00" content="2016-10-19">
+              2016-10-19
             </time>
           </span>
 
@@ -286,8 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/software-engineering/" itemprop="url" rel="index">
-                    <span itemprop="name">software-engineering</span>
+                  <a href="/categories/logging/" itemprop="url" rel="index">
+                    <span itemprop="name">logging</span>
                   </a>
                 </span>
 
@@ -302,8 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/27/formal-model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/formal-model/" itemprop="commentsCount"></span>
+                <a href="/2016/10/19/日志配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/日志配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,139 +327,993 @@
 
       
         
-          <h1 id="Formal-Model"><a href="#Formal-Model" class="headerlink" title="Formal Model"></a>Formal Model</h1><h2 id="形式化模型"><a href="#形式化模型" class="headerlink" title="形式化模型"></a>形式化模型</h2><h3 id="所属分类"><a href="#所属分类" class="headerlink" title="所属分类"></a>所属分类</h3><p>是软工开发模型中的一种，也可以称为形式化方法模型，与之相关的有<strong><em>形式验证</em></strong>。关于软件开发模型，不懂请点这里<a href="http://baike.baidu.com/link?url=wJVgewe83lUylVstp9_EZJwjkd7wSwVCRpwDsnEvZrHyY0rwwAs94V_aLJLZkJXfqKuM4-aOJVxc7gAbbVQbp_">软件开发模型</a>。</p>
-<p><strong>推荐学习路线</strong>：</p>
+          
+            <h1 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h1><h3 id="在spring中配置日志"><a href="#在spring中配置日志" class="headerlink" title="在spring中配置日志"></a>在spring中配置日志</h3><p>1.让 spring-context 排除对 commons-logging 的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;spring-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">    &lt;exclusions&gt;</div><div class="line">	&lt;exclusion&gt;</div><div class="line">	    &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</div><div class="line">	    &lt;groupId&gt;commons-logging&lt;/groupId&gt;</div><div class="line">	&lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>2.添加 slf4j-api 和 jcl-over-slf4j 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;slf4j-simple&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>3.如果是web项目，则配置web.xml文件的Log4jConfigLocation和Log4jConfigListener</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;listener&gt; </div><div class="line">&lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt; </div><div class="line">&lt;/listener&gt; </div><div class="line">&lt;context-param&gt; </div><div class="line">  &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt; </div><div class="line">  &lt;param-value&gt;WEB-INF/classes/log4j.properties&lt;/param-value&gt; </div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure>
+<p>4.在当前classpath中添加log4j.properties配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=info, stdout </div><div class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender </div><div class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout </div><div class="line">log4j.appender.stdout.layout.ConversionPattern=%d&#123;ABSOLUTE&#125; %5p %t %c&#123;2&#125;:%L - %m%n</div></pre></td></tr></table></figure>
+<p>问题：</p>
+<p>1.若打印出了SLF4J: Class path contains multiple SLF4J bindings，说明jar包冲突了。slf4j就是所谓的门面模式，提供了一个接口，自己不去实现，让其他日志jar包去实现这个接口。logback、log4j什么的，都有实现这个接口，但运行的时候，必须保证只能有一个接口实现类，如果有两个或以上，就抛上面那个异常了。做下依赖排除就行了，有的时候是其他包里面引进了日志包，不是你自己引进的。</p>
+<p>参考博客：</p>
+<p><a href="http://www.pythonhk.com/artile/view/1150" target="_blank" rel="external">Spring配置日志</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/maven/" itemprop="url">
+                  maven
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T14:49:22+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/maven/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/maven/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p><a href="http://stamen.iteye.com/blog/1554987" target="_blank" rel="external">Maven解决类包依赖冲突</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/mac上的抓包工具/" itemprop="url">
+                  mac上的抓包工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T14:46:34+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/抓包/" itemprop="url" rel="index">
+                    <span itemprop="name">抓包</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/mac上的抓包工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/mac上的抓包工具/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mac上的抓包工具"><a href="#mac上的抓包工具" class="headerlink" title="mac上的抓包工具"></a>mac上的抓包工具</h1><p><a href="http://blog.csdn.net/liulanghk/article/details/46342205" target="_blank" rel="external">网络抓包神器-Charles使用指南</a></p>
+<p>问题：怎么抓java程序发出的网络请求</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/java-httpclient/" itemprop="url">
+                  java-httpclient
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T14:44:36+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/httpclient/" itemprop="url" rel="index">
+                    <span itemprop="name">httpclient</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/java-httpclient/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/java-httpclient/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="HTTPCLIENT"><a href="#HTTPCLIENT" class="headerlink" title="HTTPCLIENT"></a>HTTPCLIENT</h2><p>httpclient又可分为</p>
+<ul>
+<li>httpclient3.x</li>
+<li>httpclient4.x到httpclient4.3以下</li>
+<li>httpclient4.3以上</li>
+</ul>
+<p>不同httpclient版本其请求发送的方式也不一样,参见</p>
+<p><a href="http://spjich.iteye.com/blog/2227931" target="_blank" rel="external">HttpClient 4.3与4.3版本以下版本比较</a></p>
+<h4 id="Util工具类"><a href="#Util工具类" class="headerlink" title="Util工具类"></a>Util工具类</h4><p><a href="http://blog.csdn.net/happylee6688/article/details/47148227" target="_blank" rel="external">HttpClient 发送 HTTP、HTTPS 请求的简单封装</a></p>
+<p>注：此代码有问题，stringEntity.setContentEncoding(“UTF-8”); 这句应该注调，里面传的参数应该是header类型。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/17/elasticsearch权威指南/" itemprop="url">
+                  elasticsearch权威指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T09:48:38+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/elasticsearch权威指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/17/elasticsearch权威指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="elasticsearch-权威指南"><a href="#elasticsearch-权威指南" class="headerlink" title="elasticsearch 权威指南"></a>elasticsearch 权威指南</h1><p>6.映射和分析</p>
+<p>string类型默认进行analyze，即全文搜索。而其他字段则是精确匹配。</p>
+<h5 id="多层对象"><a href="#多层对象" class="headerlink" title="多层对象"></a>多层对象</h5><p>内部对象(inner objects)经常用于在另一个对象中嵌入一个实体或对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;tweet&quot;:            &quot;Elasticsearch is very flexible&quot;,</div><div class="line">    &quot;user&quot;: &#123;</div><div class="line">        &quot;id&quot;:           &quot;@johnsmith&quot;,</div><div class="line">        &quot;gender&quot;:       &quot;male&quot;,</div><div class="line">        &quot;age&quot;:          26,</div><div class="line">        &quot;name&quot;: &#123;</div><div class="line">            &quot;full&quot;:     &quot;John Smith&quot;,</div><div class="line">            &quot;first&quot;:    &quot;John&quot;,</div><div class="line">            &quot;last&quot;:     &quot;Smith&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="内部对象的映射"><a href="#内部对象的映射" class="headerlink" title="内部对象的映射"></a>内部对象的映射</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;gb&quot;: &#123;</div><div class="line">    &quot;tweet&quot;: &#123; &lt;1&gt;</div><div class="line">      &quot;properties&quot;: &#123;</div><div class="line">        &quot;tweet&quot;:            &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">        &quot;user&quot;: &#123; &lt;2&gt;</div><div class="line">          &quot;type&quot;:             &quot;object&quot;,</div><div class="line">          &quot;properties&quot;: &#123;</div><div class="line">            &quot;id&quot;:           &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">            &quot;gender&quot;:       &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">            &quot;age&quot;:          &#123; &quot;type&quot;: &quot;long&quot;   &#125;,</div><div class="line">            &quot;name&quot;:   &#123; &lt;3&gt;</div><div class="line">              &quot;type&quot;:         &quot;object&quot;,</div><div class="line">              &quot;properties&quot;: &#123;</div><div class="line">                &quot;full&quot;:     &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">                &quot;first&quot;:    &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">                &quot;last&quot;:     &#123; &quot;type&quot;: &quot;string&quot; &#125;</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><1> 根对象.</1></p>
+<p><2><3> 内部对象.</3></2></p>
+<h5 id="内部对象怎么被索引"><a href="#内部对象怎么被索引" class="headerlink" title="内部对象怎么被索引"></a>内部对象怎么被索引</h5><p>Lucene 并不了解内部对象。 一个 Lucene 文件包含一个键-值对应的扁平表单。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;tweet&quot;:            [elasticsearch, flexible, very],</div><div class="line">    &quot;user.id&quot;:          [@johnsmith],</div><div class="line">    &quot;user.gender&quot;:      [male],</div><div class="line">    &quot;user.age&quot;:         [26],</div><div class="line">    &quot;user.name.full&quot;:   [john, smith],</div><div class="line">    &quot;user.name.first&quot;:  [john],</div><div class="line">    &quot;user.name.last&quot;:   [smith]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>12.结构化搜索</p>
+<p>结构化搜索不关心文档的相关性或分数，它只是简单的包含或排除文档。</p>
+<p>过滤器filter有term(terms)，bool，range等等。</p>
+<p>12.1查询准确值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">GET /my_store/products/_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot; : &#123;</div><div class="line">        &quot;filtered&quot; : &#123;</div><div class="line">            &quot;filter&quot; : &#123;</div><div class="line">                &quot;term&quot; : &#123;</div><div class="line">                    &quot;productID&quot; : &quot;XHDK-A-1293-#fJ3&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>term(terms)是包含操作，不是等于操作。</p>
+<p>12.2 组合过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">GET /my_store/products/_search</div><div class="line">&#123;</div><div class="line">   &quot;query&quot; : &#123;</div><div class="line">      &quot;filtered&quot; : &#123; &lt;1&gt;</div><div class="line">         &quot;filter&quot; : &#123;</div><div class="line">            &quot;bool&quot; : &#123;</div><div class="line">              &quot;should&quot; : [</div><div class="line">                 &#123; &quot;term&quot; : &#123;&quot;price&quot; : 20&#125;&#125;, &lt;2&gt;</div><div class="line">                 &#123; &quot;term&quot; : &#123;&quot;productID&quot; : &quot;XHDK-A-1293-#fJ3&quot;&#125;&#125; &lt;2&gt;</div><div class="line">              ],</div><div class="line">              &quot;must_not&quot; : &#123;</div><div class="line">                 &quot;term&quot; : &#123;&quot;price&quot; : 30&#125; &lt;3&gt;</div><div class="line">              &#125;</div><div class="line">           &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>12.8 过滤缓存</p>
+<p>在 <code>bool</code> 条件中过滤器的顺序对性能有很大的影响。更详细的过滤条件应该被放置在其他过滤器之前，以便在更早的排除更多的文档。</p>
+<p>假如条件 A 匹配 1000 万个文档，而 B 只匹配 100 个文档，那么需要将 B 放在 A 前面。</p>
+<p>缓存的过滤器非常快，所以它们需要被放在不能缓存的过滤器之前。</p>
+<p>13.全文检索</p>
+<p><em>全文检索</em>：怎样对全文字段(full-text fields)进行检索以找到相关度最高的文档。</p>
+<p>全文检索最重要的两个方面是：</p>
+<ul>
+<li><p>相关度(Relevance)</p>
+<p>根据文档与查询的相关程度对结果集进行排序的能力。相关度可以使用TF/IDF、地理位置相近程度、模糊相似度或其他算法计算。</p>
+</li>
+<li><p>分析(Analysis)</p>
+<p>将一段文本转换为一组唯一的、标准化了的标记(token)，用以(a)创建倒排索引，(b)查询倒排索引。</p>
+</li>
+</ul>
+<p>注意，一旦提到相关度和分析，指的都是查询(queries)而非过滤器(filters)。</p>
+<p>准确值(<code>&#39;not_analyzed&#39;</code>)  全文(<code>&#39;analyzed&#39;</code>)</p>
+<p>1.基于短语的查询</p>
+<p>不会有分析阶段。这些查询在单一的短语上执行，<code>term</code>查询只在倒排查询里精确地查找特定短语（或者说精确包含），而不会匹配短语的其它变形。</p>
+<p>2.全文检索</p>
+<p><code>match</code>和<code>query_string</code>这样的查询是高级查询，它们会对字段进行分析：</p>
+<ul>
+<li><p>如果检索一个<code>&#39;date&#39;</code>或<code>&#39;integer&#39;</code>字段，它们会把查询语句作为日期或者整数格式数据。</p>
+</li>
+<li><p>如果检索一个准确值(<code>&#39;not_analyzed&#39;</code>)字符串字段，它们会把整个查询语句作为一个短语。</p>
+</li>
+<li><p>如果检索一个全文(<code>&#39;analyzed&#39;</code>)字段，查询会先用适当的解析器解析查询语句，产生需要查询的短语列表。然后对列表中的每个短语执行低级查询，合并查询结果，得到最终的文档相关度。</p>
+<p>我们很少需要直接使用基于短语的查询。通常我们会想要检索全文，而不是单独的短语，使用高级的全文检索会更简单（全文检索内部最终还是使用基于短语的查询）。</p>
+<p>如果确实要查询一个准确值字段(<code>&#39;not_analyzed&#39;</code>)，需要考虑使用查询还是过滤器。</p>
+<p>[提示] 单一短语的查询通常相当于<strong>是/否</strong>问题，用过滤器可以更好的描述这类查询，并且过滤器缓存可以提升性能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;: &#123;</div><div class="line">        &quot;filtered&quot;: &#123;</div><div class="line">            &quot;filter&quot;: &#123;</div><div class="line">                &quot;term&quot;: &#123; &quot;gender&quot;: &quot;female&quot; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/15/elk/" itemprop="url">
+                  elk
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-15T16:00:56+08:00" content="2016-10-15">
+              2016-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/elk/" itemprop="url" rel="index">
+                    <span itemprop="name">elk</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/15/elk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/15/elk/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h1><p>1.</p>
+<p><a href="http://www.person168.com/?p=252" target="_blank" rel="external">spring mvc+ELK从头开始搭建日志平台</a></p>
+<p>2.</p>
+<p><a href="http://www.cnblogs.com/never-give-up-1015/p/5720488.html" target="_blank" rel="external">Nlog、elasticsearch、Kibana以及logstash在项目中的应用（二）</a></p>
+<p>3.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/15/spring-data-elasticsearch/" itemprop="url">
+                  spring-data-elasticsearch
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-15T15:50:52+08:00" content="2016-10-15">
+              2016-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/spring-data-elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">spring-data-elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/15/spring-data-elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/15/spring-data-elasticsearch/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="spring-data-elasticsearch"><a href="#spring-data-elasticsearch" class="headerlink" title="spring-data-elasticsearch"></a>spring-data-elasticsearch</h3><p><a href="http://www.tianshouzhi.com/api/tutorials/springboot/101" target="_blank" rel="external"> SpringBoot整合ElasticSearch</a></p>
+<p>gitbook :</p>
+<p><a href="https://www.gitbook.com/book/giraffe0813/spring-data-elasticsearch/details" target="_blank" rel="external">Spring-Data-Elasticsearch</a></p>
+<p><a href="http://www.wtoutiao.com/p/17eEGh5.html" target="_blank" rel="external">如何在Spring中注入ElasticSearch实例</a></p>
+<p><a href="http://www.tianshouzhi.com/api/tutorials/elasticsearch/159" target="_blank" rel="external">入门整合案例(SpringBoot+Spring-data-elasticsearch)</a></p>
+<p><a href="http://blog.csdn.net/u014201191/article/details/46508311" target="_blank" rel="external">elasticsearch spring 集成</a></p>
+<p><a href="http://liuxi.name/blog/20160803/spring-data-es.html" target="_blank" rel="external">Spring Data ElasticSearch</a></p>
+<p><a href="https://my.oschina.net/original123/blog/687348" target="_blank" rel="external">spring data 对elasticsearch的支持</a></p>
+<p><a href="http://www.voidcn.com/blog/geloin/article/p-4137346.html" target="_blank" rel="external">集成Spring、Elasticsearch、paoding，将ES服务嵌入到Web程序</a></p>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-Spring-Elasticsearch-Logstash/" target="_blank" rel="external">使用 Spring、Elasticsearch 及 Logstash 构建企业级数据搜索和分析平台</a></p>
+<p><a href="https://segmentfault.com/a/1190000004389565" target="_blank" rel="external">elasticsearch初探</a></p>
+<p>项目实例：</p>
+<p><a href="https://my.oschina.net/gaoguofan/blog/753401" target="_blank" rel="external">elasticsearch spring 集成</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/前人造的轮子/" itemprop="url">
+                  前人造的轮子
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T21:08:27+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/前人造的轮子/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/前人造的轮子/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前人造的轮子"><a href="#前人造的轮子" class="headerlink" title="前人造的轮子"></a>前人造的轮子</h1><p><a href="http://www.mvnrepository.com/popular" target="_blank" rel="external">Maven Repository: Top Projects at Maven Repository</a></p>
+<p><a href="https://github.com/jiangxincode/cnblogs" target="_blank" rel="external">https://github.com/jiangxincode/cnblogs</a></p>
+<h3 id="1-java篇"><a href="#1-java篇" class="headerlink" title="1.java篇"></a>1.java篇</h3><p><a href="http://www.importnew.com/14429.html" target="_blank" rel="external">推荐！国外程序员整理的Java资源大全</a></p>
+<p><a href="https://www.zhihu.com/question/27720523" target="_blank" rel="external">Java 世界有哪些优秀的第三方开源 jar 包值得推荐使用？</a></p>
 <ol>
-<li>软件开发模型（稍微了解下什么是瀑布模型，迭代模型即可）</li>
-<li>形式化模型 （重点掌握）</li>
-<li>形式验证（作为补充和延伸）</li>
+<li><p>log4j/slf4j + logback</p>
+<p>向system.out.println()说永别，刚开始学java的时候总是喜欢依靠system.out.println()的输出来查看异常和调试。后来工作后就果断log4j了，这样项目开发和发布的时候，可以根据自己的需求开关日志级别，把日志打印到远程服务等多种功能。现在这个基本成为标配了。</p>
+</li>
+<li><p>guava</p>
+<p>google出品的第三方工具库。当java.util 提供的数据结构不能满足的时候从这里你可以快速找到大量已经写好的数据结构了，这使得你不用花费心思在一些常用的数据结构上了。比如LRU缓存之类的。只是好几个版本的跨度比较大，兼容也不怎么好。</p>
+</li>
+<li><p>apache commons 包含的组件</p>
+<p>提供各种用途的函数，比如配置、验证、集合、文件上传或XML处理等。</p>
+<p><a href="http://rensanning.iteye.com/blog/1547845" target="_blank" rel="external">Java工具类之Apache的Commons Lang和BeanUtils</a></p>
+<p>1)commons lang</p>
+<p>主要使用StringUtils和ArrayUtils类。</p>
+<p>​</p>
+</li>
+<li><p>netty</p>
+<p>一个网络通信框架,当需要实现自定义协议的时候我就用这个，netty的新版本自带了很多协议的实现版本，这是搞网络快速开发不二的选择。</p>
+</li>
+<li><p>mina</p>
+</li>
+<li><p>httpclient</p>
+<p>基于http协议网络工具</p>
+</li>
+<li><p>jetty</p>
+<p>httpclient 的同一个项目下有一个简易的http server ，但是没有实现servlet。</p>
+</li>
+<li><p>maven</p>
+<p>现在的java已经离不开这个玩意了。你可以自己搭建一个nexus 来做maven私服。当你存在RPC的需求的时候。完全可以把自己的接口部分和client打包上传到maven私服，调用的服务只需要include这个包就可以远程调用你的服务了。在国内配合上dubbo这类 SOA框架。那个效果酸爽的很。完成了实际意义上的接口于实现在网络层级的分离。让java 的package 形成一个网络上的package。需要某个服务的时候，include 直接调用。其他的一律不用管。</p>
+</li>
+<li><p>Disruptor</p>
+<p>高性能的并发框架，一般用来在涉及到 生产者–消费者模型的时候会用到。抛开性能不谈(实际上性能相当棒)它的抽象方式和接口都设计得很好。</p>
+</li>
+<li><p>quartz</p>
+<p>一个调度器，当涉及到多任务定时调用的时候这个框架能帮上非常多。特别在网络游戏服务器中，如果需要定时或者短时定时来做某些事情的时候（用户的长时间buff状态，刷新时间等），quart是一个非常不错的选择。如果时间比较短的话，利用java内置的DelayQueue 也可以。</p>
+</li>
+<li><p>jOOQ</p>
+<p>用来替代hibernate.</p>
+</li>
+<li><p>joda</p>
+<p>最好用的日期时间库，抛弃蹩脚的java.util.Calendar、java.util.Date 吧。</p>
+</li>
+<li><p>Gson</p>
+<p>谷歌提供的解析json的强大jar包，无论你的json多复杂，一个方法搞定，比之前哪些json 的jar包要好用很多，</p>
+</li>
+<li><p>lombok</p>
+<p><a href="http://www.blogjava.net/fancydeepin/archive/2012/07/12/382933.html" target="_blank" rel="external">http://www.blogjava.net/fancydeepin/archive/2012/07/12/382933.html</a></p>
+</li>
+<li><p>FastJSON</p>
+<p>Taobao的JSON类库，我专门和GSON做过性能测试，好像没什么差别，不过FastJSON大部分是静态方法，直接调用就行，使用更顺手吧，然后是——国产</p>
+</li>
+<li><p>jfinal</p>
+</li>
+<li><p>spring&amp;spring data</p>
+</li>
 </ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/27/formal-model/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/27/tianchi/" itemprop="url">
-                  tianchi
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T22:14:18+08:00" content="2016-08-27">
-              2016-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/competition/" itemprop="url" rel="index">
-                    <span itemprop="name">competition</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/27/tianchi/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/tianchi/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="tianchi-bigdata-competition"><a href="#tianchi-bigdata-competition" class="headerlink" title="tianchi-bigdata-competition"></a>tianchi-bigdata-competition</h1><p><a href="https://tianchi.shuju.aliyun.com/video.htm" target="_blank" rel="external">比赛答辩视频</a></p>
-<p><a href="http://yunpan.taobao.com/s/10veL8VtCS0" target="_blank" rel="external">ppt下载地址</a> （提取码：klUf2c）</p>
-<p>天池官方公众号tianchibigdata001</p>
-
+<h3 id="2-Android篇"><a href="#2-Android篇" class="headerlink" title="2.Android篇"></a>2.Android篇</h3>
           
         
       
@@ -508,8 +1362,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/26/the-guidebook-of-redis/" itemprop="url">
-                  the guidebook of redis
+                <a class="post-title-link" href="/2016/10/12/maven/" itemprop="url">
+                  maven
                 </a>
               
             
@@ -522,8 +1376,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-26T02:15:45+08:00" content="2016-08-26">
-              2016-08-26
+            <time itemprop="dateCreated" datetime="2016-10-12T20:21:39+08:00" content="2016-10-12">
+              2016-10-12
             </time>
           </span>
 
@@ -536,8 +1390,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
                   </a>
                 </span>
 
@@ -552,621 +1406,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/26/the-guidebook-of-redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/the-guidebook-of-redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="The-GuideBook-Of-Redis——Redis入门指南"><a href="#The-GuideBook-Of-Redis——Redis入门指南" class="headerlink" title="The GuideBook Of Redis——Redis入门指南"></a>The GuideBook Of Redis——Redis入门指南</h1><p>本博客为《Redis入门指南》一书的读书笔记。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/26/the-guidebook-of-redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/25/Margaret-Hamilton/" itemprop="url">
-                  Margaret Hamilton
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-25T00:58:50+08:00" content="2016-08-25">
-              2016-08-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/interesting/" itemprop="url" rel="index">
-                    <span itemprop="name">interesting</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/25/Margaret-Hamilton/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/25/Margaret-Hamilton/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="A-woman-named-Margaret-Hamilton"><a href="#A-woman-named-Margaret-Hamilton" class="headerlink" title="A woman named Margaret Hamilton"></a>A woman named Margaret Hamilton</h1><p>今天看了火星救援，然后随便搜索了下NASA，然后就看到这样一则故事，膜拜ing。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/25/Margaret-Hamilton/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/redis/" itemprop="url">
-                  redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T22:15:46+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/22/redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="roll-in-redis"><a href="#roll-in-redis" class="headerlink" title="roll-in-redis"></a>roll-in-redis</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》</p>
-<p>学习路线参考 <a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html">redis学习路线</a>，huangz大牛写的～</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/spring-data-redis/" itemprop="url">
-                  spring-data-redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T19:23:27+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/22/spring-data-redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/spring-data-redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Spring-data-redis"><a href="#Spring-data-redis" class="headerlink" title="Spring data redis"></a>Spring data redis</h1><p>Spring-data-redis是spring大家族的一部分，提供了在srping应用中通过简单的配置访问redis服务，对reids底层开发包(Jedis,  JRedis, and RJC)进行了高度封装，RedisTemplate提供了redis各种操作、异常处理及序列化，支持发布订阅，并对spring 3.1 cache进行了实现。<br>官网：<a href="http://projects.spring.io/spring-data-redis/">http://projects.spring.io/spring-data-redis/</a><br>项目地址：<a href="https://github.com/spring-projects/spring-data-redis">https://github.com/spring-projects/spring-data-redis</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/spring-data-redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/hexo-qiniu/" itemprop="url">
-                  hexo-qiniu
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T13:48:39+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/22/hexo-qiniu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/hexo-qiniu/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="hexo配置七牛作为图床"><a href="#hexo配置七牛作为图床" class="headerlink" title="hexo配置七牛作为图床"></a>hexo配置七牛作为图床</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>配置七牛的同步插件hexo-qiniu-sync遇到坑了啊，怎么谷歌都查不到。按照配置来走，执行hexo qiniu sync可以同步本地图片到七牛，再执行hexo clean, hexo g都没有问题，但是再hexo s和hexo d就出错，hexo s直接提示没有该命令，hexo d则提示<code>ERROR Deployer not found: git</code>，可是当把_config.yml文件里面的hexo-qiniu-sync配置文件删除，则hero s和hero d都没问题了。查了说可能是没有安装hexo-deployer-git 的问题啊，但事实上我安装了，更何况之前没安装插件前都是没问题的。</p>
-<h4 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h4><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-hexo-qiniu-sad.jpg" alt=""></p>
-<p>心塞塞，搞了好久没配好，直接贴链接吧</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/hexo-qiniu/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/21/skills-of-mac-os/" itemprop="url">
-                  skills of mac-os
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T10:24:27+08:00" content="2016-08-21">
-              2016-08-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/skills-of-mac-os/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/skills-of-mac-os/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/maven/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/maven/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1191,12 +1432,9 @@
       
         
           
-            <h1 id="关于mac的一些使用技巧"><a href="#关于mac的一些使用技巧" class="headerlink" title="关于mac的一些使用技巧"></a>关于mac的一些使用技巧</h1><h3 id="软件篇"><a href="#软件篇" class="headerlink" title="软件篇"></a>软件篇</h3><p>1.设置命令行启动命令，可以使用软链接，也可以alias。alias的语法规则是alias[别名]=[指令名称]，如<code>alias la=&#39;ls -a&#39;</code> 所以设置typora可以用<code>alias typora=&#39;open -a &quot;Typora&quot;</code> .</p>
-<p>设置sublime可以这样:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s &quot;/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/sublime</div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alias sublime=&apos;open -a &quot;Sublime Text 2&quot;&apos;</div></pre></td></tr></table></figure>
-<p>2.有时间再补充，参考这篇<a href="http://qiaoin.github.io/2016/03/11/%E5%85%B3%E4%BA%8EMAC%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" target="_blank" rel="external">关于MAC的一些配置</a></p>
+            <h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p>1.archetype</p>
+<p>最常用的骨架是maven-archetype-quickstart和maven-archetype-webapp骨架。maven-archetype-quickstart骨架是用来创建一个Java Project，而maven-archetype-webapp骨架则是用来创建一个JavaWeb Project。</p>
+<p><a href="http://www.cnblogs.com/LinkinPark/p/5232995.html" target="_blank" rel="external">Maven的Archetype简介</a></p>
 
           
         
@@ -1246,8 +1484,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/21/messageQueue/" itemprop="url">
-                  messageQueue
+                <a class="post-title-link" href="/2016/10/09/elasticsearch/" itemprop="url">
+                  elasticsearch
                 </a>
               
             
@@ -1260,8 +1498,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T10:00:23+08:00" content="2016-08-21">
-              2016-08-21
+            <time itemprop="dateCreated" datetime="2016-10-09T14:20:47+08:00" content="2016-10-09">
+              2016-10-09
             </time>
           </span>
 
@@ -1274,8 +1512,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/messageQueue/" itemprop="url" rel="index">
-                    <span itemprop="name">messageQueue</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -1290,8 +1528,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/21/messageQueue/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/messageQueue/" itemprop="commentsCount"></span>
+                <a href="/2016/10/09/elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/elasticsearch/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1315,158 +1553,73 @@
 
       
         
-          <h1 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h1><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>什么是消息队列，以下有几个形象的解释。</p>
-<ul>
-<li><p>消息队列，顾名思义 首先是个队列。队列的操作有<code>入队</code>和<code>出队</code>，也就是你有一个程序在产生内容然后入队（生产者）另一个程序读取内容，内容出队（消费者）这是最最基本的概念。</p>
-<p>使用场景：</p>
+          
+            <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><p>官网地址：<a href="https://www.elastic.co/learn" target="_blank" rel="external">https://www.elastic.co/learn</a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>安装elasticsearch，可视化管理工具marvel，kibana。在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head.</p>
+<p>安装head:</p>
+<p><code>bin/plugin -install mobz/elasticsearch-head</code></p>
+<p><a href="http://www.jianshu.com/p/b62023eab2ad" target="_blank" rel="external">mac环境下Elasticsearch的搭建</a></p>
+<p><a href="https://segmentfault.com/q/1010000005677244" target="_blank" rel="external">在win10上安装es以及其插件</a></p>
+<p>进入head:<a href="http://localhost:9200/_plugin/head/" target="_blank" rel="external">http://localhost:9200/_plugin/head/</a> </p>
+<p>查看插件的url可以参照上面。推荐使用head，好用多了。</p>
+<h3 id="2-分词"><a href="#2-分词" class="headerlink" title="2.分词"></a>2.分词</h3><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik git地址</a></p>
+<p>如果版本对不上，可以改ik的pom文件的es版本号。</p>
+<p>分词教程：</p>
+<p><a href="http://zhaoyanblog.com/archives/495.html" target="_blank" rel="external">elasticsearch的实现全文检索</a></p>
+<p><a href="http://keenwon.com/1404.html" target="_blank" rel="external">为Elasticsearch添加中文分词，对比分词器效果</a></p>
+<p><a href="http://www.cnblogs.com/xing901022/p/5235993.html" target="_blank" rel="external">Elasticsearch——分词器对String的作用</a></p>
+<p><a href="http://blog.csdn.net/molong1208/article/details/50557253" target="_blank" rel="external">Elasticsearch中使用ik分词器 java api</a></p>
 <blockquote>
-<p>当你不需要立即获得结果，但是并发量又不能无限大的时候             </p>
+<h3 id="field-must-be-set-when-search-analyzer-is-set"><a href="#field-must-be-set-when-search-analyzer-is-set" class="headerlink" title="field must be set when search_analyzer is set"></a>field must be set when search_analyzer is set</h3><ul>
+<li>请求参数：<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”indexAnalyzer”:”ik”,”searchAnalyzer”:”ik”}}}}’</li>
+<li>问题日志：<br>{“error”:{“root_cause”:[{“type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”}],”type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”},”status”:400}</li>
+<li>问题解决：参考旧版本教程的坑，V2.3.4的参数改了，应为<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”analyzer”:”ik”,”search_analyzer”:”ik”}}}}’</li>
+</ul>
 </blockquote>
-</li>
-</ul>
-<p>  比如你写日志，因为可能一个客户端有多个操作去写，又有很多个客户端，显然并发不能无穷大，于是你就需要把写日志的请求放入到消息队列里，在消费者那边依次把队列中产生的日志写到数据库里。</p>
-<p>  至于怎么实现消息队列，其实你本身一个普通的队列就行呀~看你需要什么附加功能而已。</p>
-<ul>
-<li><p>消息队列有无数开源实现，一般没必要自己实现。zmq也好rabbitmq也好甚至redis也好，找一个合适的装上用就行，就好像rdbms/nosql一样</p>
-<p>技术都是解决问题的，消息队列解决的是将<strong><em>突发大量请求转换为后端能承受的队列请求</em></strong>，比如你的服务器一秒能处理100个订单，但秒杀活动1秒进来1000个订单，持续10秒，在后端能力无法增加的情况下，你可以用消息队列将总共10000个请求压在队列里，后台consumer按原有能力处理，100秒后处理完所有请求（而不是直接宕机丢失订单数据）</p>
-</li>
-<li><p>通俗的说，<strong>就是一个容器，你把消息丢进去，不需要立即处理。然后有个程序去从你的容器里面把消息一条条读出来处理</strong>。消息队列，可以是activeMQ，kafka之类的，也可以是数据库的一张任务表。</p>
-<p>个人觉得消息队列，主要有两个作用：</p>
-<p>1)降低耦合</p>
-<p>2)消息可以暂时存在在消息队列中，等待消息接收者根据自身的负载处理能力控制处理消息的处理速度，减小在大并发访问时候的压力。</p>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/21/messageQueue/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/20/meassageQueue-based-on-redis/" itemprop="url">
-                  meassageQueue-based-on-redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-20T09:18:39+08:00" content="2016-08-20">
-              2016-08-20
-            </time>
-          </span>
+<p>Mapping语法：</p>
+<blockquote>
+<p>curl -XPUT localhost:9200/索引名称/类型名称/_mapping?pretty -d ‘{“类型名称”:{“properties”:{“字段名称”:{“type”:”字段类型”,”store”:”是否存储”,”index”:”索引方式、是否分析”}}}}’</p>
+</blockquote>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><h4 id="elasticsearch-mapper-attachments"><a href="#elasticsearch-mapper-attachments" class="headerlink" title="elasticsearch-mapper-attachments"></a>elasticsearch-mapper-attachments</h4><p><a href="https://github.com/elastic/elasticsearch-mapper-attachments" target="_blank" rel="external">https://github.com/elastic/elasticsearch-mapper-attachments</a></p>
+<p><a href="http://elasticsearch.cn/article/49" target="_blank" rel="external">通过elasticsearch-mapper attachment插件实现文件建立索引</a></p>
+<p><a href="http://www.voidcn.com/blog/jingkyks/article/p-3255066.html" target="_blank" rel="external">elasticsearch索引文档-attachment</a></p>
+<h4 id="tika"><a href="#tika" class="headerlink" title="tika"></a>tika</h4><p><a href="http://blog.csdn.net/wxwzy738/article/details/8882391" target="_blank" rel="external">Tika文本提取工具的使用(word、pdf、excel等)</a></p>
+<p> <a href="http://blog.csdn.net/pelick/article/details/8520352" target="_blank" rel="external">Apache Tika:通用的内容分析工具</a></p>
+<p><a href="https://yq.aliyun.com/articles/28250" target="_blank" rel="external">【NLP】Tika 文本预处理：抽取各种格式文件内容</a></p>
+<p><a href="https://wizardforcel.gitbooks.io/tutorialspoint-java/content/tika/119.html" target="_blank" rel="external">Tika教程</a></p>
+<h4 id="基于内容的推荐"><a href="#基于内容的推荐" class="headerlink" title="基于内容的推荐"></a>基于内容的推荐</h4><p>more like this 关键字段</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1-在java中使用elasticSearch"><a href="#1-在java中使用elasticSearch" class="headerlink" title="1)在java中使用elasticSearch"></a>1)在java中使用elasticSearch</h4><p> <a href="https://www.elastic.co/blog/found-java-clients-for-elasticsearch" target="_blank" rel="external">https://www.elastic.co/blog/found-java-clients-for-elasticsearch</a></p>
+<p>官方java api的翻译版</p>
+<p><a href="https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html" target="_blank" rel="external">https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html</a></p>
+<p>源码 api : <a href="http://javadoc.kyubu.de/elasticsearch/v1.7.3/" target="_blank" rel="external">http://javadoc.kyubu.de/elasticsearch/v1.7.3/</a></p>
+<h5 id="1-native-client"><a href="#1-native-client" class="headerlink" title="1.native client"></a>1.native client</h5><p><a href="http://www.cnblogs.com/bmaker/p/5472035.html" target="_blank" rel="external">elasticsearch 2种客户端的区别</a></p>
+<p><a href="http://www.cnblogs.com/lujiao_cs/p/3700375.html" target="_blank" rel="external">ElasticSearch 之 Client</a></p>
+<h5 id="2-jest"><a href="#2-jest" class="headerlink" title="2.jest"></a>2.jest</h5><p><a href="http://itindex.net/detail/54095-elasticsearch-restful-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E" target="_blank" rel="external">elasticsearch RESTful搜索引擎-(java jest 使用[入门])</a></p>
+<h5 id="3-spring-data-elasticsearch"><a href="#3-spring-data-elasticsearch" class="headerlink" title="3.spring-data-elasticsearch"></a>3.spring-data-elasticsearch</h5><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">spring-data-elasticsearch git地址</a></p>
+<p><a href="https://www.gitbook.com/book/giraffe0813/spring-data-elasticsearch/details" target="_blank" rel="external">spring-data-elasticsearch gitBook</a></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="调用restful-api"><a href="#调用restful-api" class="headerlink" title="调用restful api"></a>调用restful api</h4><p><a href="https://yq.aliyun.com/articles/33987" target="_blank" rel="external">ElasticSearch实战－编码实践</a></p>
+<h4 id="java-api实例"><a href="#java-api实例" class="headerlink" title="java api实例"></a>java api实例</h4><p><a href="http://minirick.duapp.com/yong-elasticsearchwei-ni-de-xiang-mu-ti-gong-chui-zhi-sou-suo-fu-wu/" target="_blank" rel="external">用elasticsearch为你的项目提供垂直搜索服务</a></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Elasticsearch 现在主要的应用场景有三块。</p>
+<p>1.站内搜索，主要和 Solr 竞争，属于后起之秀。</p>
+<p>2.NoSQL json文档数据库，主要抢占 Mongo 的市场，它在读写性能上优于 Mongo（见文末比较链接），同时也支持地理位置查询，还方便地理位置和文本混合查询，属于歪打正着。</p>
+<p>3.监控，统计以及日志类时间序的数据的存储和分析以及可视化，这方面是引领者。</p>
+<p><a href="http://lutaf.com/158.htm" target="_blank" rel="external">开源搜索引擎评估:lucene sphinx elasticsearch</a></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>建议阅读源码</p>
+<p><a href="https://my.oschina.net/original123/blog/734095" target="_blank" rel="external">搜索引擎框架－elasticsearch</a></p>
+<h4 id="mapping"><a href="#mapping" class="headerlink" title="mapping"></a>mapping</h4><p> <a href="http://blog.csdn.net/lvhong84/article/details/23936697" target="_blank" rel="external">elasticsearch中的mapping简介</a></p>
+<h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p><a href="http://www.cnblogs.com/huangfox/p/3543134.html" target="_blank" rel="external">elasticsearch口水篇</a></p>
+<p><a href="http://blog.csdn.net/geloin/article/details/8934289" target="_blank" rel="external">分布式搜索Elasticsearch——项目过程（二）</a></p>
+<p><a href="http://www.cnblogs.com/richaaaard/category/783901.html" target="_blank" rel="external">ElasticSearch 2</a></p>
+<p><a href="http://blog.csdn.net/ljc2008110/article/details/48652937" target="_blank" rel="external">ElasticSearch的Java API</a></p>
+<p><a href="http://blog.csdn.net/laigood12345/article/category/1113868/" target="_blank" rel="external">elasticsearch</a></p>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a href="http://udn.yyuap.com/doc/mastering-elasticsearch/chapter-8/index.html" target="_blank" rel="external">elasticsearch教程</a></p>
+<p><a href="http://riching.iteye.com/blog/1921625" target="_blank" rel="external">使用java访问elasticsearch创建索引</a></p>
+<p><a href="https://segmentfault.com/a/1190000006431332" target="_blank" rel="external">Elasticsearch，为了搜索</a></p>
+<p><a href="http://siddontang.com/2015/01/18/elasticsearch-note/" target="_blank" rel="external">Elasticsearch学习笔记</a></p>
+<p><a href="http://www.importnew.com/19418.html" target="_blank" rel="external">搜索引擎solr和elasticsearch</a></p>
+<p><a href="http://www.open-open.com/lib/view/open1452046497511.html#articleHeader3" target="_blank" rel="external">使用 Elasticsearch 实现博客站内搜索</a></p>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MessageQueue/" itemprop="url" rel="index">
-                    <span itemprop="name">MessageQueue</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/20/meassageQueue-based-on-redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/20/meassageQueue-based-on-redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="基于redis构建消息队列"><a href="#基于redis构建消息队列" class="headerlink" title="基于redis构建消息队列"></a>基于redis构建消息队列</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一般来说，消息队列有两种场景：</p>
-<p>1.生产者消费者模式</p>
-<p>生产者生产消息放到队列里，多个消费者同时监听队列，谁先抢到消息谁就会从队列中取走消息；即对于每个消息只能被最多一个消费者拥有。（常用于处理高并发写操作）</p>
-<p>2.发布者订阅者模式</p>
-<p>发布者生产消息放到队列里，多个监听队列的消费者都会收到同一份消息；即正常情况下每个消费者收到的消息应该都是一样的。（常用来作为日志收集中一份原始数据对多个应用场景）</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/20/meassageQueue-based-on-redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -1497,7 +1650,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1538,7 +1691,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1546,7 +1699,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1555,7 +1708,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

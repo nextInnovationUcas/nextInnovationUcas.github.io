@@ -1,0 +1,702 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="JAVA核心技术I卷第五章5.1 类、超类和子类5.1.4 阻止继承：final类和方法final类里面，所有的方法默认都是final类型的，但是成员变量不是这样。
+5.1.5 强制类型转换在Java中由于继承和向上转型，子类可以非常自然地转换成父类，但是父类转换成子类则需要强制转换。因为子类拥有比父类更多的属性、更强的功能，所以父类转换为子类需要强制。那么，是不是只要是父类转换为子类就会成功呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 核心技术I卷">
+<meta property="og:url" content="http://yoursite.com/2016/09/19/java-核心技术I卷/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="JAVA核心技术I卷第五章5.1 类、超类和子类5.1.4 阻止继承：final类和方法final类里面，所有的方法默认都是final类型的，但是成员变量不是这样。
+5.1.5 强制类型转换在Java中由于继承和向上转型，子类可以非常自然地转换成父类，但是父类转换成子类则需要强制转换。因为子类拥有比父类更多的属性、更强的功能，所以父类转换为子类需要强制。那么，是不是只要是父类转换为子类就会成功呢？">
+<meta property="og:updated_time" content="2016-09-30T11:32:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java 核心技术I卷">
+<meta name="twitter:description" content="JAVA核心技术I卷第五章5.1 类、超类和子类5.1.4 阻止继承：final类和方法final类里面，所有的方法默认都是final类型的，但是成员变量不是这样。
+5.1.5 强制类型转换在Java中由于继承和向上转型，子类可以非常自然地转换成父类，但是父类转换成子类则需要强制转换。因为子类拥有比父类更多的属性、更强的功能，所以父类转换为子类需要强制。那么，是不是只要是父类转换为子类就会成功呢？">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/19/java-核心技术I卷/"/>
+
+  <title> java 核心技术I卷 | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java 核心技术I卷
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T11:34:00+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/java-核心技术I卷/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/java-核心技术I卷/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JAVA核心技术I卷"><a href="#JAVA核心技术I卷" class="headerlink" title="JAVA核心技术I卷"></a>JAVA核心技术I卷</h1><h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><h4 id="5-1-类、超类和子类"><a href="#5-1-类、超类和子类" class="headerlink" title="5.1 类、超类和子类"></a>5.1 类、超类和子类</h4><h5 id="5-1-4-阻止继承：final类和方法"><a href="#5-1-4-阻止继承：final类和方法" class="headerlink" title="5.1.4 阻止继承：final类和方法"></a>5.1.4 阻止继承：final类和方法</h5><p>final类里面，所有的方法默认都是final类型的，但是成员变量不是这样。</p>
+<h5 id="5-1-5-强制类型转换"><a href="#5-1-5-强制类型转换" class="headerlink" title="5.1.5 强制类型转换"></a>5.1.5 强制类型转换</h5><p>在Java中由于继承和向上转型，子类可以非常自然地转换成父类，但是父类转换成子类则需要强制转换。因为子类拥有比父类更多的属性、更强的功能，所以父类转换为子类需要强制。那么，是不是只要是父类转换为子类就会成功呢？其实不然，他们之间的强制类型转换是有条件的。</p>
+<p> 当我们用一个类型的构造器构造出一个对象时，这个对象的类型就已经确定的，也就说它的本质是不会再发生变化了。在Java中我们可以通过继承、向上转型的关系使用父类类型来引用它，这个时候我们是使用功能较弱的类型引用功能较强的对象，这是可行的。但是将功能较弱的类型强制转功能较强的对象时，就不一定可以行了。</p>
+<p>举个例子来说明。比如系统中存在Father、Son两个对象。首先我们先构造一个Son对象，然后用一个Father类型变量引用它：</p>
+<pre><code>Father father = new Son();
+</code></pre><p>在这里Son 对象实例被向上转型为father了，但是请注意这个Son对象实例在内存中的本质还是Son类型的，只不过它的能力临时被消弱了而已，如果我们想变强怎么办？将其对象类型还原！</p>
+<pre><code>Son son = (Son)father;
+
+这条语句是可行的，其实father引用仍然是Father类型的，只不过是将它的能力加强了，将其加强后转交给son引用了，Son对象实例在son的变量的引用下，恢复真身，可以使用全部功能了。
+
+前面提到父类强制转换成子类并不是总是成功，那么在什么情况下它会失效呢？  
+
+当引用类型的真实身份是父类本身的类型时，强制类型转换就会产生错误。例如：
+
+Father father = new  Father();
+
+Son son = (Son) father;
+
+这个系统会抛出`ClassCastException异常信息。`
+</code></pre><p>所以编译器在编译时只会检查类型之间是否存在继承关系，有则通过；而在运行时就会检查它的真实类型，是则通过，否则抛出ClassCastException异常。</p>
+<p><code>所以在继承中，子类可以自动转型为父类，但是父类强制转换为子类时只有当引用类型真正的身份为子类时才会强制转换成功，否则失败。</code></p>
+<p>以上参见<a href="http://www.cnblogs.com/chenssy/p/3393160.html" target="_blank" rel="external">java提高篇(十一)—–强制类型转换</a></p>
+<p>所以在将超类转换为子类之前，应该使用instanceof进行检查.</p>
+<h5 id="5-1-6抽象类"><a href="#5-1-6抽象类" class="headerlink" title="5.1.6抽象类"></a>5.1.6抽象类</h5><p>抽象类里面不全是抽象方法，也可以有非抽象方法。</p>
+<h4 id="5-2-Object-所有类的超类"><a href="#5-2-Object-所有类的超类" class="headerlink" title="5.2 Object:所有类的超类"></a>5.2 Object:所有类的超类</h4><h5 id="5-2-1-equals方法"><a href="#5-2-1-equals方法" class="headerlink" title="5.2.1 equals方法"></a>5.2.1 equals方法</h5><p>1.equals():</p>
+<p>超类Object中有这个equals()方法，该方法主要用于比较两个对象是否相等。使用Object的equals()方法是比较两个对象的内存地址是否相等，即若object1.equals(object2)为true，则表示equals1和equals2实际上是引用同一个对象。但是我们必须要清楚我们很大部分时间都是进行两个对象的比较，这个时候Object的equals()方法就不可以了，实际上JDK中，String、Math等封装类都对equals()方法进行了重写。如String的equals()方法是进行内容比较，而不是引用比较。</p>
+<p>2.在equals()中使用getClass进行类型判断:</p>
+<p>我们在覆写equals()方法时，一般都是推荐使用getClass来进行类型判断，不是使用instanceof。</p>
+<p>参见<a href="http://www.cnblogs.com/chenssy/p/3416195.html" target="_blank" rel="external">java提高篇(十三)—–equals()方法总结</a></p>
+<p>3.equals()与==</p>
+<ol>
+<li>使用==比较原生类型如：boolean、int、char等等，使用equals()比较对象。</li>
+<li>==返回true如果两个引用指向相同的对象，equals()的返回结果依赖于具体业务实现。</li>
+<li>字符串的对比使用equals()。</li>
+</ol>
+<p>参见<a href="http://www.importnew.com/6804.html" target="_blank" rel="external">equals与”==”的区别</a></p>
+<p>5.2.2 相等测试与继承</p>
+<p>如何判断两个object相等，参见文中这章节。</p>
+<h4 id="5-5参数数量可变的方法"><a href="#5-5参数数量可变的方法" class="headerlink" title="5.5参数数量可变的方法"></a>5.5参数数量可变的方法</h4><p>…表示可以接收任意数量的参数，如printf(String fmt,Object… args)，这里的Object…相当于Object[]。</p>
+<h4 id="5-7-反射"><a href="#5-7-反射" class="headerlink" title="5.7 反射"></a>5.7 反射</h4><h3 id="第六章-接口和内部类"><a href="#第六章-接口和内部类" class="headerlink" title="第六章 接口和内部类"></a>第六章 接口和内部类</h3><h4 id="6-1-接口"><a href="#6-1-接口" class="headerlink" title="6.1 接口"></a>6.1 接口</h4><p>接口中的方法默认都是public的，可以包含常量，被自动设为public static final。</p>
+<p>Arrays类中的sort方法可以对对象数组进行排序，但对象所属的类必须实现了Comparable接口。</p>
+<h4 id="6-2-对象克隆"><a href="#6-2-对象克隆" class="headerlink" title="6.2 对象克隆"></a>6.2 对象克隆</h4><p>当拷贝一个变量时，原始变量和拷贝变量引用同一个对象。</p>
+<p>默认的拷贝是浅拷贝，如果是基本类型则拷贝没有问题，但它并没有克隆包含在对象中的内部对象。如果在对象中包含了子对象的引用，拷贝的结果会使得两个域引用同一个子对象。要实现深拷贝，则要实现cloneable接口。</p>
+<h4 id="6-3-接口和回调"><a href="#6-3-接口和回调" class="headerlink" title="6.3 接口和回调"></a>6.3 接口和回调</h4><h4 id="6-4-内部类"><a href="#6-4-内部类" class="headerlink" title="6.4 内部类"></a>6.4 内部类</h4><p>为什么使用内部类？</p>
+<p>1.内部类可以访问该类所在作用域的数据，包括私有的数据；</p>
+<p>2.可以对同一个包中的其他类隐藏起来；</p>
+<p>3.匿名内部类实现回调。</p>
+<h5 id="6-4-5-由外部方法访问final变量"><a href="#6-4-5-由外部方法访问final变量" class="headerlink" title="6.4.5 由外部方法访问final变量"></a>6.4.5 由外部方法访问final变量</h5><p>当某个变量为final，但又不得不进行修改时，可以使用一个数组。参见本节例子。</p>
+<h4 id="6-5-代理"><a href="#6-5-代理" class="headerlink" title="6.5 代理"></a>6.5 代理</h4><h3 id="第12章-泛型程序设计。。。"><a href="#第12章-泛型程序设计。。。" class="headerlink" title="第12章 泛型程序设计。。。"></a>第12章 泛型程序设计。。。</h3><h3 id="第13章-集合"><a href="#第13章-集合" class="headerlink" title="第13章 集合"></a>第13章 集合</h3><h4 id="13-2-具体的集合"><a href="#13-2-具体的集合" class="headerlink" title="13.2 具体的集合"></a>13.2 具体的集合</h4><p>LinkedList使用ListIterator来遍历。虽然可以通过get(index)来随机获取元素，但是效率非常低，每次都要从头开始遍历到指定位置。所有如果需要随机访问，建议数组或arrayList。</p>
+<h3 id="第14章-多线程"><a href="#第14章-多线程" class="headerlink" title="第14章 多线程"></a>第14章 多线程</h3><h4 id="14-3-线程状态"><a href="#14-3-线程状态" class="headerlink" title="14.3 线程状态"></a>14.3 线程状态</h4><h5 id="14-3-4-被终止的线程"><a href="#14-3-4-被终止的线程" class="headerlink" title="14.3.4 被终止的线程"></a>14.3.4 被终止的线程</h5><p>join():等待指定线程的中止。参见<a href="http://blog.csdn.net/bzwm/article/details/3881392" target="_blank" rel="external">浅析 Java Thread.join()</a></p>
+<h4 id="14-4-线程属性"><a href="#14-4-线程属性" class="headerlink" title="14.4 线程属性"></a>14.4 线程属性</h4><h5 id="14-4-2-守护线程"><a href="#14-4-2-守护线程" class="headerlink" title="14.4.2 守护线程"></a>14.4.2 守护线程</h5><p>参见<a href="http://blog.csdn.net/shimiso/article/details/8964414" target="_blank" rel="external">Java中守护线程的总结</a></p>
+<p>在Java中有两类线程：User Thread(用户线程)、Daemon Thread(守护线程) 。用个比较通俗的比如，任何一个守护线程都是整个JVM中所有非守护线程的保姆：只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部工作；只有当最后一个非守护线程结束时，守护线程随着JVM一同结束工作。</p>
+<p>Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它就是一个很称职的守护者。</p>
+<p>User和Daemon两者几乎没有区别，唯一的不同之处就在于虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了。 因为没有了被守护者，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。</p>
+<p>定义：守护线程–也称“服务线程”，在没有用户线程可服务时会自动离开。<br>优先级：守护线程的优先级比较低，用于为系统中的其它对象和线程提供服务。<br>设置：通过setDaemon(true)来设置线程为“守护线程”；将一个用户线程设置为<br>守护线程的方式是在 线程对象创建之前用线程对象的setDaemon方法。<br>example: 垃圾回收线程就是一个经典的守护线程，当我们的程序中不再有任何运行的Thread,程序就不会再产生垃圾，垃圾回收器也就无事可做，所以当垃圾回收线程是JVM上仅剩的线程时，垃圾回收线程会自动离开。它始终在低级别的状态中运行，用于实时监控和管理系统中的可回收资源。<br>生命周期：守护进程是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。也就是说守护线程不依赖于终端，但是依赖于系统，与系统“同生共死”。那Java的守护线程是什么样子的呢。当JVM中所有的线程都是守护线程的时候，JVM就可以退出了；如果还有一个或以上的非守护线程则JVM不会退出。</p>
+<p>14.4.3 未捕获异常处理器</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/18/面试准备/" rel="next" title="面试准备">
+                <i class="fa fa-chevron-left"></i> 面试准备
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/xpath/" rel="prev" title="xpath">
+                xpath <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/java-核心技术I卷/"
+           data-title="java 核心技术I卷" data-url="http://yoursite.com/2016/09/19/java-核心技术I卷/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA核心技术I卷"><span class="nav-number">1.</span> <span class="nav-text">JAVA核心技术I卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章"><span class="nav-number">1.0.1.</span> <span class="nav-text">第五章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-类、超类和子类"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">5.1 类、超类和子类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-4-阻止继承：final类和方法"><span class="nav-number">1.0.1.1.1.</span> <span class="nav-text">5.1.4 阻止继承：final类和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-5-强制类型转换"><span class="nav-number">1.0.1.1.2.</span> <span class="nav-text">5.1.5 强制类型转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-6抽象类"><span class="nav-number">1.0.1.1.3.</span> <span class="nav-text">5.1.6抽象类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-Object-所有类的超类"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">5.2 Object:所有类的超类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-1-equals方法"><span class="nav-number">1.0.1.2.1.</span> <span class="nav-text">5.2.1 equals方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5参数数量可变的方法"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">5.5参数数量可变的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-7-反射"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">5.7 反射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章-接口和内部类"><span class="nav-number">1.0.2.</span> <span class="nav-text">第六章 接口和内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-接口"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">6.1 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-对象克隆"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">6.2 对象克隆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-接口和回调"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">6.3 接口和回调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-内部类"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">6.4 内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-5-由外部方法访问final变量"><span class="nav-number">1.0.2.4.1.</span> <span class="nav-text">6.4.5 由外部方法访问final变量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-代理"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">6.5 代理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第12章-泛型程序设计。。。"><span class="nav-number">1.0.3.</span> <span class="nav-text">第12章 泛型程序设计。。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第13章-集合"><span class="nav-number">1.0.4.</span> <span class="nav-text">第13章 集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-具体的集合"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">13.2 具体的集合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第14章-多线程"><span class="nav-number">1.0.5.</span> <span class="nav-text">第14章 多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3-线程状态"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">14.3 线程状态</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#14-3-4-被终止的线程"><span class="nav-number">1.0.5.1.1.</span> <span class="nav-text">14.3.4 被终止的线程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-4-线程属性"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">14.4 线程属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#14-4-2-守护线程"><span class="nav-number">1.0.5.2.1.</span> <span class="nav-text">14.4.2 守护线程</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

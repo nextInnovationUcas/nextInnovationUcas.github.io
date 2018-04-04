@@ -85,20 +85,23 @@
 
 
 <meta name="description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
-学习路线参考 redis学习路线，huangz大牛写的～">
+学习路线参考 redis学习路线，huangz大牛写的～
+redis命令参考">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis">
 <meta property="og:url" content="http://yoursite.com/2016/08/22/redis/index.html">
 <meta property="og:site_name" content="Qi's Blog">
 <meta property="og:description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
-学习路线参考 redis学习路线，huangz大牛写的～">
+学习路线参考 redis学习路线，huangz大牛写的～
+redis命令参考">
 <meta property="og:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg">
 <meta property="og:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-data-strcture.png">
-<meta property="og:updated_time" content="2016-08-25T19:14:04.000Z">
+<meta property="og:updated_time" content="2016-09-02T11:29:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis">
 <meta name="twitter:description" content="roll-in-redis前言推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》
-学习路线参考 redis学习路线，huangz大牛写的～">
+学习路线参考 redis学习路线，huangz大牛写的～
+redis命令参考">
 <meta name="twitter:image" content="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg">
 
 
@@ -330,6 +333,7 @@
       
         <h1 id="roll-in-redis"><a href="#roll-in-redis" class="headerlink" title="roll-in-redis"></a>roll-in-redis</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》</p>
 <p>学习路线参考 <a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html" target="_blank" rel="external">redis学习路线</a>，huangz大牛写的～</p>
+<p><a href="http://redisdoc.com/index.html" target="_blank" rel="external">redis命令参考</a></p>
 <a id="more"></a>
 <h2 id="redis-in-action"><a href="#redis-in-action" class="headerlink" title="redis in action"></a>redis in action</h2><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><h4 id="1-1-redis简介"><a href="#1-1-redis简介" class="headerlink" title="1.1 redis简介"></a>1.1 redis简介</h4><h5 id="1-1-1-redis-与其它数据库和缓存服务器的比较"><a href="#1-1-1-redis-与其它数据库和缓存服务器的比较" class="headerlink" title="1.1.1 redis 与其它数据库和缓存服务器的比较"></a>1.1.1 redis 与其它数据库和缓存服务器的比较</h5><p><img src="http://oc90zyyoj.bkt.clouddn.com/2016-08-22-redis-compare.jpg" alt=""></p>
 <h5 id="1-1-2-附加特性"><a href="#1-1-2-附加特性" class="headerlink" title="1.1.2 附加特性"></a>1.1.2 附加特性</h5><p>在使用类似Redis这样的内存数据库时，一个首先要考虑的问题就是“当服务器被关闭时，服务器存储的数据将何去何从呢？”Redis拥有两种不同形式的持久化方法，它们都可以用小而紧凑的格式将存储在内存中的数据写入到磁盘：第一种持久化方法为时间点转储（point-in-time dump），转储操作既可以在“指定时间段内有指定数量的写操作执行”这一条件被满足时执行，又可以通过调用两条转储到磁盘（dump-to-disk）命令中的任何一条来执行；第二种持久化方法将所有修改了数据库的命令都写入到一个只追加（append-only）文件里面，用户可以根据数据的重要程度，将只追加写入设置为从不同步（sync）、每秒钟同步一次或者每写入一个命令就同步一次。</p>
@@ -389,8 +393,7 @@
 </tbody>
 </table>
 <ol>
-<li>ZINTERSTORE和ZUNIONSTORE默认使用的聚合函数为sum，</li>
-<li>用户可以在执行并集运算和交集运算的时候传入不同的聚合函数，    共有 sum、min、max 三个聚合函数可选。</li>
+<li>ZINTERSTORE和ZUNIONSTORE默认使用的聚合函数为sum，用户可以在执行并集运算和交集运算的时候传入不同的聚合函数，共有 sum、min、max 三个聚合函数可选。</li>
 <li>用户还可以把集合作为输入传给ZINTERSTORE和ZUNIONSTORE，命令会将集合看作是成员分值全为1的有序集合来处理。</li>
 </ol>
 <h4 id="3-6-发布与订阅"><a href="#3-6-发布与订阅" class="headerlink" title="3.6 发布与订阅"></a>3.6 发布与订阅</h4><p>redis的发布与订阅有以下两个问题：</p>
@@ -558,7 +561,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -566,7 +569,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -575,7 +578,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

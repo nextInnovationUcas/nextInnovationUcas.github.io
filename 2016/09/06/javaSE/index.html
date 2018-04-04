@@ -1,0 +1,685 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javaSE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="javaSE泛型Java 提高篇(六) — 泛型
+回调经典的使用回调的方式：class A实现接口InA ——背景1
+class A中包含一个class B的引用b ——背景2
+class B有一个参数为InA的方法test(InA a) ——背景3
+A的对象a调用B的方法传入自己，test(a) ——这一步相当于you call me
+然后b就可以在test方法中调用InA的方法 ——这一步相当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaSE">
+<meta property="og:url" content="http://yoursite.com/2016/09/06/javaSE/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="javaSE泛型Java 提高篇(六) — 泛型
+回调经典的使用回调的方式：class A实现接口InA ——背景1
+class A中包含一个class B的引用b ——背景2
+class B有一个参数为InA的方法test(InA a) ——背景3
+A的对象a调用B的方法传入自己，test(a) ——这一步相当于you call me
+然后b就可以在test方法中调用InA的方法 ——这一步相当">
+<meta property="og:updated_time" content="2016-10-15T08:04:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaSE">
+<meta name="twitter:description" content="javaSE泛型Java 提高篇(六) — 泛型
+回调经典的使用回调的方式：class A实现接口InA ——背景1
+class A中包含一个class B的引用b ——背景2
+class B有一个参数为InA的方法test(InA a) ——背景3
+A的对象a调用B的方法传入自己，test(a) ——这一步相当于you call me
+然后b就可以在test方法中调用InA的方法 ——这一步相当">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/06/javaSE/"/>
+
+  <title> javaSE | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javaSE
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-06T20:56:00+08:00" content="2016-09-06">
+              2016-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaSE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/06/javaSE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/06/javaSE/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="javaSE"><a href="#javaSE" class="headerlink" title="javaSE"></a>javaSE</h1><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><a href="http://liuzxc.github.io/blog/java-advance-06/" target="_blank" rel="external">Java 提高篇(六) — 泛型</a></p>
+<h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><p><strong>经典的使用回调的方式</strong>：<br>class A实现接口InA ——<strong>背景1</strong></p>
+<p>class A中包含一个class B的引用b ——<strong>背景2</strong></p>
+<p>class B有一个参数为InA的方法test(InA a) ——<strong>背景3</strong></p>
+<p>A的对象a调用B的方法传入自己，test(a) ——这一步相当于<strong>you call me</strong></p>
+<p>然后b就可以在test方法中调用InA的方法 ——这一步相当于<strong>i call you back</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//链接：https://www.zhihu.com/question/19801131/answer/26586203</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DoHomeWork</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doHomeWork</span><span class="params">(String question, String answer)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">DoHomeWork</span></span>&#123;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doHomeWork</span><span class="params">(String question, String answer)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"作业本"</span>);</div><div class="line">    <span class="keyword">if</span>(answer != <span class="keyword">null</span>) &#123;</div><div class="line">        System.out.println(<span class="string">"作业："</span>+question+<span class="string">" 答案："</span>+ answer);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        System.out.println(<span class="string">"作业："</span>+question+<span class="string">" 答案："</span>+ <span class="string">"(空白)"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">(<span class="keyword">final</span> String homework, <span class="keyword">final</span> RoomMate roomMate)</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            roomMate.getAnswer(homework, Student.<span class="keyword">this</span>);<span class="comment">//a 调用 b，并且把自己（接口）传过去。</span></div><div class="line">        &#125;</div><div class="line">    &#125;).start();</div><div class="line"></div><div class="line">    goHome();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goHome</span><span class="params">()</span></span>&#123;</div><div class="line">    System.out.println(<span class="string">"我回家了……好室友，帮我写下作业。"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Student student = <span class="keyword">new</span> Student();</div><div class="line">    String homework = <span class="string">"当x趋向于0，sin(x)/x =?"</span>;</div><div class="line">    student.ask(homework, <span class="keyword">new</span> RoomMate());</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoomMate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAnswer</span><span class="params">(String homework, DoHomeWork someone)</span> </span>&#123;</div><div class="line">      <span class="comment">//以接口的形式接受a类</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">"1+1=?"</span>.equals(homework)) &#123;</div><div class="line">            someone.doHomeWork(homework, <span class="string">"2"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"当x趋向于0，sin(x)/x =?"</span>.equals(homework)) &#123;</div><div class="line"></div><div class="line">            System.out.print(<span class="string">"思考："</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">3</span>; i++) &#123;</div><div class="line">                System.out.print(i+<span class="string">"秒 "</span>);</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">            someone.doHomeWork(homework, <span class="string">"1"</span>); <span class="comment">//b再调用a</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            someone.doHomeWork(homework, <span class="string">"(空白)"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>模拟客户端和服务器：<a href="http://www.bysocket.com/?p=636" target="_blank" rel="external">深入浅出： Java回调机制(异步)</a></p>
+<p>小王向小李问问题：<a href="http://blog.csdn.net/xiaanming/article/details/8703708" target="_blank" rel="external">一个经典例子让你彻彻底底理解java回调机制</a></p>
+<h4 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h4><p>深拷贝（deep clone）与浅拷贝（shallow clone）：<br>　　浅拷贝（浅复制、浅克隆）：被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用仍然指向原来的对象。换言之，浅拷贝仅仅复制所考虑的对象，而不复制它所引用的对象。</p>
+<p>​    深拷贝（深复制、深克隆）：被复制对象的所有变量都含有与原来的对象相同的值，除去那些引用其他对象的变量。那些引用其他对象的变量将指向被复制过的新对象，而不再是原有的那些被引用的对象。换言之，深拷贝把要复制的对象所引用的对象都复制了一遍。</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final关键字可以被家到属性或者变量的声明中，final属性或者变量一旦赋值之后就不允许再发生变化。对于基本类型(primitive type)，比如int、double、long、byte等，一旦被生命为final，我们就可以将其当作常量来看待，但是对于引用类型或者数组(数组在java中也是对象)来说，则不是。虽然一个引用类型被赋值之后无法发生变化，但是我们仍然可以修改被引用的那个对象或者数组中的元素。</p>
+<h3 id="NUll"><a href="#NUll" class="headerlink" title="NUll"></a>NUll</h3><p>空指针：一个对象还没有没有正常初始化，就先调用它的方法。比如 Object obj=null;    obj.toString();  这就会抛出空指针异常 。牢记：使用对象时要先判断是否为空在掉方法。</p>
+<p>预防方案：</p>
+<p>1.从已知的String对象中调用equals()和equalsIgnoreCase()方法，而非未知对象。</p>
+<p>判断字符串时使能确定不为空的对象去调用equals,如：””.equals(str)；</p>
+<p>2.当valueOf()和toString()返回相同的结果时，宁愿使用前者。</p>
+<p>因为调用null对象的<a href="http://javarevisited.blogspot.com/2012/09/override-tostring-method-java-tips-example-code.html" target="_blank" rel="external">toString()</a>会抛出空指针异常，如果我们能够使用<a href="http://javarevisited.blogspot.com/2013/04/difference-between-valueof-and-parseint-method-java.html" target="_blank" rel="external">valueOf()</a>获得相同的值，那宁愿使用<a href="http://javarevisited.blogspot.com/2013/04/difference-between-valueof-and-parseint-method-java.html" target="_blank" rel="external">valueOf()</a>，传递一个null给valueOf()将会返回“null”，尤其是在那些包装类，像Integer、Float、Double和BigDecimal。</p>
+<p>3.使用null安全的方法和库有很多开源库已经为您做了繁重的空指针检查工作。其中最常用的一个的是Apache commons 中的StringUtils。你可以使用StringUtils.isBlank()，isNumeric()，isWhiteSpace()以及其他的工具方法而不用担心空指针异常。</p>
+<p>4.避免从方法中返回空指针，而是返回空collection或者空数组。</p>
+<p>5.使用annotation@NotNull和@Nullable</p>
+<p>6.避免你的代码中不必要的自动包装和自动解包。</p>
+<p>以上参见<a href="http://www.importnew.com/7268.html" target="_blank" rel="external">避免Java应用中NullPointerException的技巧和最佳实践</a></p>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p><a href="http://www.58maisui.com/2016/09/04/288/" target="_blank" rel="external">30个java编程技巧（最佳实践）</a></p>
+<h3 id="ka总结博客"><a href="#ka总结博客" class="headerlink" title="ka总结博客"></a>ka总结博客</h3><p><a href="http://blog.csdn.net/shimiso/article/category/605498" target="_blank" rel="external">javaSE</a></p>
+<p><a href="http://blog.csdn.net/hechurui?viewmode=contents" target="_blank" rel="external">java并发包学习</a></p>
+<p><a href="https://wangkang007.gitbooks.io/java/content/" target="_blank" rel="external">java学习笔记</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaSE/" rel="tag">#javaSE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/05/javaweb-spring/" rel="next" title="javaweb-spring">
+                <i class="fa fa-chevron-left"></i> javaweb-spring
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/07/google-guava/" rel="prev" title="google-guava">
+                google-guava <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/06/javaSE/"
+           data-title="javaSE" data-url="http://yoursite.com/2016/09/06/javaSE/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javaSE"><span class="nav-number">1.</span> <span class="nav-text">javaSE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.0.1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调"><span class="nav-number">1.0.2.</span> <span class="nav-text">回调</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">拷贝</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final"><span class="nav-number">1.0.3.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NUll"><span class="nav-number">1.0.4.</span> <span class="nav-text">NUll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">1.0.5.</span> <span class="nav-text">技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ka总结博客"><span class="nav-number">1.0.6.</span> <span class="nav-text">ka总结博客</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
