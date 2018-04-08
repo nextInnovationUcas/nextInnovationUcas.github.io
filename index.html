@@ -258,6 +258,600 @@
             
               
                 
+                <a class="post-title-link" href="/2018/04/08/web-crawler/" itemprop="url">
+                  web crawler
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-08T15:12:04+08:00" content="2018-04-08">
+              2018-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/08/web-crawler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/08/web-crawler/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="web-crawler"><a href="#web-crawler" class="headerlink" title="web crawler"></a>web crawler</h1><p>1.增量抓取</p>
+<p><a href="http://blog.csdn.net/historyasamirror/article/details/6746217" target="_blank" rel="external">不简单的URL去重</a></p>
+<p><a href="http://blog.csdn.net/wsrspirit/article/details/52195960" target="_blank" rel="external">“知了”优化 - WebMagic 调优</a></p>
+<p><a href="http://www.jianshu.com/p/be013900326b" target="_blank" rel="external">爬虫：5.增量爬取和去重</a></p>
+<h3 id="垂直型爬虫"><a href="#垂直型爬虫" class="headerlink" title="垂直型爬虫"></a>垂直型爬虫</h3><p>垂直爬虫不同于通用爬虫，其目的在于解决如何快速高效定制，精确抽取网页内容，并保存为结构化数据。</p>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><h4 id="cookie的处理"><a href="#cookie的处理" class="headerlink" title="cookie的处理"></a>cookie的处理</h4><p><a href="http://cuiqingcai.com/968.html" target="_blank" rel="external">Python爬虫入门六之Cookie的使用</a></p>
+<p>1.opener</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"><span class="comment">#声明一个CookieJar对象实例来保存cookie</span></div><div class="line">cookie = cookielib.CookieJar()</div><div class="line"><span class="comment">#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器</span></div><div class="line">handler=urllib2.HTTPCookieProcessor(cookie)</div><div class="line"><span class="comment">#通过handler来构建opener</span></div><div class="line">opener = urllib2.build_opener(handler)</div><div class="line"><span class="comment">#此处的open方法同urllib2的urlopen方法，也可以传入request</span></div><div class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:</div><div class="line">    <span class="keyword">print</span> <span class="string">'Name = '</span>+item.name</div><div class="line">    <span class="keyword">print</span> <span class="string">'Value = '</span>+item.value</div></pre></td></tr></table></figure>
+<p>2.cookielib</p>
+<p>cookielib模块的主要作用是提供可存储cookie的对象，以便于与urllib2模块配合使用来访问Internet资源。Cookielib模块非常强大，我们可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送，比如可以实现模拟登录功能。该模块主要的对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。它们的关系：CookieJar —-派生—-&gt;FileCookieJar  —-派生—–&gt;MozillaCookieJar和LWPCookieJar</p>
+<p><a href="https://linsir.org/post/python_auto_handle_cookies" target="_blank" rel="external">Python 爬虫Cookie的处理</a></p>
+<p>1.使用python自带的模块cookielib</p>
+<p>2.requests通过session来保持cookies，自动存入文件和从文件中导入.</p>
+<p><a href="http://www.crifan.com/python_auto_handle_cookie_and_save_to_from_cookie_file/" target="_blank" rel="external">Python中Cookie的处理：自动处理Cookie，保存为Cookie文件，从文件载入Cookie</a></p>
+<p>Python中自动处理Cookie，将Cookie保存到文件，从文件中读取Cookie。</p>
+<h4 id="模拟浏览器实现登录"><a href="#模拟浏览器实现登录" class="headerlink" title="模拟浏览器实现登录"></a>模拟浏览器实现登录</h4><p><a href="http://www.itdadao.com/articles/c15a318168p0.html" target="_blank" rel="external">爬虫之登陆验证</a> </p>
+<p>​    关于模拟浏览器的介绍写得很详细。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p><a href="https://github.com/xchaoinfo/fuck-login" target="_blank" rel="external">模拟登录一些知名的网站，为了方便爬取需要登录的网站</a></p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p><a href="https://proxy.peuland.com的代理脚本：" target="_blank" rel="external">https://proxy.peuland.com的代理脚本：</a></p>
+<p><a href="https://github.com/mapleray/proxy_pool/blob/master/proxy.py" target="_blank" rel="external">https://github.com/mapleray/proxy_pool/blob/master/proxy.py</a></p>
+<h3 id="request库"><a href="#request库" class="headerlink" title="request库"></a>request库</h3><p><a href="http://www.tuicool.com/articles/qIJRzan" target="_blank" rel="external">Python Requests库：HTTP for Humans </a></p>
+<h3 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h3><p><a href="http://ju.outofmemory.cn/entry/218704" target="_blank" rel="external">Python 爬虫的工具列表 附Github代码下载链接</a></p>
+<h3 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h3><p><a href="http://wuchong.me/blog/2014/04/24/easy-web-scraping-with-python/" target="_blank" rel="external">使用 Python 轻松抓取网页</a></p>
+<p>知乎专栏里面有很多。如：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/20890596" target="_blank" rel="external">手把手教你写电商爬虫-第一课 找个软柿子捏捏</a></p>
+<h3 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h3><p><a href="http://ningning.today/2015/10/04/python/Python%E7%88%AC%E8%99%AB%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" target="_blank" rel="external">Python爬虫的一些总结</a></p>
+<p>常用库：</p>
+<ul>
+<li>抓取网页: 常用的有requests, urllib.</li>
+<li>解析: BeautifulSoup, lxml, re.</li>
+<li>框架: scrapy, pyspier.</li>
+<li>url去重: bloomfilter</li>
+<li>图片处理: Pillow</li>
+<li>OCR: Google 的 OCR 开源库 tesseract，对应的Python包是pytesser.</li>
+<li>代理: 代理Tor, PySocks</li>
+<li>消息队列: rabbitmq</li>
+</ul>
+<p>要点：</p>
+<p>异步爬取:</p>
+<p>​    可以使用grequests库，或者对于简单的爬虫,tornado文档有个demo，稍微改下自己用。</p>
+<p>模拟浏览器：</p>
+<p>​    给请求加上header信息</p>
+<p>提交表单：</p>
+<p>​    一般是查找html源代码找到form，然后看form提交的地址，就可以直接使用requests的post方法提交数据。</p>
+<p>模拟登录：</p>
+<p>​    requests有个Session模块，使用起来很方便。有些网站如果是需要登录的，我们可以直接把登录后自己的cookies复制下来，直接作为requests的cookies参数传进去。</p>
+<p>验证码：</p>
+<p>​    ocr</p>
+<p>动态加载：</p>
+<p>​    1）追踪发出的请求，直接模拟 2）selenuim + phantomJS</p>
+<p><a href="http://m.blog.csdn.net/article/details?id=48675613" target="_blank" rel="external">Python 爬虫进阶必须的几步</a></p>
+<ol>
+<li>requests 模块, beautifulsoup模块, css选择器语法, re 正则模块, http 头编写, cookies, json解析等一定要掌握至熟练及以上程度.</li>
+<li>爬取重 ajax 页面, 推荐谷歌优先搜索 phantomjs, 其次selenium. </li>
+<li>破解图片验证码, 推荐谷歌开源库 pytesser, 进一步深入可以学习&lt;高等数学-线性代数&gt;, 谷歌搜索 pandas, numpy, k近邻算法.</li>
+<li>过滤器, 推荐布隆过滤器 .</li>
+<li>分布式爬虫(消息队列). 推荐 rabbitmq.</li>
+<li>任务调度. 推荐谷歌搜索 schedule.</li>
+</ol>
+<p>进阶的第一门课一定得是学会自己抓包，分析请求和返回数据。这当中会有一些字段恶心到你，比如通过base64或者md5加密，在模拟登陆验证中通常还会遇到RSA算法。如果你说你懒得学，那么上大杀器Selenium，但是你要忍受它对系统资源的占用（往往要启动浏览器和多个标签页）和不那么快速的爬取速度。</p>
+<p>针对一些网站的爬取就像是在玩攻防，网站设置了种种反抓取的坑等着你掉进去。这时候你要学会维护好自己的User-Agent，维护好自己的Cookie池，维护好自己的代理IP池，添加恰当的Host和Referer，以让对方服务器觉得这一切看起来都跟真的一模一样，那么你的爬虫开发能力，已经入门了。</p>
+<p>到此为止，这些知识还和 Python 没有半毛关系，但你知道了要干什么之后，再去搜 Python 相关的工具库，你就会发现原来 Requests 可以轻松构造一个包含自定义 payload 和 headers 的 post 请求；你就会发现原来 Scrapy 中可以使用TCP包注入来伪造IP，还能玩SYN FLOOD拒绝服务攻击（误）……</p>
+<p><a href="http://www.thebigdata.cn/QiTa/30201.html" target="_blank" rel="external">Python爬虫：一些常用的爬虫技巧总结</a></p>
+<p>1.cookies处理</p>
+<p>cookies是某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据(通常经过加密)，python提供了 cookielib模块用于处理cookies，cookielib模块的主要作用是提供可存储cookie的对象，以便于与urllib2模块配合使用 来访问Internet资源。</p>
+<p>关键在于CookieJar()，它用于管理HTTP cookie值、存储HTTP请求生成的cookie、向传出的HTTP请求添加cookie的对象。整个cookie都存储在内存中，对 CookieJar实例进行垃圾回收后cookie也将丢失，所有过程都不需要单独去操作。</p>
+<p>综合教程</p>
+<p><a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external"><a href="http://cuiqingcai.com/1052.html" target="_blank" rel="external">Python爬虫学习系列教程</a></a></p>
+<p><a href="http://www.jianshu.com/p/61f7fecfbda8" target="_blank" rel="external">爬虫</a></p>
+<p><a href="http://www.freebuf.com/?s=python%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91" target="_blank" rel="external">python爬虫开发</a></p>
+<p><a href="https://github.com/lining0806/PythonSpiderNotes" target="_blank" rel="external">Python入门网络爬虫之精华版</a></p>
+<p><a href="http://www.cricode.com/4101.html" target="_blank" rel="external">爬虫入门讲解：基础理论篇</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/07/about-national-company/" itemprop="url">
+                  about-national-company
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-07T17:10:24+08:00" content="2018-04-07">
+              2018-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/07/about-national-company/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/07/about-national-company/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于国企"><a href="#关于国企" class="headerlink" title="关于国企"></a>关于国企</h1><h3 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h3><p><a href="http://www.sharewithu.com/thread-793144-1-1.html" target="_blank" rel="external">http://www.sharewithu.com/thread-793144-1-1.html</a></p>
+<p>原文如下:</p>
+<p>还记得去年此时的我也曾挣扎在求职路上，准确来说，是刚刚开始走下第一个足记，那就是暑期实习。一路走来，自己从论坛上收获了许多的帮助（当然也有板砖啦），目前已经定下了去建行总行经办岗位，因此希望记录下自己的求职之路，分享给学弟学妹们，祝福大家！</p>
+<p>先说下自己的情况，lz妹子，安卓党，爱奇艺、阿里实习经历，在校一直担任学生干部，没考软考/计算机二级，唯一考的证是银行从业资格证。国企银行笔试通过率100%，面试通过率90%+，所以感觉自己的经验还是有一定参考价值的。</p>
+<p>一开始我的求职目标并不明确，互联网的技术岗，金融IT岗，乃至运营商的客户经理岗都有涉及，所以本文主要分为国企银行情况介绍，国企银行笔经面经，互联网经验几大部分，大家可以直接去看自己感兴趣的部分。文章可能略长，lz也比较喜欢絮叨（主要还是lz要7月份入职现在比较闲，哼），请轻拍砖。</p>
+<p>国企银行</p>
+<p>因为lz比较在意户口，所以像是中证登、中债登、银行间这些户口不稳但薪资给力的关注得不是太多【更新：楼下有人指出中债登的户口其实比较稳，其他两个暂时没有更新】，下面列的都是我收集到的情况，如果有不符合实际的请不要批评lz，lz可以改！！！</p>
+<ul>
+<li>航字头<ul>
+<li>国航：首都机场旁边，户口还不错，但是薪资一般</li>
+<li>中航信：要搬到后沙峪还是哪儿来着，薪资一般</li>
+<li>中航信移动/航旅纵横：面试官说他们是国企中的互联网企业，是长跑型选手。。。累一点，薪资我记得能有15w左右，往年户口稳，但签约后要来年5月才能违约，意思就是不给违约</li>
+<li>航天系（户口很稳，但不太喜欢要女生，而且不同院所差别很大，需要仔细打听）</li>
+</ul>
+</li>
+<li>银行金融类<ul>
+<li>中行：中行的数据好于软开，往年户口都解决，软开第一年税前不到13w，签约会上可以先签两方，违约金1w</li>
+<li>农行：软开以前很给力号称神开，但现在户口不太稳，16年坑了一大波，17年靠谱一点儿，根据综合得分给排了前30，30-60， 60之后这三个区间，hr会告诉你属于哪个区间，由你自己判断要不要签，但签了不给毁约，农行的待遇还可以，转正后到手每月1w3</li>
+<li>建行：貌似是四大行里最给力的了，户口很稳，听说建行软开薪资有27w吧？【更新：这个是在论坛上看的，有小伙伴反应这个薪资有些虚高，大家最好是能问到在里面工作的师兄师姐】之前论坛上还有发帖比较建行软开和微软的呢。但招的人不多，而且今年流程走得很慢。今年建行总行重点招理工科的，所以北邮不少小伙伴去了建总。</li>
+<li>工行：宇宙行的软开技术水平比较好，但薪资貌似一般。工行北分往年户口很给力，但今年招大几百人，一直到现在还有通知面试体检的，不太清楚今年户口怎么样了。我忘了投工行软开了= =所以工行关注不多</li>
+<li>中信：曾经钱很多，但近几年一直在降薪，去年户口都解决了，但据说是因为招人特别少而且有不少北京的，具体不太清楚。中信需要面试过了之后先实习一周然后才发offer，所以lz就没去实习了。</li>
+<li>券商/基金公司：很土豪！如果行情好的话，秒杀互联网无压力，而且工作一般朝九晚五的，不会太累！具体的我就不说了，这边都是密薪，不好讨论太多。之前拒了一家能解决户口的基金（这是个特例，貌似大部分是解决不了户口的），非常内疚，那边的团队氛围超级超级好！</li>
+</ul>
+</li>
+<li>运营商<ul>
+<li>移动：北京移动，户口和薪资都挺一般的，移动研究院户口不稳，所以这两者的二面我就都没去了，后面也没太关注。移动总部的招聘是后期才开放的，需要自己留意，像我就忘了投= =移动政企户口不稳，如果没有去他家暑期实习的话，就不用想着户口这事儿了，实习生都不够分的。</li>
+<li>电信：北京电信土豪，电信北研院土豪，电信总部也很土豪，总之我觉得电信算是运营商里不错的选择。</li>
+<li>联通：联通研究院的户口按排名分，后面hr会联系你告诉你的排名情况，待遇貌似还可以的。【更新：据说联通网研院的户口很美好！薪资一般】</li>
+</ul>
+</li>
+</ul>
+<p>笔经面经信息渠道</p>
+<p>我的信息来源主要是：</p>
+<ul>
+<li>应届生网：估计是爬虫爬的各个网站上的信息，信息多且杂，但比较全面，经常有你意想不到的单位在招聘</li>
+<li>国企求职QQ群，我们17届的群有一千四百多人，信息很多很及时，一定一定一定要及时加你们这一届的群</li>
+<li>高校论坛：byr更有针对性一点，而且相对靠谱一些，在水木社区上也有找工作版，可以隔段时间看一下，那上面的社会人士会多一些，信息渠道广但未必准，需要自己甄别筛选</li>
+<li>海投网：用来看宣讲会的，不过我比较懒，很少跑到别的学校听宣讲。。。</li>
+<li>就业信息网：针对性的看北邮的宣讲，首页左侧的日历很好用，不过后期你就会发现其实宣讲并没有什么大用处= =当然像中科院这些还是现场投简历有优势的</li>
+<li>辅导员：作为一个班长，想认真的呼吁大家，多关注班长发的信息，不管是找工作的还是发论文的，及时跟进度呀！辅导员这边会发一些不公开招聘的信息，比如某些部委之类的</li>
+</ul>
+<p>笔经面经</p>
+<ul>
+<li><p>这部分以国企银行的笔经面经为主，也有通用的一些经验，互联网专属的经验在最后互联网那一节里。</p>
+</li>
+<li><p>证件照：请拍好看的证件照！请拍好看的证件照！请拍好看的证件照！天天向上微笑时刻天真蓝什么的，请找个专业的拍！lz是特意去建外soho的小象馆拍的，强力推荐，非常满意，就是贵点儿远点儿。</p>
+</li>
+<li><p>正装：要不要买正装/穿正装？必须的好么！不然hr会问你为什么不穿正装？至于怎么个价位就看你的承受能力了，人靠衣装佛靠金装，这个肯定能加分，但能加多少就不好说了。反正lz就是学五楼下四百块钱买的套杰士迈= =</p>
+</li>
+<li><p>刷题：强势推荐一个app叫银行帮，可以刷题可以刷题可以刷题！EPI英语金融经济计算机常识还有各个银行的信息题全部都有！当时东奔西跑赶面试坐地铁的时候没事儿就刷刷题，收获很大！而且国企银行的笔试真的很多套路， 比如“找出以下图形中和其它的不一样的” “按照规律选择空格中应填入的数字” 之类的，出题人也都是根据这些套路来的。这个app是课观教育做的，当时参加个微信活动还送了本银行真题的书，而且网站上也有往年的真题可以在线体验。强势安利，真心好用。</p>
+</li>
+<li><p>过几天就是我每年都会参加的跳！蚤！市！场！欢迎学弟学妹来收我们的银行招聘一本通、行测一本通等资料~这些书都很厚，全部看完没必要，但可以选择性地看一看，学学套路题的做法。</p>
+</li>
+<li><p>提升做题速度，银行的笔试题题量很大，公务员行测也差不多，所以要提升答题速度，学会放弃，不会的及时过，回头再填上。有些数字计算题就是初中难度，你列个方程一定能做出来，但太费时间了，有那个工夫还不如做几套三秒出答案的常识题呢！</p>
+</li>
+<li><p>国企银行的笔试对于技术的要求远远远远低于互联网，有很多不怎么需要动脑子的那种排序/求输出结果，还有些知识概念题，以Java/C++/计算机网络/数据库为主，其中Java多于C++。但中信比较怪异，考了一堆jQuery之类的前端知识，lz完全不会各种瞎蒙居然也过了。</p>
+</li>
+<li><p>面试：一般以非结构化面试和无领导小组讨论为主。这些就更是套路了。</p>
+<ul>
+<li>对于非结构化面试，务必提前准备，成竹于胸，然后你就可以非常陈恳地和hr讨论：你最大的优点/缺点？你最成功/失败的一次经历？你经历过的最大的挑战？你最自豪的一件事情？你在大学最大的收获？……..</li>
+<li>对于无领导小组，如果你之前很少面过这种类型，最好先找一找面经，领悟一下里面的套路。要记住，你的目的不是驳倒其他人，不是抢风头，不是拆别人台，而是和其他人一些团队协作讨论出一个方案！<ul>
+<li>无领导最怕遇到猪队友，疯狂拆台，这个不行那个不行但自己又拿不出合理的方案，浪费时间导致团灭。如果你感觉情形有些失控可以及时发言把主题扭回来，但千万不要攻击他人。</li>
+<li>夹带一下私货：我个人最喜欢的一场是和某个人大的姐姐一起面的，六个人讨论问题解决方案，我和她各提了一个方案，其余两个人站我，两个人站她，正好持平，我们各自领着自己的队伍开展了有理有据让人信服的友好会谈= = 最后我方被她说服并让她总结陈词，她刚总结完话音一落就时间到。简直完美！这种无领导简直就是享受好么！最后我和人大姐姐都进了二面。再次强调，无领导小组需要的是最终呈现一个方案，只要你有贡献，不一定要去抢当leader！强行当leader又hold不住场的人必挂。</li>
+<li>找到自己的角色，如果你沉稳、踏实但不那么擅长言辞，可以考虑记录员，记录一些重要的讨论点，并及时归纳整理，引导思路。如果你思维活跃，可以多发散思考提出一些有创造性的看法。如果你亲和力强，可以考虑当和事佬，当两方辩论激烈互不相让的时候缓和气氛，推动讨论进行。如果你领导力超强能把控讨论进度能带动大家一起思考，那你自然而然就成leader了。当然还有非常万金油的计时官，亮出你的小金表，“还有最后五分钟，我们必须抓紧时间讨论出最后的方案”之类的控场就归你啦。</li>
+</ul>
+</li>
+<li>知道你的面试官要什么。有些国企的待遇很低但能解决户口，他们最怕的就是你拿了户口就跑，因此会比较看重你的稳定性，会问你要不要买房呀？如果你说要买房，他会说我们这里工资很低，你买不起怎么办= =然后你就会灰常尴尬了！怎么办！可以假装自己有个已经工作已经有房的爹妈男朋友女朋友（手动微笑，这个我不确定因为我没有被问过，如果有被问到的可以分享下）</li>
+<li>或者会被问到，有没有男朋友女朋友呀，对方在哪里工作呀？并不是hr看上你了，而是如果是异地恋的话，女生很容易过段时间就辞职去找男生（再次手动微笑，问我为什么选择我们公司，我都直接说，我男朋友在互联网，他赚钱但是风险高，所以我负责拿户口，我对薪资要求不那么高但希望有一个稳定的有户口的工作，而且贵公司在该行业位居龙头前景广阔…balabala一通夸）</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+<p>互联网</p>
+<p>lz在研究生期间主要做的安卓开发的项目，因此在互联网行业的求职目标自然就是安卓开发工程师，这部分的经验也是基于这个岗位而言的，如果你是Java/C++，或者是当前大火的机器学习/大数据，可以选择性无视。</p>
+<p>客户端开发这个职位前几年比较火爆，据某师兄的话说，看了几个月，面试问了十个选择题，答对了一半，然后，过了。然而现在的形势已经大变样了，相对于那些对算法、数学、计算机基础知识有较高要求的岗位而言，客户端的门槛还是要低一些的，竞争也比较激烈。</p>
+<p>这部分的tips主要是：</p>
+<p>准备简历</p>
+<p>我相信研究生同学都是导师手下调教出来的，总归还是做过几个项目的。你找的什么岗位？你的项目中体现了什么跟这个岗位有关的能力或者说潜能？如何寻找项目的闪光点是简历书写中的重点。学会用数字说话，学会合理适度包装自己，毕竟打麻将换句话说还是是多阶段、不完全信息的多人动态博弈呢。实在不行就让牛逼师兄师姐帮你们改改，他们都是血雨腥风里走过来的。推荐几个万能金句：</p>
+<ul>
+<li>基于XX，研究了XX关键技术，构建了XX的解决方案</li>
+<li>运用了XX技术，保证了XX，完成了XX，实现了XX</li>
+</ul>
+<p>寻找面经</p>
+<p>初级安卓开发的技术栈相对还是比较浅的，多面试几次你就会发现，很多面试问题都会撞车。那么我明天就要面bat了来不及面别的公司，怎么办？自然就是看看别人的面经啦。网上有很多你应聘公司的面经，多看看，多准备。港真，链表倒置和二分查找这种东西，工作中真的很少用得上，但是人家面试官就是爱问呀~尤其安卓开发里是有很多细碎的知识点的，查漏补缺，百战不殆。lz自身经历是，同一家公司连续一面二面三面时问了N多相同的问题，一面就把lz问蒙了的某题二面继续被问到，lz只能强装淡定道 不好意思这一题上一位面试官已经问过了，于是二面面试官直接pass了这道我不会的题= =</p>
+<p>刚刚说到了链表倒置，二分查找，啊哈，没错，这就是互联网求职必备的算法了。互联网求职中，算法不可谓不重要，笔试时除了小选择题问你做完一次快排的结果，问你中序后序求前序结果之类的，最后都是2-3道拉分的算法大题。而面试的时候，对面的程序猿哥哥通常都是等你自我介绍完了之后迷之微笑道，来咱们做几个题吧。。。</p>
+<p>经常有同学问，我现在研二了/下周就笔试了/马上要面试了，还来得及刷题么？来得及！我能说我当时把处女面贡献给阿里内推的时候，连快排都忘了么？推荐几个常用的刷题网站：</p>
+<ul>
+<li>leetcode：码农必备，相信你也听说过</li>
+<li>newcoder牛客网：原阿里大神出来做的，里面的资源也挺多的，而且不少公司在线笔试也是用的这套系统，可以先去熟悉环境</li>
+<li>acmcoder赛码网：同样也是在线笔试常用系统</li>
+<li>hihocoder：有每周的编程比赛，“hiho一下教你编程系列”，lz雄心万丈的注册了，然而从来没参加过= =准备面试项目中的亮点，一些关键性的技术一定要弄明白。lz面试某厂的时候，三面面试官是技术负责人，上来就问你这个项目用了什么架构，怎么个信息流向？lz一脸懵逼，并不知道他在谈论些什么，从始至终没和面试官在一个频道上，遂挂。面试也是有技巧的，这些放到最后的通用求职tips里面一块儿说好了。</li>
+</ul>
+<p>经典面经</p>
+<ul>
+<li><p>Java</p>
+<p>​</p>
+<ul>
+<li><p>java内存，堆栈特点与存放对象，值传递址传递（此处有坑），虚拟机GC算法原理</p>
+<p>​</p>
+<ul>
+<li>常见数据结构的特性，链表与数组，平衡树排序树等，不过像红黑树这种我反正没被问到，我也没看过= =</li>
+<li>Set，Map，List等的原理特性，尤其是ArrayList，HashMap，HashTable，ConcurrentHashMap等，是否线程安全？如何解决hash冲突？等等</li>
+<li>设计模式，尤其是单例模式的饿汉子饱汉子各种写法，被考过n多次</li>
+<li>类加载过程，虚拟类与接口，等等</li>
+<li>synchronized，volatile原理，同步，原子性，多线程相关问题，进程线程</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>Android</p>
+<p>​</p>
+<ul>
+<li>Activity启动模式，生命周期</li>
+<li>点击事件传递dispatch,intercept,onTouchEvent</li>
+<li>service，两种启动方式及特点，如何与activity通信</li>
+<li>Handler-Looper-MessageQueue，AsyncTask原理相关</li>
+<li>动画相关</li>
+<li>binder机制</li>
+<li>BroadCast动态、静态注册</li>
+<li>常用布局组件，布局加载</li>
+<li>还有很多，这些是比较常见的套路，大家可以去网上找一找计算机网络可参考转自牛客网的笔记，类似的还有数据库，这里就不多说了<a href="http://note.youdao.com/noteshare?id=4e0fb4a3e70b64705dc564a7de76d832" target="_blank" rel="external">http://note.youdao.com/noteshare?id=4e0fb4a3e70b64705dc564a7de76d832</a></li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+<p>算法</p>
+<ul>
+<li><p>记住一点，面试官很少自己去想题，他们也是从leetcode剑指offer或者什么总结博客上看的算法题！所以你们快去刷快去刷~</p>
+</li>
+<li><p>各种排序，包括其时空复杂度，特点，改进方法</p>
+</li>
+<li><p>除了捯饬排序，链表和树，常见的还有动态规划等几大经典算法，几乎是笔试大题必考题。</p>
+</li>
+<li><p>笔试不咋考，但面试经常问的“大数据”题，例如TOP K问题，给你一亿个数，怎么找出里面最大的K个数？</p>
+</li>
+<li><p>一些策略</p>
+<p>​</p>
+<ul>
+<li>注意考虑一些特殊条件，如：if 输入 == null是否有对应的处理？使用了int来存储值结果计算后溢出？在做字符串处理题时，连续两个空格导致split的时候出现空字符串等，这些都需要你提前考虑好</li>
+<li>面试的时候，如果不能一下写出来也不要慌，可以先跟面试官聊几句自己的思路，看看面试官会不会给你些启发</li>
+</ul>
+</li>
+</ul>
+<p>待遇</p>
+<p>这个就问你们的学长学姐吧~<br>同一个公司对应不同的岗位和档位也不一样，白菜价，sp，乃至ssp，看你们自身的实力啦。今年的白菜价大概是20w+吧，百度的是14.6*14，但我没见过比这个更低的了。【更新：这里指的是研发！楼下有同学透露百度的测试要比研发便宜一些】</p>
+<h3 id="第二篇"><a href="#第二篇" class="headerlink" title="第二篇"></a>第二篇</h3><p><a href="https://www.jianshu.com/p/e8f309c8ae9e" target="_blank" rel="external">https://www.jianshu.com/p/e8f309c8ae9e</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/07/about-work/" itemprop="url">
+                  about-work
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-07T12:31:35+08:00" content="2018-04-07">
+              2018-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/07/about-work/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/07/about-work/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="About-Work"><a href="#About-Work" class="headerlink" title="About Work"></a>About Work</h1><p>关于工作的选择，现把利弊总结如下，希望我家娟宝宝好好选择，毕竟这关系到以后的生活。</p>
+<h3 id="农行"><a href="#农行" class="headerlink" title="农行"></a>农行</h3><p>1.转正后税后有20，税前25-30，可能银行的工资交的税少，补助多，所以到手的钱还可以。可能实际有出入，我学姐说她感觉没这么多，不过可能是各种补助乱七八糟的加起来的，她估计也没实际算过，你实验室的那个同学也说没有，可能是刚进去不到一年，还处于实习期。横向比较来看，根据周围人的描述，农行在银行里面的待遇还是不错的吧；</p>
+<p>2.相对互联网比较轻松，朝九晚五，偶偶有封闭开发，加加班什么的，自己有较多时间来安排生活；</p>
+<p>3.听你大师兄说就算不在里面呆了跳股份制银行也行，那边给的多，比如招行，浦发民生等股份制的。</p>
+<p>4.农行的方向可以选择，比如大数据方向等，这个方向比较火，以后跳别的，甚至要跳互联网也好跳；</p>
+<p>5.如果进农行了，呆的不开心了就直接走人，有户口多半不走，没有户口的话也许也不怎么卡人吧。去的地方可以去前面提到的股份制银行，也可以去互联网。</p>
+<p>6.农行有一定几率拿户口，当然这个几率可能大，比如北大那个，说我们这种名校的都不给有点过分，当然也可能较小，比如孙博物，日天说春招很少给户口，都是优先给完秋招的。所以我们考虑去不去农行，完全排除户口的因素。给了户口，那肯定就留北京了，好好干。现在就当作没有户口，看还去不去。如果去了，你之前好像也说过，其他城市也有分行啥的，到时候如果离开北京的话，去分行也好像比较容易过去。所以5中增加一条，还可以从总行跳去分行。</p>
+<p>7.国企有国企的办事风格，但是国企不等于混吃等死，农行这么看重技术说明还是能学到点东西，比如你搞大数据，肯定不如阿里之类的，但是也不至于说什么都不会，一点东西都学不到。</p>
+<h3 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h3><p>主要目前就是滴滴了。</p>
+<p>1.互联网氛围，不是国企的那种，可能充满朝气，也许会有干劲。福利是9点下班打车，下午有酸奶水果什么的，加班少不了，但也没那么辛苦，7-8-9点下班算正常，偶偶10点11点下班，据你自己说，你所在的不是业务部门，也许不怎么加班。</p>
+<p>2.薪水算16薪的话，税前接近30。每月月薪税前19000，到手12966，交的养老保险和个税等比较多。</p>
+<p>3.做的方向是高性能计算，方向很前沿，但也比较偏，以后跳多半往大厂跳，小的大多没这方面需求。</p>
+<p>4.互联网是加班多，但这个多也是相对的，当然，钱多也是相对的，如果算到手，不见得优势很大了</p>
+<p>5.这涉及到职业规划，如果以后互联网呆累了，再跳国企，我不确定是不是很好进，要说进也没那么难，大不了降薪去呗，抱着过生活的态度去国企，但是你如果做web，或者大数据，云计算之类的，也许好跳些。高性能计算就不好说了，也许也招。</p>
+<p>6.去互联网，好好干，正常点，工作个3-4年，工资翻番问题应该不是很大，也就是说互联网的涨幅比较大，涨的多，而国企可能涨一点点。不过有点要注意，这个时候你差不多要生育了，产假，带孩子(当然带孩子可以让父母来带，这个没问题)什么的，可能会多多少少有些影响，到时候也许想着怎么过舒适的生活。当然也有很多女生生育完照样在互联网的一线开发，这因人而异。</p>
+<h3 id="城市"><a href="#城市" class="headerlink" title="城市"></a>城市</h3><p>1.拿了户口，肯定就留北京，钱可以慢慢挣</p>
+<p>2.没有户口，短期内还在北京，过个2-3年，得着手准备买房，生孩子等事情了，多半就去南方吧，到时候去杭州，深圳等城市。你如果现在去的农行，要么就是去那些城市的分行，或者跳去股份制银行，或者去互联网，去不了大的可以去小的。你如果现在去的是互联网，到时候还是可以考虑互联网，大的小的都行，或者跳去国企，股份制银行都行。股份制银行就是什么招行网络科技这种吧，这种的技术应该还是可以的，我感觉。</p>
+<p>3.总之，不管是选择哪，目前来看，短期内都是还在北京的，也就是说你选择去哪，其实跟定居的城市没有太大关系，就是看你自己想去哪吧。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/04/04/some-useful-blogs/" itemprop="url">
                   some useful blogs
                 </a>
@@ -286,8 +880,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
                   </a>
                 </span>
 
@@ -411,8 +1005,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/software/" itemprop="url" rel="index">
-                    <span itemprop="name">software</span>
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
                   </a>
                 </span>
 
@@ -746,7 +1340,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/10/ijcai-口碑/" itemprop="url">
+                <a class="post-title-link" href="/2017/04/10/ijcai-koubei/" itemprop="url">
                   ijcai-口碑
                 </a>
               
@@ -766,13 +1360,32 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine-learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/04/10/ijcai-口碑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/ijcai-口碑/" itemprop="commentsCount"></span>
+                <a href="/2017/04/10/ijcai-koubei/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/ijcai-koubei/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -870,6 +1483,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine-learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -961,7 +1593,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/23/机器学习基石/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/23/fundation-of-machine-learning/" itemprop="url">
                   机器学习基石
                 </a>
               
@@ -989,8 +1621,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/公开课/" itemprop="url" rel="index">
-                    <span itemprop="name">公开课</span>
+                  <a href="/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine-learning</span>
                   </a>
                 </span>
 
@@ -1005,8 +1637,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/03/23/机器学习基石/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/机器学习基石/" itemprop="commentsCount"></span>
+                <a href="/2017/03/23/fundation-of-machine-learning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/fundation-of-machine-learning/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1083,353 +1715,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/22/rnn/" itemprop="url">
-                  rnn
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T00:21:57+08:00" content="2017-03-22">
-              2017-03-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/22/rnn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/rnn/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/21/cnn-in-nlp/" itemprop="url">
-                  cnn in nlp
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-21T15:54:02+08:00" content="2017-03-21">
-              2017-03-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">deep-learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/21/cnn-in-nlp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/21/cnn-in-nlp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CNN-in-NLP"><a href="#CNN-in-NLP" class="headerlink" title="CNN in NLP"></a>CNN in NLP</h1><h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="http://www.csdn.net/article/2015-11-11/2826192" target="_blank" rel="external">卷积神经网络在自然语言处理的应用</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/21/cnn/" itemprop="url">
-                  cnn
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-21T15:29:41+08:00" content="2017-03-21">
-              2017-03-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">deep-learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/21/cnn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/21/cnn/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h1><p><img src="http://oc90zyyoj.bkt.clouddn.com/2017-3-21-pic1.jpg" alt=""></p>
-<p>卷积和子采样过程：</p>
-<p>卷积过程包括：用一个可训练的滤波器fx去卷积一个输入的图像（第一阶段是输入的图像，后面的阶段就是卷积特征map了），然后加一个偏置bx，得到卷积层Cx。子采样过程包括：每邻域四个像素求和变为一个像素，然后通过标量Wx+1加权，再增加偏置bx+1，然后通过一个sigmoid激活函数，产生一个大概缩小四倍的特征映射图Sx+1。</p>
-<p>卷积层的参数个数只跟卷积核有关，而连接数的计算是feature map里面的每一个神经元(每一个格子)跟卷积核里面的每一个神经元进行连接。</p>
-<h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="http://www.hackcv.com/index.php/archives/104/" target="_blank" rel="external">[翻译] 神经网络的直观解释</a></p>
-<h5 id="黄金三博客"><a href="#黄金三博客" class="headerlink" title="黄金三博客"></a>黄金三博客</h5><p><a href="https://link.zhihu.com/?target=http%3A//www.wildml.com/" target="_blank" rel="external">WildML – AI, Deep Learning, NLP</a><br><a href="https://link.zhihu.com/?target=http%3A//colah.github.io/" target="_blank" rel="external">http://colah.github.io/</a><br><a href="https://link.zhihu.com/?target=http%3A//karpathy.github.io/" target="_blank" rel="external">Andrej Karpathy blog</a></p>
-<h5 id="stanford-course"><a href="#stanford-course" class="headerlink" title="stanford course"></a>stanford course</h5><p><a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a></p>
-<p>翻译版 <a href="https://zhuanlan.zhihu.com/p/22038289?refer=intelligentunit" target="_blank" rel="external">CS231n课程笔记翻译：卷积神经网络笔记</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1475,7 +1760,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1483,7 +1768,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1492,7 +1777,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

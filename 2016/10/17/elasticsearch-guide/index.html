@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="elasticsearch," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="elasticsearch 权威指南3.数据3.5更新文档在Elasticsearch中是不可变的——我们不能修改他们。如果需要更新已存在的文档，我们可以使用《索引文档》章节提到的index API 重建索引(reindex) 或者替换掉它。
+123456PUT /website/blog/123&amp;#123;  &amp;quot;title&amp;quot;: &amp;quot;My first blog entr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch权威指南">
+<meta property="og:url" content="http://yoursite.com/2016/10/17/elasticsearch-guide/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="elasticsearch 权威指南3.数据3.5更新文档在Elasticsearch中是不可变的——我们不能修改他们。如果需要更新已存在的文档，我们可以使用《索引文档》章节提到的index API 重建索引(reindex) 或者替换掉它。
+123456PUT /website/blog/123&amp;#123;  &amp;quot;title&amp;quot;: &amp;quot;My first blog entr">
+<meta property="og:updated_time" content="2018-04-08T07:22:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch权威指南">
+<meta name="twitter:description" content="elasticsearch 权威指南3.数据3.5更新文档在Elasticsearch中是不可变的——我们不能修改他们。如果需要更新已存在的文档，我们可以使用《索引文档》章节提到的index API 重建索引(reindex) 或者替换掉它。
+123456PUT /website/blog/123&amp;#123;  &amp;quot;title&amp;quot;: &amp;quot;My first blog entr">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/17/elasticsearch-guide/"/>
+
+  <title> elasticsearch权威指南 | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                elasticsearch权威指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T09:48:38+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index">
+                    <span itemprop="name">big-data</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/elasticsearch-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/17/elasticsearch-guide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="elasticsearch-权威指南"><a href="#elasticsearch-权威指南" class="headerlink" title="elasticsearch 权威指南"></a>elasticsearch 权威指南</h1><h3 id="3-数据"><a href="#3-数据" class="headerlink" title="3.数据"></a>3.数据</h3><h5 id="3-5更新"><a href="#3-5更新" class="headerlink" title="3.5更新"></a>3.5更新</h5><p>文档在Elasticsearch中是不可变的——我们不能修改他们。如果需要更新已存在的文档，我们可以使用《索引文档》章节提到的<code>index</code> API <em>重建索引(reindex)</em> 或者替换掉它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PUT /website/blog/123</div><div class="line">&#123;</div><div class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</div><div class="line">  &quot;text&quot;:  &quot;I am starting to get the hang of this...&quot;,</div><div class="line">  &quot;date&quot;:  &quot;2014/01/02&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在响应中，我们可以看到Elasticsearch把<code>_version</code>增加了。</p>
+<p>1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;_index&quot; :   &quot;website&quot;,</div><div class="line">  &quot;_type&quot; :    &quot;blog&quot;,</div><div class="line">  &quot;_id&quot; :      &quot;123&quot;,</div><div class="line">  &quot;_version&quot; : 2,</div><div class="line">  &quot;created&quot;:   false &lt;1&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><1> <code>created</code>标识为<code>false</code>因为同索引、同类型下已经存在同ID的文档。</1></li>
+</ul>
+<p>在内部，Elasticsearch已经标记旧文档为删除并添加了一个完整的新文档。旧版本文档不会立即消失，但你也不能去访问它。Elasticsearch会在你继续索引更多数据时清理被删除的文档。</p>
+<p>在本章的后面，我们将会在《局部更新》中探讨<code>update</code> API。这个API <em>似乎</em> 允许你修改文档的局部，但事实上Elasticsearch遵循与之前所说完全相同的过程，这个过程如下：</p>
+<ol>
+<li>从旧文档中检索JSON</li>
+<li>修改它</li>
+<li>删除旧文档</li>
+<li>索引新文档</li>
+</ol>
+<h5 id="3-6创建"><a href="#3-6创建" class="headerlink" title="3.6创建"></a>3.6创建</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /website/blog/123/_create</div><div class="line">&#123; </div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-9局部更新"><a href="#3-9局部更新" class="headerlink" title="3.9局部更新"></a>3.9局部更新</h5><h5 id="文档局部更新"><a href="#文档局部更新" class="headerlink" title="文档局部更新"></a>文档局部更新</h5><p>在《更新文档》一章，我们说了一种通过检索，修改，然后重建整文档的索引方法来更新文档。这是对的。然而，使用<code>update</code> API，我们可以使用一个请求来实现局部更新，例如增加数量的操作。</p>
+<p>我们也说过文档是不可变的——它们不能被更改，只能被替换。<code>update</code> API<strong>必须</strong>遵循相同的规则。表面看来，我们似乎是局部更新了文档的位置，内部却是像我们之前说的一样简单的使用<code>update</code> API处理相同的<em>检索-修改-重建索引</em>流程，我们也减少了其他进程可能导致冲突的修改。</p>
+<p>最简单的<code>update</code>请求表单接受一个局部文档参数<code>doc</code>，它会合并到现有文档中——对象合并在一起，存在的标量字段被覆盖，新字段被添加。举个例子，我们可以使用以下请求为博客添加一个<code>tags</code>字段和一个<code>views</code>字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">POST /website/blog/1/_update</div><div class="line">&#123;</div><div class="line">   &quot;doc&quot; : &#123;</div><div class="line">      &quot;tags&quot; : [ &quot;testing&quot; ],</div><div class="line">      &quot;views&quot;: 0</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="使用脚本更新"><a href="#使用脚本更新" class="headerlink" title="使用脚本更新"></a>使用脚本更新</h5><p>脚本能够使用<code>update</code> API改变<code>_source</code>字段的内容，它在脚本内部以<code>ctx._source</code>表示。例如，我们可以使用脚本增加博客的<code>views</code>数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST /website/blog/1/_update</div><div class="line">&#123;</div><div class="line">   &quot;script&quot; : &quot;ctx._source.views+=1&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">POST /website/blog/1/_update</div><div class="line">&#123;</div><div class="line">   &quot;script&quot; : &quot;ctx._source.tags+=new_tag&quot;,</div><div class="line">   &quot;params&quot; : &#123;</div><div class="line">      &quot;new_tag&quot; : &quot;search&quot;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-10-MGET"><a href="#3-10-MGET" class="headerlink" title="3.10 MGET"></a>3.10 MGET</h5><p>检索多个文档</p>
+<p><code>mget</code> API参数是一个<code>docs</code>数组，数组的每个节点定义一个文档的<code>_index</code>、<code>_type</code>、<code>_id</code>元数据。如果你只想检索一个或几个确定的字段，也可以定义一个<code>_source</code>参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">POST /_mget</div><div class="line">&#123;</div><div class="line">   &quot;docs&quot; : [</div><div class="line">      &#123;</div><div class="line">         &quot;_index&quot; : &quot;website&quot;,</div><div class="line">         &quot;_type&quot; :  &quot;blog&quot;,</div><div class="line">         &quot;_id&quot; :    2</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">         &quot;_index&quot; : &quot;website&quot;,</div><div class="line">         &quot;_type&quot; :  &quot;pageviews&quot;,</div><div class="line">         &quot;_id&quot; :    1,</div><div class="line">         &quot;_source&quot;: &quot;views&quot;</div><div class="line">      &#125;</div><div class="line">   ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>响应体也包含一个<code>docs</code>数组，每个文档还包含一个响应，它们按照请求定义的顺序排列。每个这样的响应与单独使用<strong>get request</strong>响应体相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   &quot;docs&quot; : [</div><div class="line">      &#123;</div><div class="line">         &quot;_index&quot; :   &quot;website&quot;,</div><div class="line">         &quot;_id&quot; :      &quot;2&quot;,</div><div class="line">         &quot;_type&quot; :    &quot;blog&quot;,</div><div class="line">         &quot;found&quot; :    true,</div><div class="line">         &quot;_source&quot; : &#123;</div><div class="line">            &quot;text&quot; :  &quot;This is a piece of cake...&quot;,</div><div class="line">            &quot;title&quot; : &quot;My first external blog entry&quot;</div><div class="line">         &#125;,</div><div class="line">         &quot;_version&quot; : 10</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">         &quot;_index&quot; :   &quot;website&quot;,</div><div class="line">         &quot;_id&quot; :      &quot;1&quot;,</div><div class="line">         &quot;_type&quot; :    &quot;pageviews&quot;,</div><div class="line">         &quot;found&quot; :    true,</div><div class="line">         &quot;_version&quot; : 2,</div><div class="line">         &quot;_source&quot; : &#123;</div><div class="line">            &quot;views&quot; : 2</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-11-批量"><a href="#3-11-批量" class="headerlink" title="3.11 批量"></a>3.11 批量</h5><p><code>bulk</code>请求体如下，它有一点不同寻常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123; action: &#123; metadata &#125;&#125;\n</div><div class="line">&#123; request body        &#125;\n</div><div class="line">&#123; action: &#123; metadata &#125;&#125;\n</div><div class="line">&#123; request body        &#125;\n</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>这种格式类似于用<code>&quot;\n&quot;</code>符号连接起来的一行一行的JSON文档<strong>流(stream)</strong>。两个重要的点需要注意：</p>
+<ul>
+<li>每行必须以<code>&quot;\n&quot;</code>符号结尾，<strong>包括最后一行</strong>。这些都是作为每行有效的分离而做的标记。</li>
+<li>每一行的数据不能包含未被转义的换行符，它们会干扰分析——这意味着JSON不能被美化打印。</li>
+</ul>
+<p>删除操作不需要<strong>请求体(request body)</strong>。</p>
+<p>每个子请求都被独立的执行，所以一个子请求的错误并不影响其它请求。如果任何一个请求失败，顶层的<code>error</code>标记将被设置为<code>true</code>，然后错误的细节将在相应的请求中被报告。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">POST /_bulk</div><div class="line">&#123; &quot;delete&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125; &lt;1&gt;</div><div class="line">&#123; &quot;create&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125;</div><div class="line">&#123; &quot;title&quot;:    &quot;My first blog post&quot; &#125;</div><div class="line">&#123; &quot;index&quot;:  &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot; &#125;&#125;</div><div class="line">&#123; &quot;title&quot;:    &quot;My second blog post&quot; &#125;</div><div class="line">&#123; &quot;update&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot;, &quot;_retry_on_conflict&quot; : 3&#125; &#125;</div><div class="line">&#123; &quot;doc&quot; : &#123;&quot;title&quot; : &quot;My updated blog post&quot;&#125; &#125;</div></pre></td></tr></table></figure>
+<h3 id="5-搜索"><a href="#5-搜索" class="headerlink" title="5.搜索"></a>5.搜索</h3><p>5.1空搜索</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /_search</div></pre></td></tr></table></figure>
+<p>返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   &quot;hits&quot; : &#123;</div><div class="line">      &quot;total&quot; :       14,</div><div class="line">      &quot;hits&quot; : [</div><div class="line">        &#123;</div><div class="line">          &quot;_index&quot;:   &quot;us&quot;,</div><div class="line">          &quot;_type&quot;:    &quot;tweet&quot;,</div><div class="line">          &quot;_id&quot;:      &quot;7&quot;,</div><div class="line">          &quot;_score&quot;:   1,</div><div class="line">          &quot;_source&quot;: &#123;</div><div class="line">             &quot;date&quot;:    &quot;2014-09-17&quot;,</div><div class="line">             &quot;name&quot;:    &quot;John Smith&quot;,</div><div class="line">             &quot;tweet&quot;:   &quot;The Query DSL is really powerful and flexible&quot;,</div><div class="line">             &quot;user_id&quot;: 2</div><div class="line">          &#125;</div><div class="line">       &#125;,</div><div class="line">        ... 9 RESULTS REMOVED ...</div><div class="line">      ],</div><div class="line">      &quot;max_score&quot; :   1</div><div class="line">   &#125;,</div><div class="line">   &quot;took&quot; :           4,</div><div class="line">   &quot;_shards&quot; : &#123;</div><div class="line">      &quot;failed&quot; :      0,</div><div class="line">      &quot;successful&quot; :  10,</div><div class="line">      &quot;total&quot; :       10</div><div class="line">   &#125;,</div><div class="line">   &quot;timed_out&quot; :      false</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.2 多搜索和多索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/gb,us/user,tweet/_search</div></pre></td></tr></table></figure>
+<p>5.3分页</p>
+<p>Elasticsearch接受<code>from</code>和<code>size</code>参数：</p>
+<p><code>size</code>: 结果数，默认<code>10</code></p>
+<p><code>from</code>: 跳过开始的结果数，默认<code>0</code></p>
+<p>5.4 查询字符串</p>
+<p><code>search</code> API有两种表单：一种是“简易版”的<strong>查询字符串(query string)</strong>将所有参数通过查询字符串定义，另一种版本使用JSON完整的表示<strong>请求体(request body)</strong>，这种富搜索语言叫做结构化查询语句（DSL）</p>
+<p>在<code>tweet</code>字段中包含<code>elasticsearch</code>字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /_all/tweet/_search?q=tweet:elasticsearch</div></pre></td></tr></table></figure>
+<h3 id="6-映射和分析"><a href="#6-映射和分析" class="headerlink" title="6.映射和分析"></a>6.映射和分析</h3><h4 id="6-4-分析"><a href="#6-4-分析" class="headerlink" title="6.4 分析"></a>6.4 分析</h4><p>当我们<strong>索引(index)</strong>一个文档，全文字段会被分析为单独的词来创建倒排索引。不过，当我们在全文字段<strong>搜索(search)</strong>时，我们要让查询字符串经过<strong>同样的分析流程</strong>处理，以确保这些词在索引中存在。</p>
+<ul>
+<li>当你查询<strong>全文(full text)</strong>字段，查询将使用相同的分析器来分析查询字符串，以产生正确的词列表。</li>
+<li>当你查询一个<strong>确切值(exact value)</strong>字段，查询将不分析查询字符串，但是你可以自己指定。</li>
+</ul>
+<h4 id="6-5-映射"><a href="#6-5-映射" class="headerlink" title="6.5 映射"></a>6.5 映射</h4><p><code>string</code>类型的字段，默认的，考虑到包含全文本，它们的值在索引前要经过分析器分析，并且在全文搜索此字段前要把查询语句做分析处理。</p>
+<p>string类型默认进行analyze，即全文搜索。而其他字段则是精确匹配。</p>
+<p>index</p>
+<p>index参数控制字符串以何种方式被索引。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>analyzed</code></td>
+<td>首先分析这个字符串，然后索引。换言之，以全文形式索引此字段。</td>
+</tr>
+<tr>
+<td><code>not_analyzed</code></td>
+<td>索引这个字段，使之可以被搜索，但是索引内容和指定值一样。不分析此字段。</td>
+</tr>
+<tr>
+<td><code>no</code></td>
+<td>不索引这个字段。这个字段不能为搜索到。</td>
+</tr>
+</tbody>
+</table>
+<p><code>string</code>类型字段默认值是<code>analyzed</code>。如果我们想映射字段为确切值(即不分词)，我们需要设置它为<code>not_analyzed</code>。</p>
+<p>分析</p>
+<p>对于<code>analyzed</code>类型的字符串字段，使用<code>analyzer</code>参数来指定哪一种分析器将在搜索和索引的时候使用。默认的，Elasticsearch使用<code>standard</code>分析器。</p>
+<h4 id="6-6-复合类型"><a href="#6-6-复合类型" class="headerlink" title="6.6 复合类型"></a>6.6 复合类型</h4><h5 id="多层对象"><a href="#多层对象" class="headerlink" title="多层对象"></a>多层对象</h5><p>内部对象(inner objects)经常用于在另一个对象中嵌入一个实体或对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;tweet&quot;:            &quot;Elasticsearch is very flexible&quot;,</div><div class="line">    &quot;user&quot;: &#123;</div><div class="line">        &quot;id&quot;:           &quot;@johnsmith&quot;,</div><div class="line">        &quot;gender&quot;:       &quot;male&quot;,</div><div class="line">        &quot;age&quot;:          26,</div><div class="line">        &quot;name&quot;: &#123;</div><div class="line">            &quot;full&quot;:     &quot;John Smith&quot;,</div><div class="line">            &quot;first&quot;:    &quot;John&quot;,</div><div class="line">            &quot;last&quot;:     &quot;Smith&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="内部对象的映射"><a href="#内部对象的映射" class="headerlink" title="内部对象的映射"></a>内部对象的映射</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;gb&quot;: &#123;</div><div class="line">    &quot;tweet&quot;: &#123; &lt;1&gt;</div><div class="line">      &quot;properties&quot;: &#123;</div><div class="line">        &quot;tweet&quot;:            &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">        &quot;user&quot;: &#123; &lt;2&gt;</div><div class="line">          &quot;type&quot;:             &quot;object&quot;,</div><div class="line">          &quot;properties&quot;: &#123;</div><div class="line">            &quot;id&quot;:           &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">            &quot;gender&quot;:       &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">            &quot;age&quot;:          &#123; &quot;type&quot;: &quot;long&quot;   &#125;,</div><div class="line">            &quot;name&quot;:   &#123; &lt;3&gt;</div><div class="line">              &quot;type&quot;:         &quot;object&quot;,</div><div class="line">              &quot;properties&quot;: &#123;</div><div class="line">                &quot;full&quot;:     &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">                &quot;first&quot;:    &#123; &quot;type&quot;: &quot;string&quot; &#125;,</div><div class="line">                &quot;last&quot;:     &#123; &quot;type&quot;: &quot;string&quot; &#125;</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><1> 根对象.</1></p>
+<p><2><3> 内部对象.</3></2></p>
+<h5 id="内部对象怎么被索引"><a href="#内部对象怎么被索引" class="headerlink" title="内部对象怎么被索引"></a>内部对象怎么被索引</h5><p>Lucene 并不了解内部对象。 一个 Lucene 文件包含一个键-值对应的扁平表单。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;tweet&quot;:            [elasticsearch, flexible, very],</div><div class="line">    &quot;user.id&quot;:          [@johnsmith],</div><div class="line">    &quot;user.gender&quot;:      [male],</div><div class="line">    &quot;user.age&quot;:         [26],</div><div class="line">    &quot;user.name.full&quot;:   [john, smith],</div><div class="line">    &quot;user.name.first&quot;:  [john],</div><div class="line">    &quot;user.name.last&quot;:   [smith]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="7-结构化查询"><a href="#7-结构化查询" class="headerlink" title="7.结构化查询"></a>7.结构化查询</h3><p>7.2结构化查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;bool&quot;: &#123;</div><div class="line">        &quot;must&quot;: &#123; &quot;match&quot;:      &#123; &quot;email&quot;: &quot;business opportunity&quot; &#125;&#125;,</div><div class="line">        &quot;should&quot;: [</div><div class="line">             &#123; &quot;match&quot;:         &#123; &quot;starred&quot;: true &#125;&#125;,</div><div class="line">             &#123; &quot;bool&quot;: &#123;</div><div class="line">                   &quot;must&quot;:      &#123; &quot;folder&quot;: &quot;inbox&quot; &#125;&#125;,</div><div class="line">                   &quot;must_not&quot;:  &#123; &quot;spam&quot;: true &#125;&#125;</div><div class="line">             &#125;&#125;</div><div class="line">        ],</div><div class="line">        &quot;minimum_should_match&quot;: 1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>7.3查询与过滤</p>
+<p>原则上来说，使用查询语句做全文本搜索或其他需要进行相关性评分的时候，剩下的全部用过滤语句。</p>
+<p>一条过滤语句会询问每个文档的字段值是否包含着特定值：</p>
+<ul>
+<li><code>created</code> 的日期范围是否在 <code>2013</code> 到 <code>2014</code> ?</li>
+<li><code>status</code> 字段中是否包含单词 “published” ?</li>
+<li><code>lat_lon</code> 字段中的地理位置与目标点相距是否不超过10km ?</li>
+</ul>
+<p>一条查询语句与过滤语句相似，但问法不同：</p>
+<p>查询语句会询问每个文档的字段值与特定值的匹配程度如何？</p>
+<p>查询语句的典型用法是为了找到文档：</p>
+<ul>
+<li>查找与 <code>full text search</code> 这个词语最佳匹配的文档</li>
+<li>查找包含单词 <code>run</code> ，但是也包含<code>runs</code>, <code>running</code>, <code>jog</code> 或 <code>sprint</code>的文档</li>
+<li>同时包含着 <code>quick</code>, <code>brown</code> 和 <code>fox</code> — 单词间离得越近，该文档的相关性越高</li>
+<li>标识着 <code>lucene</code>, <code>search</code> 或 <code>java</code> — 标识词越多，该文档的相关性越高</li>
+</ul>
+<p>7.4重要的查询过滤子句</p>
+<p>term过滤</p>
+<blockquote>
+<p><code>term</code>主要用于精确匹配哪些值，比如数字，日期，布尔值或 <code>not_analyzed</code>的字符串(未经分析的文本数据类型)</p>
+</blockquote>
+<p>terms过滤</p>
+<blockquote>
+<p><code>terms</code> 跟 <code>term</code> 有点类似，但 <code>terms</code> 允许指定多个匹配条件。 如果某个字段指定了多个值，那么文档需要一起去做匹配。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;terms&quot;: &#123;</div><div class="line">        &quot;tag&quot;: [ &quot;search&quot;, &quot;full_text&quot;, &quot;nosql&quot; ]</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>range过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;range&quot;: &#123;</div><div class="line">        &quot;age&quot;: &#123;</div><div class="line">            &quot;gte&quot;:  20,</div><div class="line">            &quot;lt&quot;:   30</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>exists和missing过滤</p>
+<p><code>exists</code> 和 <code>missing</code> 过滤可以用于查找文档中是否包含指定字段或没有某个字段，类似于SQL语句中的<code>IS_NULL</code>条件。</p>
+<p>这两个过滤只是针对已经查出一批数据来，但是想区分出某个字段是否存在的时候使用。</p>
+<p>bool过滤</p>
+<p>match_all查询</p>
+<p>match查询</p>
+<blockquote>
+<p><code>match</code>查询是一个标准查询，不管你需要全文本查询还是精确查询基本上都要用到它。</p>
+<p>如果你使用 <code>match</code> 查询一个全文本字段，它会在真正查询之前用分析器先分析<code>match</code>一下查询字符。</p>
+<p>如果用<code>match</code>下指定了一个确切值，在遇到数字，日期，布尔值或者<code>not_analyzed</code> 的字符串时，它将为你搜索你给定的值。</p>
+<p>做精确匹配搜索时，你最好用过滤语句，因为过滤语句可以缓存数据。</p>
+</blockquote>
+<p>multi_match 查询</p>
+<blockquote>
+<p><code>multi_match</code>查询允许你做<code>match</code>查询的基础上同时搜索多个字段：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;multi_match&quot;: &#123;</div><div class="line">        &quot;query&quot;:    &quot;full text search&quot;,</div><div class="line">        &quot;fields&quot;:   [ &quot;title&quot;, &quot;body&quot; ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>bool查询</p>
+<blockquote>
+<p><code>bool</code> 查询与 <code>bool</code> 过滤相似，用于合并多个查询子句。不同的是，<code>bool</code> 过滤可以直接给出是否匹配成功， 而<code>bool</code> 查询要计算每一个查询子句的 <code>_score</code> （相关性分值）。</p>
+</blockquote>
+<p>7.5 过滤与查询</p>
+<p><code>search</code> API中只能包含 <code>query</code> 语句，所以我们需要用 <code>filtered</code> 来同时包含 “query” 和 “filter” 子句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;filtered&quot;: &#123;</div><div class="line">        &quot;query&quot;:  &#123; &quot;match&quot;: &#123; &quot;email&quot;: &quot;business opportunity&quot; &#125;&#125;,</div><div class="line">        &quot;filter&quot;: &#123; &quot;term&quot;:  &#123; &quot;folder&quot;: &quot;inbox&quot; &#125;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们在外层再加入 <code>query</code> 的上下文关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;: &#123;</div><div class="line">        &quot;filtered&quot;: &#123;</div><div class="line">            &quot;query&quot;:  &#123; &quot;match&quot;: &#123; &quot;email&quot;: &quot;business opportunity&quot; &#125;&#125;,</div><div class="line">            &quot;filter&quot;: &#123; &quot;term&quot;: &#123; &quot;folder&quot;: &quot;inbox&quot; &#125;&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>7.6验证查询</p>
+<p><code>validate</code> API 可以验证一条查询语句是否合法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET /gb/tweet/_validate/query</div><div class="line">&#123;</div><div class="line">   &quot;query&quot;: &#123;</div><div class="line">      &quot;tweet&quot; : &#123;</div><div class="line">         &quot;match&quot; : &quot;really powerful&quot;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>想知道语句非法的具体错误信息，需要加上 <code>explain</code> 参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET /gb/tweet/_validate/query?explain &lt;1&gt;</div><div class="line">&#123;</div><div class="line">   &quot;query&quot;: &#123;</div><div class="line">      &quot;tweet&quot; : &#123;</div><div class="line">         &quot;match&quot; : &quot;really powerful&quot;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>explain参数可以帮助我们理解语句是否正确。</p>
+<h3 id="8-排序"><a href="#8-排序" class="headerlink" title="8.排序"></a>8.排序</h3><p>8.2.字符串排序</p>
+<p>为了使一个string字段可以进行排序，它必须只包含一个词：即完整的<code>not_analyzed</code>字符串(译者注：未经分析器分词并排序的原字符串)。 当然我们需要对字段进行全文本搜索的时候还必须使用被 <code>analyzed</code> 标记的字段。</p>
+<p>在 <code>_source</code> 下相同的字符串上排序两次会造成不必要的资源浪费。 而我们想要的是同一个字段中同时包含这两种索引方式，我们只需要改变索引(index)的mapping即可。 方法是在所有核心字段类型上，使用通用参数 <code>fields</code>对mapping进行修改。 比如，我们原有mapping如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&quot;tweet&quot;: &#123;</div><div class="line">    &quot;type&quot;:     &quot;string&quot;,</div><div class="line">    &quot;analyzer&quot;: &quot;english&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>改变后的多值字段mapping如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&quot;tweet&quot;: &#123; &lt;1&gt;</div><div class="line">    &quot;type&quot;:     &quot;string&quot;,</div><div class="line">    &quot;analyzer&quot;: &quot;english&quot;,</div><div class="line">    &quot;fields&quot;: &#123;</div><div class="line">        &quot;raw&quot;: &#123; &lt;2&gt;</div><div class="line">            &quot;type&quot;:  &quot;string&quot;,</div><div class="line">            &quot;index&quot;: &quot;not_analyzed&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><1> <code>tweet</code> 字段用于全文本的 <code>analyzed</code> 索引方式不变。</1></p>
+<p><2> 新增的 <code>tweet.raw</code> 子字段索引方式是 <code>not_analyzed</code>。</2></p>
+<p>现在，在给数据重建索引后，我们既可以使用 <code>tweet</code> 字段进行全文本搜索，也可以用<code>tweet.raw</code>字段进行排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;: &#123;</div><div class="line">        &quot;match&quot;: &#123;</div><div class="line">            &quot;tweet&quot;: &quot;elasticsearch&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &quot;sort&quot;: &quot;tweet.raw&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>警告</strong>： 对 <code>analyzed</code> 字段进行强制排序会消耗大量内存。</p>
+</blockquote>
+<p>8.3相关性</p>
+<h5 id="理解评分"><a href="#理解评分" class="headerlink" title="理解评分"></a>理解评分</h5><p>当调试一条复杂的查询语句时，想要理解相关性评分 <code>_score</code> 是比较困难的。ElasticSearch 在 每个查询语句中都有一个explain参数，将 <code>explain</code> 设为 <code>true</code> 就可以得到更详细的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /_search?explain &lt;1&gt;</div><div class="line">&#123;</div><div class="line">   &quot;query&quot;   : &#123; &quot;match&quot; : &#123; &quot;tweet&quot; : &quot;honeymoon&quot; &#125;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><1> <code>explain</code> 参数可以让返回结果添加一个 <code>_score</code> 评分的得来依据。</1></p>
+<p><strong>提示</strong>： JSON形式的explain描述是难以阅读的 但是转成 YAML 会好很多，只需要在参数中加上<code>format=yaml</code></p>
+<h5 id="Explain-api"><a href="#Explain-api" class="headerlink" title="Explain api"></a>Explain api</h5><p>当<code>explain</code>选项加到某一文档上时，它会告诉你为何这个文档会被匹配，以及一个文档为何没有被匹配。如请求路径为 <code>/index/type/id/_explain</code>。</p>
+<h3 id="10-索引管理"><a href="#10-索引管理" class="headerlink" title="10.索引管理"></a>10.索引管理</h3><h5 id="10-1-创建删除"><a href="#10-1-创建删除" class="headerlink" title="10.1 创建删除"></a>10.1 创建删除</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PUT /my_index</div><div class="line">&#123;</div><div class="line">    &quot;settings&quot;: &#123; ... any settings ... &#125;,</div><div class="line">    &quot;mappings&quot;: &#123;</div><div class="line">        &quot;type_one&quot;: &#123; ... any mappings ... &#125;,</div><div class="line">        &quot;type_two&quot;: &#123; ... any mappings ... &#125;,</div><div class="line">        ...</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h5 id="10-3配置分析器"><a href="#10-3配置分析器" class="headerlink" title="10.3配置分析器"></a>10.3配置分析器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /spanish_docs/_analyze?analyzer=es_std</div><div class="line">El veloz zorro marrón</div></pre></td></tr></table></figure>
+<h5 id="10-7-元数据中的source字段"><a href="#10-7-元数据中的source字段" class="headerlink" title="10.7 元数据中的source字段"></a>10.7 元数据中的source字段</h5><p>禁用_source字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">PUT /my_index</div><div class="line">&#123;</div><div class="line">    &quot;mappings&quot;: &#123;</div><div class="line">        &quot;my_type&quot;: &#123;</div><div class="line">            &quot;_source&quot;: &#123;</div><div class="line">                &quot;enabled&quot;:  false</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>限制返回的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;:   &#123; &quot;match_all&quot;: &#123;&#125;&#125;,</div><div class="line">    &quot;_source&quot;: [ &quot;title&quot;, &quot;created&quot; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="10-8-元数据中的all字段"><a href="#10-8-元数据中的all字段" class="headerlink" title="10.8 元数据中的all字段"></a>10.8 元数据中的all字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;match&quot;: &#123;</div><div class="line">        &quot;_all&quot;: &quot;john smith marketing&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="12-结构化搜索"><a href="#12-结构化搜索" class="headerlink" title="12.结构化搜索"></a>12.结构化搜索</h3><p>通过结构化搜索，你的查询结果<em>始终</em>是 是或非；是否应该属于集合。结构化搜索不关心文档的相关性或分数，它只是简单的包含或排除文档。</p>
+<p>过滤器filter有term(terms)，bool，range等等。</p>
+<h5 id="12-1查询准确值"><a href="#12-1查询准确值" class="headerlink" title="12.1查询准确值"></a>12.1查询准确值</h5><p>当term用于查询字符串的时候，记得把term里面field设为not analyzed.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">GET /my_store/products/_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot; : &#123;</div><div class="line">        &quot;filtered&quot; : &#123;</div><div class="line">            &quot;filter&quot; : &#123;</div><div class="line">                &quot;term&quot; : &#123;</div><div class="line">                    &quot;productID&quot; : &quot;XHDK-A-1293-#fJ3&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>term(terms)是包含操作，不是等于操作。</p>
+<h5 id="12-2-组合过滤"><a href="#12-2-组合过滤" class="headerlink" title="12.2 组合过滤"></a>12.2 组合过滤</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">GET /my_store/products/_search</div><div class="line">&#123;</div><div class="line">   &quot;query&quot; : &#123;</div><div class="line">      &quot;filtered&quot; : &#123; &lt;1&gt;</div><div class="line">         &quot;filter&quot; : &#123;</div><div class="line">            &quot;bool&quot; : &#123;</div><div class="line">              &quot;should&quot; : [</div><div class="line">                 &#123; &quot;term&quot; : &#123;&quot;price&quot; : 20&#125;&#125;, &lt;2&gt;</div><div class="line">                 &#123; &quot;term&quot; : &#123;&quot;productID&quot; : &quot;XHDK-A-1293-#fJ3&quot;&#125;&#125; &lt;2&gt;</div><div class="line">              ],</div><div class="line">              &quot;must_not&quot; : &#123;</div><div class="line">                 &quot;term&quot; : &#123;&quot;price&quot; : 30&#125; &lt;3&gt;</div><div class="line">              &#125;</div><div class="line">           &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="12-3查询多个准确值"><a href="#12-3查询多个准确值" class="headerlink" title="12.3查询多个准确值"></a>12.3查询多个准确值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">GET /my_store/products/_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot; : &#123;</div><div class="line">        &quot;filtered&quot; : &#123;</div><div class="line">            &quot;filter&quot; : &#123;</div><div class="line">                &quot;terms&quot; : &#123; &lt;1&gt;</div><div class="line">                    &quot;price&quot; : [20, 30]</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="12-4-包含而不是相等"><a href="#12-4-包含而不是相等" class="headerlink" title="12.4 包含而不是相等"></a>12.4 包含而不是相等</h5><p>假如你有一个 term 过滤器 <code>{ &quot;term&quot; : { &quot;tags&quot; : &quot;search&quot; } }</code>，它将匹配下面两个文档：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123; &quot;tags&quot; : [&quot;search&quot;] &#125;</div><div class="line">&#123; &quot;tags&quot; : [&quot;search&quot;, &quot;open_source&quot;] &#125; &lt;1&gt;</div></pre></td></tr></table></figure>
+<p><1> 虽然这个文档除了 <code>search</code> 还有其他短语，它还是被返回了</1></p>
+<p><code>term</code> 和 <code>terms</code> 是 <em>必须包含</em> 操作，而不是 <em>必须相等</em>。</p>
+<h4 id="完全匹配"><a href="#完全匹配" class="headerlink" title="完全匹配"></a>完全匹配</h4><p>假如你真的需要完全匹配这种行为，最好是通过添加另一个字段来实现。在这个字段中，你索引原字段包含值的个数。引用上面的两个文档，我们现在包含一个字段来记录标签的个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123; &quot;tags&quot; : [&quot;search&quot;], &quot;tag_count&quot; : 1 &#125;</div><div class="line">&#123; &quot;tags&quot; : [&quot;search&quot;, &quot;open_source&quot;], &quot;tag_count&quot; : 2 &#125;</div></pre></td></tr></table></figure>
+<p>一旦你索引了标签个数，你可以构造一个 <code>bool</code> 过滤器来限制短语个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">GET /my_index/my_type/_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;: &#123;</div><div class="line">        &quot;filtered&quot; : &#123;</div><div class="line">            &quot;filter&quot; : &#123;</div><div class="line">                 &quot;bool&quot; : &#123;</div><div class="line">                    &quot;must&quot; : [</div><div class="line">                        &#123; &quot;term&quot; : &#123; &quot;tags&quot; : &quot;search&quot; &#125; &#125;, &lt;1&gt;</div><div class="line">                        &#123; &quot;term&quot; : &#123; &quot;tag_count&quot; : 1 &#125; &#125; &lt;2&gt;</div><div class="line">                    ]</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="12-5范围"><a href="#12-5范围" class="headerlink" title="12.5范围"></a>12.5范围</h5><p>Elasticsearch 有一个 <code>range</code> 过滤器，让你可以根据范围过滤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;range&quot; : &#123;</div><div class="line">    &quot;price&quot; : &#123;</div><div class="line">        &quot;gt&quot; : 20,</div><div class="line">        &quot;lt&quot; : 40</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>range</code> 过滤器既能包含也能排除范围，通过下面的选项：</p>
+<ul>
+<li><code>gt</code>: <code>&gt;</code> 大于</li>
+<li><code>lt</code>: <code>&lt;</code> 小于</li>
+<li><code>gte</code>: <code>&gt;=</code> 大于或等于</li>
+<li><code>lte</code>: <code>&lt;=</code> 小于或等于</li>
+</ul>
+<p><code>range</code> 过滤器也可以用于日期字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;range&quot; : &#123;</div><div class="line">    &quot;timestamp&quot; : &#123;</div><div class="line">        &quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</div><div class="line">        &quot;lt&quot; : &quot;2014-01-07 00:00:00&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当用于日期字段时，<code>range</code> 过滤器支持<em>日期数学</em>操作。例如，我们想找到所有最近一个小时的文档：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;range&quot; : &#123;</div><div class="line">    &quot;timestamp&quot; : &#123;</div><div class="line">        &quot;gt&quot; : &quot;now-1h&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个过滤器将始终能找出所有时间戳大于当前时间减 1 小时的文档，让这个过滤器像<em>移窗</em>一样通过你的文档。</p>
+<p>日期计算也能用于实际的日期，而不是仅仅是一个像 now 一样的占位符。只要在日期后加上双竖线 <code>||</code>，就能使用日期数学表达式了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;range&quot; : &#123;</div><div class="line">    &quot;timestamp&quot; : &#123;</div><div class="line">        &quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</div><div class="line">        &quot;lt&quot; : &quot;2014-01-01 00:00:00||+1M&quot; &lt;1&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><1> 早于 2014 年 1 月 1 号加一个月</1></p>
+<h5 id="12-8-过滤顺序"><a href="#12-8-过滤顺序" class="headerlink" title="12.8 过滤顺序"></a>12.8 过滤顺序</h5><p>在 <code>bool</code> 条件中过滤器的顺序对性能有很大的影响。更详细的过滤条件应该被放置在其他过滤器之前，以便在更早的排除更多的文档。</p>
+<p>假如条件 A 匹配 1000 万个文档，而 B 只匹配 100 个文档，那么需要将 B 放在 A 前面。</p>
+<p>缓存的过滤器非常快，所以它们需要被放在不能缓存的过滤器之前。</p>
+<h3 id="13-全文检索"><a href="#13-全文检索" class="headerlink" title="13.全文检索"></a>13.全文检索</h3><p><em>全文检索</em>：怎样对全文字段(full-text fields)进行检索以找到相关度最高的文档。</p>
+<p>全文检索最重要的两个方面是：</p>
+<ul>
+<li><p>相关度(Relevance)</p>
+<p>根据文档与查询的相关程度对结果集进行排序的能力。相关度可以使用TF/IDF、地理位置相近程度、模糊相似度或其他算法计算。</p>
+</li>
+<li><p>分析(Analysis)</p>
+<p>将一段文本转换为一组唯一的、标准化了的标记(token)，用以(a)创建倒排索引，(b)查询倒排索引。</p>
+</li>
+</ul>
+<p>注意，一旦提到相关度和分析，指的都是查询(queries)而非过滤器(filters)。</p>
+<p>准确值(<code>&#39;not_analyzed&#39;</code>)  全文(<code>&#39;analyzed&#39;</code>)</p>
+<p>1.基于短语的查询</p>
+<p>不会有分析阶段。这些查询在单一的短语上执行，<code>term</code>查询只在倒排查询里精确地查找特定短语（或者说精确包含），而不会匹配短语的其它变形。</p>
+<p>2.全文检索</p>
+<p><code>match</code>和<code>query_string</code>这样的查询是高级查询，它们会对字段进行分析：</p>
+<ul>
+<li><p>如果检索一个<code>&#39;date&#39;</code>或<code>&#39;integer&#39;</code>字段，它们会把查询语句作为日期或者整数格式数据。</p>
+</li>
+<li><p>如果检索一个准确值(<code>&#39;not_analyzed&#39;</code>)字符串字段，它们会把整个查询语句作为一个短语。</p>
+</li>
+<li><p>如果检索一个全文(<code>&#39;analyzed&#39;</code>)字段，查询会先用适当的解析器解析查询语句，产生需要查询的短语列表。然后对列表中的每个短语执行低级查询，合并查询结果，得到最终的文档相关度。</p>
+<p>我们很少需要直接使用基于短语的查询。通常我们会想要检索全文，而不是单独的短语，使用高级的全文检索会更简单（全文检索内部最终还是使用基于短语的查询）。</p>
+<p>如果确实要查询一个准确值字段(<code>&#39;not_analyzed&#39;</code>)，需要考虑使用查询还是过滤器。</p>
+<p>[提示] 单一短语的查询通常相当于<strong>是/否</strong>问题，用过滤器可以更好的描述这类查询，并且过滤器缓存可以提升性能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot;: &#123;</div><div class="line">        &quot;filtered&quot;: &#123;</div><div class="line">            &quot;filter&quot;: &#123;</div><div class="line">                &quot;term&quot;: &#123; &quot;gender&quot;: &quot;female&quot; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h5><p>有时，在索引时和搜索时使用不同的分析器是合理的。比如，在索引时我们希望索引到同义词（在quick出现的地方，我们希望同时索引fast，rapid和speedy）。但在搜索时，我们不需要搜索所有的同义词。我们只需要关注用户输入的单词，无论是quick，fast，rapid，还是speedy，输入什么就是什么。</p>
+<p>为了区分，ElasticSearch支持参数 <em>index_analyzer</em> 和 <em>search_analyzer</em>，以及 <em>default_index</em> 和 <em>default_search</em>的分析器。</p>
+<h5 id="被破坏的相关度（Relevance-is-Broken）"><a href="#被破坏的相关度（Relevance-is-Broken）" class="headerlink" title="被破坏的相关度（Relevance is Broken）"></a>被破坏的相关度（Relevance is Broken）</h5><p>在我们讨论更复杂的多字段查询之前，这里先解释一下为什么我们将测试数据只创建在一个主分片上（primary shard）。</p>
+<p>用户会时不时的抱怨遇到这样的问题：用户索引了一些文档，运行了一个简单的查询，然后明显发现一些低相关性的结果出现在高相关性结果之上。</p>
+<p>为了理解为什么会这样，我们可以想象一下，我们在两个主分片上创建了索引，总共10个文档，其中6个文档有单词<em>foo</em>，可能是shard 1有其中3个文档，而shard 2有其中另外3个文档，换句话说，所有文档是均匀分布存储的。</p>
+<p>在何为相关性中，我们描述了ElasticSearch默认的相似度算法，这个算法叫做 TF/IDF (term frequency/inverse document frequency)。详细参照之前提到的内容。</p>
+<p>但是由于性能原因，ElasticSearch在计算IDF时，不会计算所有的文档。相反，每个分片会根据该分片的所有文档，计算一个本地的IDF。</p>
+<p>因为我们的文档是均匀的分布存储的，每个shard的IDF是相同的。如果有5个文档存在于shard 1，而第6个文档存在于shard 2，在这种场景下，foo在一个shard里非常普通（所以不那么重要），但是在另个shard里非常少（所以会显得更重要）。这样局部IDF的差异会导致不正确的结果。</p>
+<p>在实际中，这不是一个问题，本地和全局的IDF的差异随着索引里文档数的增多会渐渐消失，在真实世界的数据量下，局部的IDF会迅速被均化，所以这里的问题并不是相关性被破坏了，而是数据量太小了。</p>
+<p>为了测试，我们可以通过两种方式解决这个问题。第一种是只在主分片上创建索引，就如我们例子里做的那样，如果只有一个shard，那么本地的IDF就是全局的IDF。</p>
+<p>第二个方式就是在搜索请求后添加 <em>?search_type=dfs_query_then_fetch</em>，<em>dfs</em> 是指 分布式频率搜索（Distributed Frequency Search），它告诉ElasticSearch，先分别获得每个shard本地的IDF，然后根据结果再计算全局的IDF。</p>
+<blockquote>
+<p>注意：<br>不要在产品上使用第二种方式，我们完全无须如此。</p>
+</blockquote>
+<h3 id="14-多字段搜索"><a href="#14-多字段搜索" class="headerlink" title="14.多字段搜索"></a>14.多字段搜索</h3><h5 id="14-1多字符串查询"><a href="#14-1多字符串查询" class="headerlink" title="14.1多字符串查询"></a>14.1多字符串查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">&#123;</div><div class="line">  &quot;query&quot;: &#123;</div><div class="line">    &quot;bool&quot;: &#123;</div><div class="line">      &quot;should&quot;: [</div><div class="line">        &#123; &quot;match&quot;: &#123; (1)</div><div class="line">            &quot;title&quot;:  &#123;</div><div class="line">              &quot;query&quot;: &quot;War and Peace&quot;,</div><div class="line">              &quot;boost&quot;: 2</div><div class="line">        &#125;&#125;&#125;,</div><div class="line">        &#123; &quot;match&quot;: &#123; (1)</div><div class="line">            &quot;author&quot;:  &#123;</div><div class="line">              &quot;query&quot;: &quot;Leo Tolstoy&quot;,</div><div class="line">              &quot;boost&quot;: 2</div><div class="line">        &#125;&#125;&#125;,</div><div class="line">        &#123; &quot;bool&quot;:  &#123; (2)</div><div class="line">            &quot;should&quot;: [</div><div class="line">              &#123; &quot;match&quot;: &#123; &quot;translator&quot;: &quot;Constance Garnett&quot; &#125;&#125;,</div><div class="line">              &#123; &quot;match&quot;: &#123; &quot;translator&quot;: &quot;Louise Maude&quot;      &#125;&#125;</div><div class="line">            ]</div><div class="line">        &#125;&#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么将译者条件语句放入另一个独立的 <em>bool</em> 查询中呢？所有的4个 <em>match</em> 查询都是 <em>should</em> 语句，我们为什么不将translator语句与其他语句（如 <em>title</em>、<em>author</em>）放在同一层呢？</p>
+<p>答案在于分数的计算方式。<em>bool</em> 查询执行每个 <em>match</em> 查询，然后把他们加在一起，然后将结果与所有匹配的语句数量相乘，再除以所有的语句数量。处于同一层的每条语句具有相同的权重。在上面这个例子中，包含<em>translator</em>语句的 <em>bool</em> 查询，只占总分数的三分之一，如果我们将<em>translator</em>语句与 <em>title</em> 和 <em>author</em> 两个语句放入同一层，那么 <em>title</em> 和 <em>author</em> 语句只贡献四分之一。</p>
+<h5 id="14-2单一查询字符串"><a href="#14-2单一查询字符串" class="headerlink" title="14.2单一查询字符串"></a>14.2单一查询字符串</h5><h3 id="近似度匹配"><a href="#近似度匹配" class="headerlink" title="近似度匹配"></a>近似度匹配</h3><h3 id="部分匹配"><a href="#部分匹配" class="headerlink" title="部分匹配"></a>部分匹配</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p><a href="http://blog.csdn.net/helllochun/article/details/52136954" target="_blank" rel="external">elasticsearch 设置 mapping 时的 store 属性</a></p>
+<p><a href="http://chattool.sinaapp.com/?p=248" target="_blank" rel="external">elasticsearch的store属性跟_source字段</a></p>
+<p>后续的翻译：</p>
+<p><a href="http://blog.csdn.net/dm_vincent/article/category/2718099" target="_blank" rel="external">Elasticsearch权威指南翻译目录</a></p>
+<p><a href="http://www.cnblogs.com/richaaaard/p/5254285.html" target="_blank" rel="external">ElasticSearch 2 (17) - 深入搜索系列之部分匹配</a></p>
+<h3 id="对权威指南的总结博客"><a href="#对权威指南的总结博客" class="headerlink" title="对权威指南的总结博客"></a>对权威指南的总结博客</h3><p><a href="http://slixurd.github.io/2015/09/10/ElasticSearchQueryAndFilter/" target="_blank" rel="external">ElasticSearch的搜索和过滤</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elasticsearch/" rel="tag">#elasticsearch</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/15/elk/" rel="next" title="elk">
+                <i class="fa fa-chevron-left"></i> elk
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/18/java-httpclient/" rel="prev" title="java-httpclient">
+                java-httpclient <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/17/elasticsearch-guide/"
+           data-title="elasticsearch权威指南" data-url="http://yoursite.com/2016/10/17/elasticsearch-guide/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#elasticsearch-权威指南"><span class="nav-number">1.</span> <span class="nav-text">elasticsearch 权威指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-数据"><span class="nav-number">1.0.1.</span> <span class="nav-text">3.数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5更新"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">3.5更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6创建"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">3.6创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-9局部更新"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">3.9局部更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文档局部更新"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">文档局部更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用脚本更新"><span class="nav-number">1.0.1.0.5.</span> <span class="nav-text">使用脚本更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-10-MGET"><span class="nav-number">1.0.1.0.6.</span> <span class="nav-text">3.10 MGET</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-11-批量"><span class="nav-number">1.0.1.0.7.</span> <span class="nav-text">3.11 批量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-搜索"><span class="nav-number">1.0.2.</span> <span class="nav-text">5.搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-映射和分析"><span class="nav-number">1.0.3.</span> <span class="nav-text">6.映射和分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-分析"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">6.4 分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-映射"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">6.5 映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-复合类型"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">6.6 复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多层对象"><span class="nav-number">1.0.3.3.1.</span> <span class="nav-text">多层对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内部对象的映射"><span class="nav-number">1.0.3.3.2.</span> <span class="nav-text">内部对象的映射</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内部对象怎么被索引"><span class="nav-number">1.0.3.3.3.</span> <span class="nav-text">内部对象怎么被索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-结构化查询"><span class="nav-number">1.0.4.</span> <span class="nav-text">7.结构化查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-排序"><span class="nav-number">1.0.5.</span> <span class="nav-text">8.排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#理解评分"><span class="nav-number">1.0.5.0.1.</span> <span class="nav-text">理解评分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Explain-api"><span class="nav-number">1.0.5.0.2.</span> <span class="nav-text">Explain api</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-索引管理"><span class="nav-number">1.0.6.</span> <span class="nav-text">10.索引管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#10-1-创建删除"><span class="nav-number">1.0.6.0.1.</span> <span class="nav-text">10.1 创建删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-3配置分析器"><span class="nav-number">1.0.6.0.2.</span> <span class="nav-text">10.3配置分析器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-7-元数据中的source字段"><span class="nav-number">1.0.6.0.3.</span> <span class="nav-text">10.7 元数据中的source字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-8-元数据中的all字段"><span class="nav-number">1.0.6.0.4.</span> <span class="nav-text">10.8 元数据中的all字段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-结构化搜索"><span class="nav-number">1.0.7.</span> <span class="nav-text">12.结构化搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#12-1查询准确值"><span class="nav-number">1.0.7.0.1.</span> <span class="nav-text">12.1查询准确值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-2-组合过滤"><span class="nav-number">1.0.7.0.2.</span> <span class="nav-text">12.2 组合过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-3查询多个准确值"><span class="nav-number">1.0.7.0.3.</span> <span class="nav-text">12.3查询多个准确值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-4-包含而不是相等"><span class="nav-number">1.0.7.0.4.</span> <span class="nav-text">12.4 包含而不是相等</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完全匹配"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">完全匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#12-5范围"><span class="nav-number">1.0.7.1.1.</span> <span class="nav-text">12.5范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-8-过滤顺序"><span class="nav-number">1.0.7.1.2.</span> <span class="nav-text">12.8 过滤顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-全文检索"><span class="nav-number">1.0.8.</span> <span class="nav-text">13.全文检索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析器"><span class="nav-number">1.0.8.0.1.</span> <span class="nav-text">分析器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#被破坏的相关度（Relevance-is-Broken）"><span class="nav-number">1.0.8.0.2.</span> <span class="nav-text">被破坏的相关度（Relevance is Broken）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-多字段搜索"><span class="nav-number">1.0.9.</span> <span class="nav-text">14.多字段搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#14-1多字符串查询"><span class="nav-number">1.0.9.0.1.</span> <span class="nav-text">14.1多字符串查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-2单一查询字符串"><span class="nav-number">1.0.9.0.2.</span> <span class="nav-text">14.2单一查询字符串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近似度匹配"><span class="nav-number">1.0.10.</span> <span class="nav-text">近似度匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分匹配"><span class="nav-number">1.0.11.</span> <span class="nav-text">部分匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">1.0.12.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对权威指南的总结博客"><span class="nav-number">1.0.13.</span> <span class="nav-text">对权威指南的总结博客</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

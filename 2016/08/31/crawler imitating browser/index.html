@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="crawler,browser," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="crawler imitating browser模拟浏览器htmlunithtmlUnit是java实现的无界面浏览器程序。网站地址：http://htmlunit.sourceforge.net/
+在写HtmlUnit代码的时候，仿佛感觉到的就是在操作浏览器而非写代码，得到页面（getPage）– 寻找到文本框（getElementByID || getElementByName || get">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crawler imitating browser">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/crawler imitating browser/index.html">
+<meta property="og:site_name" content="Qi's Blog">
+<meta property="og:description" content="crawler imitating browser模拟浏览器htmlunithtmlUnit是java实现的无界面浏览器程序。网站地址：http://htmlunit.sourceforge.net/
+在写HtmlUnit代码的时候，仿佛感觉到的就是在操作浏览器而非写代码，得到页面（getPage）– 寻找到文本框（getElementByID || getElementByName || get">
+<meta property="og:updated_time" content="2018-04-08T07:17:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crawler imitating browser">
+<meta name="twitter:description" content="crawler imitating browser模拟浏览器htmlunithtmlUnit是java实现的无界面浏览器程序。网站地址：http://htmlunit.sourceforge.net/
+在写HtmlUnit代码的时候，仿佛感觉到的就是在操作浏览器而非写代码，得到页面（getPage）– 寻找到文本框（getElementByID || getElementByName || get">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/31/crawler imitating browser/"/>
+
+  <title> crawler imitating browser | Qi's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Qi's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不打无准备之仗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                crawler imitating browser
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T09:42:10+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/crawler imitating browser/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/crawler imitating browser/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="crawler-imitating-browser"><a href="#crawler-imitating-browser" class="headerlink" title="crawler imitating browser"></a>crawler imitating browser</h1><h3 id="模拟浏览器"><a href="#模拟浏览器" class="headerlink" title="模拟浏览器"></a>模拟浏览器</h3><h4 id="htmlunit"><a href="#htmlunit" class="headerlink" title="htmlunit"></a>htmlunit</h4><p>htmlUnit是java实现的无界面浏览器程序。网站地址：<a href="http://htmlunit.sourceforge.net/" target="_blank" rel="external">http://htmlunit.sourceforge.net/</a></p>
+<p>在写HtmlUnit代码的时候，仿佛感觉到的就是在操作浏览器而非写代码，得到页面（getPage）– 寻找到文本框（getElementByID || getElementByName || getElementByXPath 等等）– 输入文字（type，setValue，setText等等）– 其他一些类似操作 – 找到提交按钮 – 提交 – 得到新的Page，这样就非常像一个人在后台帮你操作浏览器一样，而你要做的就是告诉他如何操作以及需要填入哪些值。</p>
+<p>其原理比较简单，就是模拟浏览器点击输入操作，利用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WebClient webclient = new WebClient();//htmlunit 是一款开源的 java 页面分析工具，启动 htmlunit 之后，底层会启动一个无界面浏览器，用户可以指定浏览器类型：firefox、ie 等，如果不指定，默认采用 INTERNET_EXPLORER_7：</div><div class="line">webclient.getPage(url);</div></pre></td></tr></table></figure>
+<p>可以获得页面对象HtmlForm，然后可以使用其API进行操作，表单的填充，表单的提交，模仿点击链接，由于内置了Rhinojs引擎，因此可以执行Javascript。其底层还是使用的httpClient来实现的。</p>
+<p>很重要的一点是，HtmlUnit 提供对执行 javascript 的支持：<br>page.executeJavaScript(javascript)<br>执行 js 之后，返回一个 ScriptResult 对象，通过该对象可以拿到执行 js 之后的页面等信息。默认情况下，内部浏览器在执行 js 之后，将做页面跳转，跳转到执行 js 之后生成的新页面，如果执行 js 失败，将不执行页面跳转。最后可以取得page.executeJavaScript(javascript).getNewPage()，获取执行后的页面。</p>
+<p>要加快速度，则可以禁用css，图片，flash等等。</p>
+<h5 id="设置等待"><a href="#设置等待" class="headerlink" title="设置等待"></a>设置等待</h5><p>1.显式等待</p>
+<p>明确的等待是指在代码进行下一步操作之前等待某一个条件的发生。selenium webdriver提供了一些方法帮助我们等待正好需要等待的时间。利用WebDriverWait类和ExpectedCondition接口就能实现这一点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> WebDriverWait wait = <span class="keyword">new</span> WebDriverWait(driver, <span class="number">10</span>);  </div><div class="line"> driver.findElement(By.id(<span class="string">"b"</span>)).click();  </div><div class="line"> WebElement wl = wait.until(<span class="keyword">new</span> ExpectedCondition&lt;WebElement&gt;() &#123;  </div><div class="line">  <span class="meta">@Override</span>  </div><div class="line">  <span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver d)</span> </span>&#123;  </div><div class="line">      <span class="keyword">return</span> d.findElement(By.cssSelector(<span class="string">".red_box"</span>));  </div><div class="line">  &#125;  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h5 id="隐式等待"><a href="#隐式等待" class="headerlink" title="隐式等待"></a>隐式等待</h5><p>隐性的等待其实就相当于设置全局的等待，在定位元素时，对所有元素设置超时时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.manage().timeouts().implicitlyWait(<span class="number">10</span>, TimeUnit.SECONDS);</div></pre></td></tr></table></figure>
+<p>参见<a href="http://jarvi.iteye.com/blog/1453662" target="_blank" rel="external">selenium webdriver学习（十一）————如何等待页面元素加载完成</a></p>
+<h5 id="maven依赖"><a href="#maven依赖" class="headerlink" title="maven依赖"></a>maven依赖</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;net.sourceforge.htmlunit&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;htmlunit&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;2.18&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h5 id="POST方法"><a href="#POST方法" class="headerlink" title="POST方法"></a>POST方法</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">URL url = new URL(<span class="string">"http://www2.baidu.com"</span>);</div><div class="line"></div><div class="line">WebRequestSettings reqSet = new WebRequestSettings(url,SubmitMethod.POST);</div><div class="line"></div><div class="line">List reqParam = new ArrayList();</div><div class="line"></div><div class="line">reqParam.add(new NameValuePair(<span class="string">"entered_login"</span>, username));</div><div class="line"></div><div class="line">reqParam.add(new NameValuePair(<span class="string">"entered_password"</span>, password));</div><div class="line"></div><div class="line">reqParam.add(new NameValuePair(<span class="string">"entered_imagecode"</span>, verifycode));</div><div class="line"></div><div class="line">reqSet.setRequestParameters(reqParam);</div><div class="line"></div><div class="line">HtmlPage mypage = (HtmlPage)client.getPage(reqSet);</div></pre></td></tr></table></figure>
+<p><a href="http://blog.sina.com.cn/s/blog_5f99653f01016w8w.html" target="_blank" rel="external">htmlUnit介绍</a></p>
+<h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><ol>
+<li><p>它与selenium是什么关系，跟phantomJS是同一层级的么？</p>
+<p>我的理解是跟phantomJS、chrome、firefox等等是同一个层级，只不过是无界面的浏览器。selenium是提供了对其的驱动支持，直接内置了驱动。</p>
+</li>
+<li><p>有些地方是导入com.gargoylesoftware.htmlunit；但有些地方是用org.openqa.selenium.htmlunit.HtmlUnitDriver。</p>
+<p>我的理解是都可以，com.gargoylesoftware.htmlunit是<a href="http://htmlunit.sourceforge.net/项目中的写法，是最初的项目。写法就是" target="_blank" rel="external">http://htmlunit.sourceforge.net/项目中的写法，是最初的项目。写法就是</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WebClient webclient = new WebClient();</div><div class="line">webclient.getPage(url);</div></pre></td></tr></table></figure>
+<p>但是后来htmlUnit又被集成到了selenium中，提供了一个htmlUnitDriver，所以也可以用selenium中的来开发。写法是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WebDriver driver=new HtmlUnitDriver(); </div><div class="line">//WebDriver driver=new PhantomJSDriver(); //如果是phantomJS，</div><div class="line">driver.get(url);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><p>网页的模拟化</p>
+<p>网络响应的自动处理化</p>
+<p>并行和串行控制</p>
+<ol>
+<li>js错误处理监听机制</li>
+<li>链接响应监听</li>
+</ol>
+<p>缓存机制</p>
+<h4 id="各个driver的优缺点比较"><a href="#各个driver的优缺点比较" class="headerlink" title="各个driver的优缺点比较"></a>各个driver的优缺点比较</h4><table>
+<thead>
+<tr>
+<th>driver类型</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真实浏览器</td>
+<td>真实模拟用户行为</td>
+<td>效率、稳定性低</td>
+</tr>
+<tr>
+<td>htmlunit</td>
+<td>速度快</td>
+<td>其引擎不是主流的浏览器支持的，对js支持的不够好</td>
+</tr>
+<tr>
+<td>phantomJS</td>
+<td>速度中等，模拟行为接近真实</td>
+<td>不能模拟不同／特定浏览器的行为</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><h4 id="htmlunit优缺点"><a href="#htmlunit优缺点" class="headerlink" title="htmlunit优缺点"></a>htmlunit优缺点</h4><p><a href="http://blog.csdn.net/zstu_cc/article/details/39250903" target="_blank" rel="external">HttpClient和HtmlUnit的比较总结以及使用技巧（一）</a></p>
+<h4 id="htmlunit使用技巧"><a href="#htmlunit使用技巧" class="headerlink" title="htmlunit使用技巧"></a>htmlunit使用技巧</h4><p>搜索、查询具体怎么写参见<a href="http://jilongliang.iteye.com/blog/1933035" target="_blank" rel="external">HtmlUnit实现ajax网络爬虫</a> 和 <a href="http://www.cnblogs.com/cation/p/3933408.html" target="_blank" rel="external">htmlunit官网简易教程（翻译）</a></p>
+<p>用htmlUnit进行爬虫，参见<a href="http://my.oschina.net/u/259421/blog/499408" target="_blank" rel="external">HtmlUnit 网络爬虫 菜鸟的学习笔记（一）</a></p>
+<p><a href="http://shihlei.iteye.com/blog/2067707" target="_blank" rel="external">HtmlUnit2.14使用样例—获取动态网页</a></p>
+<p><a href="http://tianxingzhe.blog.51cto.com/3390077/1755511" target="_blank" rel="external">HtmlUnit、httpclient、jsoup爬取网页信息并解析</a></p>
+<h4 id="selenium综合教程"><a href="#selenium综合教程" class="headerlink" title="selenium综合教程"></a>selenium综合教程</h4><p><a href="http://jarvi.iteye.com/category/203994" target="_blank" rel="external">selenium webdriver学习</a></p>
+<p><a href="http://www.webdriver.org/nav1/" target="_blank" rel="external">webdriver中文社区</a></p>
+<p><a href="http://www.jianshu.com/p/2804823923b4" target="_blank" rel="external">python 调用selenium备忘</a></p>
+<p>黄亿华<a href="https://my.oschina.net/flashsword/blog/147334" target="_blank" rel="external">使用Selenium来抓取动态加载的页面</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/crawler/" rel="tag">#crawler</a>
+          
+            <a href="/tags/browser/" rel="tag">#browser</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/30/java-thread/" rel="next" title="java-thread">
+                <i class="fa fa-chevron-left"></i> java-thread
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/04/spider-java/" rel="prev" title="spider_java">
+                spider_java <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/31/crawler imitating browser/"
+           data-title="crawler imitating browser" data-url="http://yoursite.com/2016/08/31/crawler imitating browser/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Qi Liu" />
+          <p class="site-author-name" itemprop="name">Qi Liu</p>
+          <p class="site-description motion-element" itemprop="description">Less is More</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#crawler-imitating-browser"><span class="nav-number">1.</span> <span class="nav-text">crawler imitating browser</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟浏览器"><span class="nav-number">1.0.1.</span> <span class="nav-text">模拟浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlunit"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">htmlunit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置等待"><span class="nav-number">1.0.1.1.1.</span> <span class="nav-text">设置等待</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐式等待"><span class="nav-number">1.0.1.1.2.</span> <span class="nav-text">隐式等待</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven依赖"><span class="nav-number">1.0.1.1.3.</span> <span class="nav-text">maven依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST方法"><span class="nav-number">1.0.1.1.4.</span> <span class="nav-text">POST方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">1.0.1.1.5.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优点"><span class="nav-number">1.0.1.1.6.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#各个driver的优缺点比较"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">各个driver的优缺点比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考博客"><span class="nav-number">1.0.2.</span> <span class="nav-text">参考博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlunit优缺点"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">htmlunit优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlunit使用技巧"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">htmlunit使用技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selenium综合教程"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">selenium综合教程</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qi Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nextinnovationucas"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
