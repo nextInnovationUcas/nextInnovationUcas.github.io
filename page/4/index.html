@@ -258,6 +258,258 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/19/logging-configuration/" itemprop="url">
+                  日志配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-19T17:19:44+08:00" content="2016-10-19">
+              2016-10-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/19/logging-configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/logging-configuration/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h1><h3 id="在spring中配置日志"><a href="#在spring中配置日志" class="headerlink" title="在spring中配置日志"></a>在spring中配置日志</h3><p>1.让 spring-context 排除对 commons-logging 的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;spring-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">    &lt;exclusions&gt;</div><div class="line">	&lt;exclusion&gt;</div><div class="line">	    &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</div><div class="line">	    &lt;groupId&gt;commons-logging&lt;/groupId&gt;</div><div class="line">	&lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>2.添加 slf4j-api 和 jcl-over-slf4j 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;slf4j-simple&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;$&#123;slf4j-version&#125;&lt;/version&gt;</div><div class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>3.如果是web项目，则配置web.xml文件的Log4jConfigLocation和Log4jConfigListener</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;listener&gt; </div><div class="line">&lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt; </div><div class="line">&lt;/listener&gt; </div><div class="line">&lt;context-param&gt; </div><div class="line">  &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt; </div><div class="line">  &lt;param-value&gt;WEB-INF/classes/log4j.properties&lt;/param-value&gt; </div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure>
+<p>4.在当前classpath中添加log4j.properties配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">log4j.rootCategory=info, stdout </div><div class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender </div><div class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout </div><div class="line">log4j.appender.stdout.layout.ConversionPattern=%d&#123;ABSOLUTE&#125; %5p %t %c&#123;2&#125;:%L - %m%n</div></pre></td></tr></table></figure>
+<p>问题：</p>
+<p>1.若打印出了SLF4J: Class path contains multiple SLF4J bindings，说明jar包冲突了。slf4j就是所谓的门面模式，提供了一个接口，自己不去实现，让其他日志jar包去实现这个接口。logback、log4j什么的，都有实现这个接口，但运行的时候，必须保证只能有一个接口实现类，如果有两个或以上，就抛上面那个异常了。做下依赖排除就行了，有的时候是其他包里面引进了日志包，不是你自己引进的。</p>
+<p>参考博客：</p>
+<p><a href="http://www.pythonhk.com/artile/view/1150" target="_blank" rel="external">Spring配置日志</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/crawler-tool/" itemprop="url">
+                  mac上的抓包工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T14:46:34+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/crawler-tool/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/crawler-tool/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mac上的抓包工具"><a href="#mac上的抓包工具" class="headerlink" title="mac上的抓包工具"></a>mac上的抓包工具</h1><p><a href="http://blog.csdn.net/liulanghk/article/details/46342205" target="_blank" rel="external">网络抓包神器-Charles使用指南</a></p>
+<p>问题：怎么抓java程序发出的网络请求</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/18/java-httpclient/" itemprop="url">
                   java-httpclient
                 </a>
@@ -1655,266 +1907,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/26/javaWeb/" itemprop="url">
-                  javaWeb
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-26T10:34:58+08:00" content="2016-09-26">
-              2016-09-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/26/javaWeb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/javaWeb/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JAVA-EE"><a href="#JAVA-EE" class="headerlink" title="JAVA EE"></a>JAVA EE</h1><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><h4 id="1-1-maven目录"><a href="#1-1-maven目录" class="headerlink" title="1.1 maven目录"></a>1.1 maven目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">$&#123;basedir&#125;</div><div class="line">src</div><div class="line">	main</div><div class="line">		java         源文件 </div><div class="line">		resources    资源文件</div><div class="line">		filters   资源过滤文件</div><div class="line">		config   配置文件</div><div class="line">		scripts   脚本文件</div><div class="line">		webapp   web应用文件，/WEB-INF</div><div class="line">	test</div><div class="line">		java    测试源文件</div><div class="line">		resources    测试资源文件</div><div class="line">		filters    测试资源过滤文件</div><div class="line">	it       集成测试</div><div class="line">	assembly    组件（Assembly）描述符所在的目录</div><div class="line">	site    站点文件</div><div class="line">target</div><div class="line">	generated-sources</div><div class="line">	classes  /resources目录下的也在此</div><div class="line">	generated-test-sources</div><div class="line">	test-classes</div><div class="line">	xxx.jar</div><div class="line">	+ project-1.0</div><div class="line">	|  + META-INF</div><div class="line">	|  + WEB-INF</div><div class="line">	|  |  + classes</div><div class="line">	|  |  * web.xml</div><div class="line">	|  * index.jsp</div><div class="line">	+ maven-archiver</div><div class="line">	   * pom.properties</div><div class="line">	+ war</div><div class="line">	   + work</div><div class="line">	|  |  * webapp-cache.xml</div><div class="line">	* project.war</div><div class="line">pom.xml</div><div class="line">LICENSE.txt</div><div class="line">NOTICE.txt 该项目依赖的库的注意事项</div><div class="line">README.txt</div></pre></td></tr></table></figure>
-<p>构建Maven项目的时候，如果没有进行特殊的配置，Maven会按照标准的目录结构查找和处理各种类型文件。</p>
-<p><strong>src/main/java和src/test/java </strong></p>
-<p>这两个目录中的所有*.java文件会分别在comile和test-comiple阶段被编译，编译结果分别放到了target/classes和targe/test-classes目录中，但是这两个目录中的其他文件都会被忽略掉。 </p>
-<p><strong>src/main/resouces和src/test/resources</strong></p>
-<p>这两个目录中的文件也会分别被复制到target/classes和target/test-classes目录中。</p>
-<p><strong>target/classes</strong></p>
-<p>打包插件默认会把这个目录中的所有内容打入到jar包或者war包中。</p>
-<p>以上参见<a href="http://www.cnblogs.com/pixy/p/4798089.html" target="_blank" rel="external">maven资源文件的相关配置</a></p>
-<h4 id="1-2-tomcat的目录"><a href="#1-2-tomcat的目录" class="headerlink" title="1.2 tomcat的目录"></a>1.2 tomcat的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bin：存放各种不同平台开启与关闭Tomcat的脚本文件。</div><div class="line">lib：存tomcat与web应用的Jar包</div><div class="line">conf：存放tomcat的配置文件</div><div class="line">webapps：web应用的发布目录</div><div class="line">work：tomcat把由各种jsp生成的servlet文件存放的地方</div><div class="line">logs：tomcat存放日志文件的地方</div><div class="line">temp：tomcat存放临时文件的地方</div></pre></td></tr></table></figure>
-<h4 id="1-3-web的目录"><a href="#1-3-web的目录" class="headerlink" title="1.3 web的目录"></a>1.3 web的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">—war/  </div><div class="line">    + META-INF/  </div><div class="line">    + WEB-INF/  </div><div class="line">    |  + classes/  </div><div class="line">    |  |  + ServletA.class  </div><div class="line">    |  |  + config.properties  </div><div class="line">    |  |  + ...  </div><div class="line">    |  + lib/</div><div class="line">    |  |  + XXX.jar</div><div class="line">    |  + web.xml  </div><div class="line">    + img/  </div><div class="line">    + css/  </div><div class="line">    + js/  </div><div class="line">    + index.html  </div><div class="line">    + sample.jsp</div></pre></td></tr></table></figure>
-<p>在Eclipse中开发j2ee项目，所有的jsp文件都是放在WebRoot目录下面，用户需要把所有用到的jar包放到WEB-INF（WebRoot的子目录）目录下的lib目录下（这就是没有用maven管理的缺点，所有jar都要自己去找）；Eclipse编译时，会把<a href="http://lib.csdn.net/base/17" target="_blank" rel="external">Java</a>源代码产生的class文件放到WEB-INF目录的classes目录下。所以大家在应用服务器中指定虚拟目录时，直接指定到这个WebRoot目录就行了，这样在调试过程中，如果只修改了jsp文件，则不需要重启服务器，刷新页面，就可以看到修改后的效果。</p>
-<p>参见<a href="http://blog.csdn.net/rj042/article/details/6834557" target="_blank" rel="external">更改maven打包文件的默认输出</a></p>
-<h3 id="2-部署问题"><a href="#2-部署问题" class="headerlink" title="2.部署问题"></a>2.部署问题</h3><p>在Eclipse中，默认会把Web项目放到Eclipse的工作空间下的.metadata.plugins\org.eclipse.wst.server.core\tmp0(或者是tmp1)\wtpwebapps\下。可以在项目的部署那修改server Location，则会部署到tomcat的webapps目录下，这样就不需要启动eclipse，直接去访问tomcat目录的web项目了。当然如果是maven项目，则直接把war包拷贝到tomcat的发布目录下就可。</p>
-<h4 id="2-1-Tomcat部署Web应用方法总结"><a href="#2-1-Tomcat部署Web应用方法总结" class="headerlink" title="2.1 Tomcat部署Web应用方法总结"></a>2.1 Tomcat部署Web应用方法总结</h4><p>在Tomcat中部署<a href="http://lib.csdn.net/base/13" target="_blank" rel="external">Java Web</a>应用程序有两种方式：静态部署和动态部署。</p>
-<h5 id="2-1-1-静态部署"><a href="#2-1-1-静态部署" class="headerlink" title="2.1.1 静态部署"></a>2.1.1 静态部署</h5><p>1.利用Tomcat自动部署</p>
-<p>将PetWeb目录拷贝到$CATALINA_HOME/webapps下，然后启动服务器就可以了，Tomcat启动时将自动加载应用。</p>
-<p>2.修改Server.xml文件部署</p>
-<p>3.增加自定义web部署文件</p>
-<p>4.Web应用以.war文件的形式部署</p>
-<h5 id="2-1-2-动态部署"><a href="#2-1-2-动态部署" class="headerlink" title="2.1.2 动态部署"></a>2.1.2 动态部署</h5><p>动态部署是指可以在服务器启动之后部署web应用程序，而不用重新启动服务器。动态部署要用到服务器提供的manager.war文件。</p>
-<p>详细参见 <a href="http://blog.csdn.net/yangxueyong/article/details/6130065" target="_blank" rel="external">Tomcat部署Web应用方法总结</a></p>
-<h3 id="创建SSM项目"><a href="#创建SSM项目" class="headerlink" title="创建SSM项目"></a>创建SSM项目</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/编写高质量代码－改善java程序的151个建议/" itemprop="url">
-                  编写高质量代码－改善java程序的151个建议
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T17:36:04+08:00" content="2016-09-22">
-              2016-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/22/编写高质量代码－改善java程序的151个建议/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/编写高质量代码－改善java程序的151个建议/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="编写高质量代码－改善java程序的151个建议"><a href="#编写高质量代码－改善java程序的151个建议" class="headerlink" title="编写高质量代码－改善java程序的151个建议"></a>编写高质量代码－改善java程序的151个建议</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1960,7 +1952,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1968,7 +1960,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1977,7 +1969,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
