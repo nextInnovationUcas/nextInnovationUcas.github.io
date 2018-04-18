@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,concurrency," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="Less is More">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Qi's Blog">
-<meta property="og:url" content="http://yoursite.com/tags/health/index.html">
+<meta name="description" content="JAVA 多线程最近把java的多线程给复(预)习了下，现总结如下:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java-multiprocess">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/java-concurrency/index.html">
 <meta property="og:site_name" content="Qi's Blog">
-<meta property="og:description" content="Less is More">
+<meta property="og:description" content="JAVA 多线程最近把java的多线程给复(预)习了下，现总结如下:">
+<meta property="og:updated_time" content="2018-04-18T18:03:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Qi's Blog">
-<meta name="twitter:description" content="Less is More">
+<meta name="twitter:title" content="java-multiprocess">
+<meta name="twitter:description" content="JAVA 多线程最近把java的多线程给复(预)习了下，现总结如下:">
 
 
 
@@ -113,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/health/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/17/java-concurrency/"/>
 
-  <title> 标签: health | Qi's Blog </title>
+  <title> java-multiprocess | Qi's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,46 +235,166 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        health
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java-multiprocess
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-17T09:27:53+08:00" content="2018-04-17">
+              2018-04-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/17/java-concurrency/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/17/java-concurrency/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1 id="JAVA-多线程"><a href="#JAVA-多线程" class="headerlink" title="JAVA 多线程"></a>JAVA 多线程</h1><p>最近把java的多线程给复(预)习了下，现总结如下:</p>
+<a id="more"></a>
+<p>首先看了核心卷I的第14章，讲的比较难看的懂，感觉没有重点，看完后还是一头雾水，但是基本的知识点都有提到，虽然并不是很深入。主要是没看懂，所以找了几篇博客看看。感觉这几篇博客还可以:</p>
+<p>0.如果要系统的看，建议阅读java多线程实战(不是实践)那本书。</p>
+<p>1.<a href="http://www.cnblogs.com/xrq730/category/733883.html" target="_blank" rel="external">http://www.cnblogs.com/xrq730/category/733883.html</a> 该系列博客是一整套下来的，我除了ThreadLocal那两章没看别的都看完了，该博客基于《Java多线程编程核心技术》，不过好像该书评价不是很高</p>
+<p>2.<a href="https://blog.csdn.net/evankaka/article/details/44153709" target="_blank" rel="external">https://blog.csdn.net/evankaka/article/details/44153709</a> 该系列博客只看了这一章<a href="https://blog.csdn.net/Evankaka/article/details/44153709" target="_blank" rel="external">Java多线程学习（吐血超详细总结）</a>，感觉总结的还行，别的章节没看。</p>
+<p>3.<a href="http://tengj.github.io/2016/04/24/thread1/" target="_blank" rel="external">http://tengj.github.io/2016/04/24/thread1/</a> 嘟嘟的博客关于多线程只有三篇，都看完了，作为一个补充。</p>
+<p>4.<a href="https://blog.csdn.net/u013256816/article/category/5748485" target="_blank" rel="external">https://blog.csdn.net/u013256816/article/category/5748485</a> 这个系列刚看了小结1，感觉就看不下去，因为这个是适合你已经懂了的情况下复习看的，初学的话很多问题的答案都看不懂，所以作为以后查缺补漏用。</p>
+<p>主要的知识点有:</p>
+<p>1.线程和进程</p>
+<p>2.实现线程的方式</p>
+<p>3.线程的状态</p>
+<p>4.join/wait/sleep/yield</p>
+<p>5.volatile， synchronized</p>
+<p>6.blockingQueue，消费者生产者模型</p>
+<p>7.Callable,Future, 线程池</p>
+<p>8.等等</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2018/04/10/how-to-reduce-weight/" itemprop="url">
-              
-                <span itemprop="name">how-to-reduce-weight</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-10T09:47:09+08:00"
-              content="2018-04-10" >
-          04-10
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+            <a href="/tags/concurrency/" rel="tag">#concurrency</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/15/security-of-web/" rel="next" title="security of web">
+                <i class="fa fa-chevron-left"></i> security of web
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -281,6 +402,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/17/java-concurrency/"
+           data-title="java-multiprocess" data-url="http://yoursite.com/2018/04/17/java-concurrency/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -300,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -351,6 +489,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA-多线程"><span class="nav-number">1.</span> <span class="nav-text">JAVA 多线程</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -454,6 +603,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

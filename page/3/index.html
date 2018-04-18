@@ -258,6 +258,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/15/mysql/" itemprop="url">
+                  mysql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T10:51:56+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/15/mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/15/mysql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><h4 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h4><h5 id="做mysql集群"><a href="#做mysql集群" class="headerlink" title="做mysql集群"></a>做mysql集群</h5><h5 id="预先估计会出现大数据量并且访问频繁的表，将其分为若干个表"><a href="#预先估计会出现大数据量并且访问频繁的表，将其分为若干个表" class="headerlink" title="预先估计会出现大数据量并且访问频繁的表，将其分为若干个表"></a>预先估计会出现大数据量并且访问频繁的表，将其分为若干个表</h5><h5 id="merge引擎"><a href="#merge引擎" class="headerlink" title="merge引擎"></a>merge引擎</h5><p>Mysql提供Merge存储引擎来进行分表，Merge表能将相同结构的表组合起来当做一张逻辑表来使用。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">create table t1(</div><div class="line">   id char(19) primary key,</div><div class="line">   uname varchar(255),</div><div class="line">   upassword varchar(255)</div><div class="line">)ENGINE = MyISAM;</div><div class="line"></div><div class="line">create table t2(</div><div class="line">   id char(19) primary key,</div><div class="line">   uname varchar(255),</div><div class="line">   upassword varchar(255)</div><div class="line">)ENGINE = MyISAM;</div><div class="line"></div><div class="line">create table test(</div><div class="line">   id char(19) primary key,</div><div class="line">   uname varchar(255),</div><div class="line">   upassword varchar(255)</div><div class="line">)ENGINE = MERGE union(t1,t2) insert_method=last;</div></pre></td></tr></table></figure>
+<p>使用Merge表有如下几个注意点：<br>1、所有分表都必须是MyISAM引擎，MyISAN引擎是不支持事务的。<br>2、Merge表只保证合表后数据唯一性，合表前的数据可能会存在重复。<br>3、删除分表正确的做法是 ALTER TABLE test UNION (t1); drop table t2;如果直接删除t2，test表会报错。<br>4、不能自动分表，需要定期维护。</p>
+<h5 id="编写自动分表脚本"><a href="#编写自动分表脚本" class="headerlink" title="编写自动分表脚本"></a>编写自动分表脚本</h5><p>在使用Merge表过程，最头痛的就是不能自动分表，靠人工定时清理肯定不合理的，在实践过程中，有两种办法来解决这个问题。<br>第一、使用Mysql Event按时间周期自动建表<br>第二、分表到达一定数量后自动建表.</p>
+<p>参见<a href="https://cnodejs.org/topic/57e8d7e8a61dacb35502be72" target="_blank" rel="external">Mysql Merge分表的研究备忘</a></p>
+<h4 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h4><h5 id="partition引擎"><a href="#partition引擎" class="headerlink" title="partition引擎"></a>partition引擎</h5><h4 id="Sharding"><a href="#Sharding" class="headerlink" title="Sharding"></a>Sharding</h4><h3 id="MYSQL存储过程"><a href="#MYSQL存储过程" class="headerlink" title="MYSQL存储过程"></a>MYSQL存储过程</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/11/big-data/" itemprop="url">
                   海量数据／高并发
                 </a>
@@ -1612,147 +1736,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/24/eclipse/" itemprop="url">
-                  eclipse
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T17:37:16+08:00" content="2016-10-24">
-              2016-10-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/24/eclipse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/eclipse/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>如果部署项目后发现访问不了，出现404，原因可能是：</p>
-<p>1.路径错误</p>
-<p>2.web.xml映射路径写错</p>
-<p>3.服务器设置</p>
-<p>1）eclipse自带的wtwebapp 2) tomcat webapp</p>
-<p>4.jar包没有导进入或者没有随项目发布：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">严重: Error configuring application listener of class org.springframework.web.context.ContextLoaderListener java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener 	at org.Apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1647) 	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1493) 	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4115) 	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4671) 	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053) 	at org.apache.catalina.core.StandardHost.start(StandardHost.java:785) 	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053) 	at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:463) 	at org.apache.catalina.core.StandardService.start(StandardService.java:525) 	at org.apache.catalina.core.StandardServer.start(StandardServer.java:701) 	at org.apache.catalina.startup.Catalina.start(Catalina.java:585) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) 	at java.lang.reflect.Method.invoke(Method.java:597) 	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289) 	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)</div></pre></td></tr></table></figure>
-<p>解决方法：设置deployment assembly。add——&gt;java build path entries——&gt;maven dependencies —&gt;finish.</p>
-<p>以后出现404，可以去发布的目录下查看，是否存在项目，然后，</p>
-<p>1.检查项目的包是否完整，比如缺少javax.servlet.http之类的（对于这种问题，直接引入包，而不是依赖于server）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;3.1.0&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<p>2.检查是否项目目录下把那些包拷过去了。</p>
-<blockquote>
-<p>以后碰到这种问题，第一反应就是跑到部署的目录下面去，看看它是否缺jar包，缺文件等等。再者就是看deploy assembly下面是否设置正确了。</p>
-</blockquote>
-<p>maven install出现必须要idk 1.7之上才支持什么表达式，是因为ArrayList<string> list=ArrayList&lt;&gt;();   &lt;&gt;这个表达式得1.7之上支持。</string></p>
-<p>解决方法：在build里面加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">				&lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">				&lt;configuration&gt;</div><div class="line">					&lt;source&gt;1.8&lt;/source&gt;</div><div class="line">					&lt;target&gt;1.8&lt;/target&gt;</div><div class="line">				&lt;/configuration&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div></pre></td></tr></table></figure>
-<p>附：</p>
-<p>maven配置web项目：</p>
-<p><a href="http://www.jianshu.com/p/a92831ab2f92" target="_blank" rel="external">http://www.jianshu.com/p/a92831ab2f92</a></p>
-<p><a href="https://my.oschina.net/u/2430057/blog/549029" target="_blank" rel="external">https://my.oschina.net/u/2430057/blog/549029</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1798,7 +1781,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1815,7 +1798,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

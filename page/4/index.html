@@ -258,6 +258,147 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/24/eclipse/" itemprop="url">
+                  eclipse
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T17:37:16+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/24/eclipse/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/eclipse/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>如果部署项目后发现访问不了，出现404，原因可能是：</p>
+<p>1.路径错误</p>
+<p>2.web.xml映射路径写错</p>
+<p>3.服务器设置</p>
+<p>1）eclipse自带的wtwebapp 2) tomcat webapp</p>
+<p>4.jar包没有导进入或者没有随项目发布：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">严重: Error configuring application listener of class org.springframework.web.context.ContextLoaderListener java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener 	at org.Apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1647) 	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1493) 	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4115) 	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4671) 	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053) 	at org.apache.catalina.core.StandardHost.start(StandardHost.java:785) 	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053) 	at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:463) 	at org.apache.catalina.core.StandardService.start(StandardService.java:525) 	at org.apache.catalina.core.StandardServer.start(StandardServer.java:701) 	at org.apache.catalina.startup.Catalina.start(Catalina.java:585) 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) 	at java.lang.reflect.Method.invoke(Method.java:597) 	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289) 	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)</div></pre></td></tr></table></figure>
+<p>解决方法：设置deployment assembly。add——&gt;java build path entries——&gt;maven dependencies —&gt;finish.</p>
+<p>以后出现404，可以去发布的目录下查看，是否存在项目，然后，</p>
+<p>1.检查项目的包是否完整，比如缺少javax.servlet.http之类的（对于这种问题，直接引入包，而不是依赖于server）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;3.1.0&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>2.检查是否项目目录下把那些包拷过去了。</p>
+<blockquote>
+<p>以后碰到这种问题，第一反应就是跑到部署的目录下面去，看看它是否缺jar包，缺文件等等。再者就是看deploy assembly下面是否设置正确了。</p>
+</blockquote>
+<p>maven install出现必须要idk 1.7之上才支持什么表达式，是因为ArrayList<string> list=ArrayList&lt;&gt;();   &lt;&gt;这个表达式得1.7之上支持。</string></p>
+<p>解决方法：在build里面加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;plugins&gt;</div><div class="line">			&lt;plugin&gt;</div><div class="line">				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">				&lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">				&lt;configuration&gt;</div><div class="line">					&lt;source&gt;1.8&lt;/source&gt;</div><div class="line">					&lt;target&gt;1.8&lt;/target&gt;</div><div class="line">				&lt;/configuration&gt;</div><div class="line">			&lt;/plugin&gt;</div><div class="line">		&lt;/plugins&gt;</div></pre></td></tr></table></figure>
+<p>附：</p>
+<p>maven配置web项目：</p>
+<p><a href="http://www.jianshu.com/p/a92831ab2f92" target="_blank" rel="external">http://www.jianshu.com/p/a92831ab2f92</a></p>
+<p><a href="https://my.oschina.net/u/2430057/blog/549029" target="_blank" rel="external">https://my.oschina.net/u/2430057/blog/549029</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/19/logging-configuration/" itemprop="url">
                   日志配置
                 </a>
@@ -1785,128 +1926,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/08/linux/" itemprop="url">
-                  linux
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T16:50:33+08:00" content="2016-10-08">
-              2016-10-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/08/linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/linux/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p><a href="http://blog.chinaunix.net/uid-30804390-id-5716107.html" target="_blank" rel="external">首次安装ubuntu遇到的几个问题</a></p>
-<p><a href="http://blog.csdn.net/five3/article/details/50623953" target="_blank" rel="external">如何设置停止更新支持的ubuntu更新源</a></p>
-<p><a href="http://blog.csdn.net/cashcat2004/article/details/50043725" target="_blank" rel="external">Ubuntu 更新Source.list源</a></p>
-<h3 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1952,7 +1971,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1969,7 +1988,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="javaee1.CGI VS ServletCGIweb服务器所处理的内容都是静态的，要想处理动态内容，需要依赖于web应用程序，如php、jsp、python、perl等。但是web server如何将动态的请求传递给这些应用程序？它所依赖的就是cgi协议。没错，是协议，也就是web server和web应用程序交流时的规范。换句话说，通过cgi协议，再结合已搭建好的web应用程序，就可以让we">
+<meta name="description" content="javaee介绍关于javaee的知识。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javaee">
 <meta property="og:url" content="http://yoursite.com/2018/04/15/javaee/index.html">
 <meta property="og:site_name" content="Qi's Blog">
-<meta property="og:description" content="javaee1.CGI VS ServletCGIweb服务器所处理的内容都是静态的，要想处理动态内容，需要依赖于web应用程序，如php、jsp、python、perl等。但是web server如何将动态的请求传递给这些应用程序？它所依赖的就是cgi协议。没错，是协议，也就是web server和web应用程序交流时的规范。换句话说，通过cgi协议，再结合已搭建好的web应用程序，就可以让we">
-<meta property="og:updated_time" content="2018-04-15T07:50:15.000Z">
+<meta property="og:description" content="javaee介绍关于javaee的知识。">
+<meta property="og:updated_time" content="2018-04-15T09:39:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javaee">
-<meta name="twitter:description" content="javaee1.CGI VS ServletCGIweb服务器所处理的内容都是静态的，要想处理动态内容，需要依赖于web应用程序，如php、jsp、python、perl等。但是web server如何将动态的请求传递给这些应用程序？它所依赖的就是cgi协议。没错，是协议，也就是web server和web应用程序交流时的规范。换句话说，通过cgi协议，再结合已搭建好的web应用程序，就可以让we">
+<meta name="twitter:description" content="javaee介绍关于javaee的知识。">
 
 
 
@@ -322,7 +322,9 @@
       
 
       
-        <h1 id="javaee"><a href="#javaee" class="headerlink" title="javaee"></a>javaee</h1><h3 id="1-CGI-VS-Servlet"><a href="#1-CGI-VS-Servlet" class="headerlink" title="1.CGI VS Servlet"></a>1.CGI VS Servlet</h3><h5 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h5><p>web服务器所处理的内容都是静态的，要想处理动态内容，需要依赖于web应用程序，如php、jsp、python、perl等。但是web server如何将动态的请求传递给这些应用程序？它所依赖的就是cgi协议。没错，是协议，也就是web server和web应用程序交流时的规范。换句话说，通过cgi协议，再结合已搭建好的web应用程序，就可以让web server也能”处理”动态请求(或者说，当用户访问某个特定资源时，可以触发执行某个web应用程序来实现特定功能).</p>
+        <h1 id="javaee"><a href="#javaee" class="headerlink" title="javaee"></a>javaee</h1><p>介绍关于javaee的知识。</p>
+<a id="more"></a>
+<h3 id="1-CGI-VS-Servlet"><a href="#1-CGI-VS-Servlet" class="headerlink" title="1.CGI VS Servlet"></a>1.CGI VS Servlet</h3><h5 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h5><p>web服务器所处理的内容都是静态的，要想处理动态内容，需要依赖于web应用程序，如php、jsp、python、perl等。但是web server如何将动态的请求传递给这些应用程序？它所依赖的就是cgi协议。没错，是协议，也就是web server和web应用程序交流时的规范。换句话说，通过cgi协议，再结合已搭建好的web应用程序，就可以让web server也能”处理”动态请求(或者说，当用户访问某个特定资源时，可以触发执行某个web应用程序来实现特定功能).</p>
 <h5 id="CGI-VS-Servlet"><a href="#CGI-VS-Servlet" class="headerlink" title="CGI VS Servlet"></a>CGI VS Servlet</h5><p>在传统的CGI中，每个请求都要启动一个新的进程。而Servlet对CGI的最主要优势在于一个Servlet被客户端发送的第一个请求激活，然后它将继续运行于后台，等待以后的请求。每个请求将生成一个新的线程，而不是一个完整的进程。多个客户能够在同一个进程中同时得到服务。一般来说，Servlet进程只是在Web Server卸载时被卸载。</p>
 <h3 id="2-JSP-VS-Servlet"><a href="#2-JSP-VS-Servlet" class="headerlink" title="2.JSP VS Servlet"></a>2.JSP VS Servlet</h3><p>JSP是Servlet的扩展，在没有JSP之前，就已经出现了Servlet技术。Servlet是利用输出流动态生成HTML页面，包括每一个HTML标签和每个在HTML页面中出现的内容。</p>
 <pre><code>由于包括大量的HTML标签、大量的静态文本及格式等，导致Servlet的开发效率极为低下。所有的表现逻辑，包括布局、色彩及图像等，都必须耦合在Java代码中，这的确让人不胜其烦。JSP的出现弥补了这种不足，JSP通过在标准的HTML页面中插入Java代码，其静态的部分无须Java程序控制，只有那些需要从数据库读取并根据程序动态生成信息时，才使用Java脚本控制。
@@ -443,7 +445,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -460,7 +462,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

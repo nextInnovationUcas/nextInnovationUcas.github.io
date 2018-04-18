@@ -258,6 +258,156 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/06/javaSE/" itemprop="url">
+                  javaSE
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-06T20:56:00+08:00" content="2016-09-06">
+              2016-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/06/javaSE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/06/javaSE/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="javaSE"><a href="#javaSE" class="headerlink" title="javaSE"></a>javaSE</h1><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><a href="http://liuzxc.github.io/blog/java-advance-06/" target="_blank" rel="external">Java 提高篇(六) — 泛型</a></p>
+<h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><p><strong>经典的使用回调的方式</strong>：<br>class A实现接口InA ——<strong>背景1</strong></p>
+<p>class A中包含一个class B的引用b ——<strong>背景2</strong></p>
+<p>class B有一个参数为InA的方法test(InA a) ——<strong>背景3</strong></p>
+<p>A的对象a调用B的方法传入自己，test(a) ——这一步相当于<strong>you call me</strong></p>
+<p>然后b就可以在test方法中调用InA的方法 ——这一步相当于<strong>i call you back</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//链接：https://www.zhihu.com/question/19801131/answer/26586203</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DoHomeWork</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doHomeWork</span><span class="params">(String question, String answer)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">DoHomeWork</span></span>&#123;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doHomeWork</span><span class="params">(String question, String answer)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"作业本"</span>);</div><div class="line">    <span class="keyword">if</span>(answer != <span class="keyword">null</span>) &#123;</div><div class="line">        System.out.println(<span class="string">"作业："</span>+question+<span class="string">" 答案："</span>+ answer);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        System.out.println(<span class="string">"作业："</span>+question+<span class="string">" 答案："</span>+ <span class="string">"(空白)"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ask</span><span class="params">(<span class="keyword">final</span> String homework, <span class="keyword">final</span> RoomMate roomMate)</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            roomMate.getAnswer(homework, Student.<span class="keyword">this</span>);<span class="comment">//a 调用 b，并且把自己（接口）传过去。</span></div><div class="line">        &#125;</div><div class="line">    &#125;).start();</div><div class="line"></div><div class="line">    goHome();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goHome</span><span class="params">()</span></span>&#123;</div><div class="line">    System.out.println(<span class="string">"我回家了……好室友，帮我写下作业。"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Student student = <span class="keyword">new</span> Student();</div><div class="line">    String homework = <span class="string">"当x趋向于0，sin(x)/x =?"</span>;</div><div class="line">    student.ask(homework, <span class="keyword">new</span> RoomMate());</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoomMate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAnswer</span><span class="params">(String homework, DoHomeWork someone)</span> </span>&#123;</div><div class="line">      <span class="comment">//以接口的形式接受a类</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">"1+1=?"</span>.equals(homework)) &#123;</div><div class="line">            someone.doHomeWork(homework, <span class="string">"2"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"当x趋向于0，sin(x)/x =?"</span>.equals(homework)) &#123;</div><div class="line"></div><div class="line">            System.out.print(<span class="string">"思考："</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">3</span>; i++) &#123;</div><div class="line">                System.out.print(i+<span class="string">"秒 "</span>);</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            System.out.println();</div><div class="line">            someone.doHomeWork(homework, <span class="string">"1"</span>); <span class="comment">//b再调用a</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            someone.doHomeWork(homework, <span class="string">"(空白)"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>模拟客户端和服务器：<a href="http://www.bysocket.com/?p=636" target="_blank" rel="external">深入浅出： Java回调机制(异步)</a></p>
+<p>小王向小李问问题：<a href="http://blog.csdn.net/xiaanming/article/details/8703708" target="_blank" rel="external">一个经典例子让你彻彻底底理解java回调机制</a></p>
+<h4 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h4><p>深拷贝（deep clone）与浅拷贝（shallow clone）：<br>　　浅拷贝（浅复制、浅克隆）：被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用仍然指向原来的对象。换言之，浅拷贝仅仅复制所考虑的对象，而不复制它所引用的对象。</p>
+<p>​    深拷贝（深复制、深克隆）：被复制对象的所有变量都含有与原来的对象相同的值，除去那些引用其他对象的变量。那些引用其他对象的变量将指向被复制过的新对象，而不再是原有的那些被引用的对象。换言之，深拷贝把要复制的对象所引用的对象都复制了一遍。</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final关键字可以被家到属性或者变量的声明中，final属性或者变量一旦赋值之后就不允许再发生变化。对于基本类型(primitive type)，比如int、double、long、byte等，一旦被生命为final，我们就可以将其当作常量来看待，但是对于引用类型或者数组(数组在java中也是对象)来说，则不是。虽然一个引用类型被赋值之后无法发生变化，但是我们仍然可以修改被引用的那个对象或者数组中的元素。</p>
+<h3 id="NUll"><a href="#NUll" class="headerlink" title="NUll"></a>NUll</h3><p>空指针：一个对象还没有没有正常初始化，就先调用它的方法。比如 Object obj=null;    obj.toString();  这就会抛出空指针异常 。牢记：使用对象时要先判断是否为空在掉方法。</p>
+<p>预防方案：</p>
+<p>1.从已知的String对象中调用equals()和equalsIgnoreCase()方法，而非未知对象。</p>
+<p>判断字符串时使能确定不为空的对象去调用equals,如：””.equals(str)；</p>
+<p>2.当valueOf()和toString()返回相同的结果时，宁愿使用前者。</p>
+<p>因为调用null对象的<a href="http://javarevisited.blogspot.com/2012/09/override-tostring-method-java-tips-example-code.html" target="_blank" rel="external">toString()</a>会抛出空指针异常，如果我们能够使用<a href="http://javarevisited.blogspot.com/2013/04/difference-between-valueof-and-parseint-method-java.html" target="_blank" rel="external">valueOf()</a>获得相同的值，那宁愿使用<a href="http://javarevisited.blogspot.com/2013/04/difference-between-valueof-and-parseint-method-java.html" target="_blank" rel="external">valueOf()</a>，传递一个null给valueOf()将会返回“null”，尤其是在那些包装类，像Integer、Float、Double和BigDecimal。</p>
+<p>3.使用null安全的方法和库有很多开源库已经为您做了繁重的空指针检查工作。其中最常用的一个的是Apache commons 中的StringUtils。你可以使用StringUtils.isBlank()，isNumeric()，isWhiteSpace()以及其他的工具方法而不用担心空指针异常。</p>
+<p>4.避免从方法中返回空指针，而是返回空collection或者空数组。</p>
+<p>5.使用annotation@NotNull和@Nullable</p>
+<p>6.避免你的代码中不必要的自动包装和自动解包。</p>
+<p>以上参见<a href="http://www.importnew.com/7268.html" target="_blank" rel="external">避免Java应用中NullPointerException的技巧和最佳实践</a></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>replace与replaceALL的区别</p>
+<p>replace : 替换所有匹配到的</p>
+<p>replaceAll：正则替换，replaceFirst：替换第一个匹配到的</p>
+<p>参见<a href="https://my.oschina.net/u/816576/blog/369643" target="_blank" rel="external">java字符串的替换replace、replaceAll、replaceFirst的区别详解</a></p>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p><a href="http://www.58maisui.com/2016/09/04/288/" target="_blank" rel="external">30个java编程技巧（最佳实践）</a></p>
+<h3 id="ka总结博客"><a href="#ka总结博客" class="headerlink" title="ka总结博客"></a>ka总结博客</h3><p><a href="http://blog.csdn.net/shimiso/article/category/605498" target="_blank" rel="external">javaSE</a></p>
+<p><a href="http://blog.csdn.net/hechurui?viewmode=contents" target="_blank" rel="external">java并发包学习</a></p>
+<p><a href="https://wangkang007.gitbooks.io/java/content/" target="_blank" rel="external">java学习笔记</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/05/javaweb-spring/" itemprop="url">
                   javaweb-spring
                 </a>
@@ -1430,130 +1580,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/redis/" itemprop="url">
-                  redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T22:15:46+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/big-data/" itemprop="url" rel="index">
-                    <span itemprop="name">big-data</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/22/redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="roll-in-redis"><a href="#roll-in-redis" class="headerlink" title="roll-in-redis"></a>roll-in-redis</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>推荐看三本书，分别是《redis入门指南（第二版）》，《redis设计与实现》和 《redis实战》</p>
-<p>学习路线参考 <a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html">redis学习路线</a>，huangz大牛写的～</p>
-<p><a href="http://redisdoc.com/index.html">redis命令参考</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1599,7 +1625,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1616,7 +1642,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
