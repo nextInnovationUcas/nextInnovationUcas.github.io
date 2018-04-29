@@ -1334,6 +1334,13 @@
           
             <h1 id="命名实体识别"><a href="#命名实体识别" class="headerlink" title="命名实体识别"></a>命名实体识别</h1><h3 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h3><p>现有的命名实体识别方法，主要包括隐性马科夫链，最大熵，CRF等。</p>
 <p>根据综述：在这4种学习方法中,最大熵模型结构紧凑,具有较好的通用性,主要缺点是训练时间复杂性非常高,有时甚至导致训练代价难以承受,另外由于需要明确的归一化计算,导致开销比较大。而条件随机场为命名实体识别提供了一个特征灵活、全局最优的标注框架,但同时存在收敛速度慢、训练时间长的问题。一般说来,最大熵和支持向量机在正确率上要比隐马尔可夫模型高一些,但是隐马尔可夫模型在训练和识别时的速度要快一些,主要是由于在利用Viterbi算法求解命名实体类别序列的效率较高。隐马尔可夫模型更适用于一些对实时性有要求以及像信息检索这样需要处理大量文本的应用,如短文本命名实体识别。</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>NER工具主要有斯坦福的，哈工大LTP的，等等。</p>
+<h4 id="stanford"><a href="#stanford" class="headerlink" title="stanford"></a>stanford</h4><h5 id="旧的方式"><a href="#旧的方式" class="headerlink" title="旧的方式"></a>旧的方式</h5><p>stanford ner工具在之前是单独的一个工具，要使用它的话，还需要一同下载stanford的分词工具，以及针对中文处理的特别的jar包。有些比较旧的博客写的就是这种方式。</p>
+<h5 id="新的方式"><a href="#新的方式" class="headerlink" title="新的方式"></a>新的方式</h5><p>不过后来斯坦福把所有NLP工具做了个整合，形成一个pipeline的工具，统一集成到了stanford corenlp这一个大的jar里面，其中这个包包含分词，词性标注，NER，lemma，等等。<a href="https://stanfordnlp.github.io/CoreNLP/。要使用哪些功能，可以在property文件里面配置。这种新的方式在进行中文的NER时，还需要下载一个针对中文的包。note:下载起来特别慢，也可以用maven，不过用maven之后还是慢。可能源不太好。" target="_blank" rel="external">https://stanfordnlp.github.io/CoreNLP/。要使用哪些功能，可以在property文件里面配置。这种新的方式在进行中文的NER时，还需要下载一个针对中文的包。note:下载起来特别慢，也可以用maven，不过用maven之后还是慢。可能源不太好。</a></p>
+<p>使用方法非常简单，直接调用其API进行解析即可。例子参见<a href="http://www.cnblogs.com/sonofelice/p/8677001.html" target="_blank" rel="external">使用Standford coreNLP进行中文命名实体识别</a></p>
+<p>源码的分析参见这篇<a href="http://javayhu.me/blog/2016/03/29/head-first-stanford-nlp-1/" target="_blank" rel="external">Head First Stanford NLP (1)</a></p>
+<h4 id="LTP"><a href="#LTP" class="headerlink" title="LTP"></a>LTP</h4><p>LTP是哈工大开发的，在其云平台的官网上只有restful api的调用方式，但实际上有类似jar包的api调用。java版的好像不是很好处理，所以可以选用其他语言的版本，比如python版本<a href="http://pyltp.readthedocs.io/zh_CN/latest/api.html#id21" target="_blank" rel="external">pyltp 0.2.0文档</a>。使用起来也是非常简单，除了pip install pyltp之外，还需要下载模型文件，目前出到了3.4.0(目前是2018-04-29)，这个下载还挺快的。</p>
+<p>总之，就是各个工具都已经实现好了ner工具，只需要拿来用就行，但希望能多关注其内部实现。</p>
 
           
         
