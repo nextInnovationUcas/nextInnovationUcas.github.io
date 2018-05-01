@@ -258,6 +258,248 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/04/nlp-tools/" itemprop="url">
+                  nlp-tools
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-04T15:50:40+08:00" content="2017-01-04">
+              2017-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nlp/" itemprop="url" rel="index">
+                    <span itemprop="name">nlp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/04/nlp-tools/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/04/nlp-tools/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>调研了几个nlp的工具，现总结如下:</p>
+<h3 id="ICTCLAS-NLPIR"><a href="#ICTCLAS-NLPIR" class="headerlink" title="ICTCLAS(NLPIR)"></a>ICTCLAS(NLPIR)</h3><p>ICTCLAS是由中科院计算所张华平历经数年开发的nlp工具，采用C++编写。主要功能包括中文分词、词性标注、命名实体识别、用户词典功能，同时支持GBK编码、UTF8编码、BIG5编码，新增微博分词、新词发现与关键词提取。可以可视化界面操作和API方式调用。</p>
+<h3 id="FudanNLP"><a href="#FudanNLP" class="headerlink" title="FudanNLP"></a>FudanNLP</h3><p><a href="http://code.google.com/p/fudannlp" target="_blank" rel="external">http://code.google.com/p/fudannlp</a></p>
+<p>FudanNLP主要是为中文自然语言处理而开发的工具包，也包含为实现这些任务的机器学习算法和数据集。FudanNLP及其包含数据集使用LGPL3.0许可证。<br>主要功能包括：</p>
+<ul>
+<li>信息检索：文本分类，新闻聚类。</li>
+<li>中文处理：中文分词，词性标注，实体名识别，关键词抽取，依存句法分析，时间短语识别。</li>
+<li>结构化学习：在线学习，层次分类，聚类，精确推理。</li>
+</ul>
+<p>工具采用Java编写，提供了API的访问调用方式。</p>
+<h3 id="THU-NLP"><a href="#THU-NLP" class="headerlink" title="THU NLP"></a>THU NLP</h3><p><a href="https://github.com/thunlp" target="_blank" rel="external">https://github.com/thunlp</a></p>
+<p>清华的nlp工具，包含知识表示学习工具包KG2E，关键词抽取和标签推荐工具包THUTag，中文词法分析工具包THULAC，中文文本分类工具包THUCTC等工具包。</p>
+<h3 id="HIT-LTP"><a href="#HIT-LTP" class="headerlink" title="HIT LTP"></a>HIT LTP</h3><p><a href="http://ir.hit.edu.cn/ltp/" target="_blank" rel="external">http://ir.hit.edu.cn/ltp/</a> </p>
+<p>语言技术平台（Language Technology Platform，LTP）是哈工大社会计算与信息检索研究中心历时十年开发的一整套中文语言处理系统，是集分词、词性标注、命名实体识别，句法分析以及语义角色标注为一体的中文语言分析平台，C++编写。LTP制定了基于XML的语言处理结果表示，并在此基础上提供了一整套自底向上的丰富而且高效的中文语言处理模块（包括词法、句法、语义等6项中文处理核心技术），以及基于动态链接库（Dynamic Link Library, DLL）的应用程序接口，可视化工具，并且能够以网络服务（Web Service）的形式进行使用。</p>
+<p>命名实体识别(NER)<br>1）模型简介<br>NER（Named Entity Recognition, 命名实体识别）把命名实体识别的过程看作一个多分类的问题，使用最大熵模型来完成这一任务。使用开源工具：Maximum Entropy Modeling Toolkit for Python and C++<br>2）使用资源<br>数据来源：1998年1月份人民日报+6月份人民日报前10000句<br>数据规模：1月份数据进行训练、6月份前10000句测试<br>3）性能及效率<br>性能：F1(overall)=92.25%<br>效率：11KB/s</p>
+<h3 id="Stanford-Natural-Language-Processing-Group"><a href="#Stanford-Natural-Language-Processing-Group" class="headerlink" title="Stanford Natural Language Processing Group"></a>Stanford Natural Language Processing Group</h3><h5 id="1-Stanford-CoreNLP"><a href="#1-Stanford-CoreNLP" class="headerlink" title="1. Stanford CoreNLP"></a>1. Stanford CoreNLP</h5><p>采用Java编写的面向英文的处理工具，主要功能包括分词、词性标注、命名实体识别、语法分析等。</p>
+<h5 id="2-Stanford-Word-Segmenter"><a href="#2-Stanford-Word-Segmenter" class="headerlink" title="2. Stanford Word Segmenter"></a>2. Stanford Word Segmenter</h5><p>采用CRF进行分词，也是基于Java开发的，同时可以支持中文和Arabic。</p>
+<h5 id="3-Stanford-POS-Tagger"><a href="#3-Stanford-POS-Tagger" class="headerlink" title="3. Stanford POS Tagger"></a>3. Stanford POS Tagger</h5><p>采用Java编写的面向英文、中文、法语、阿拉伯语、德语的命名实体识别工具。</p>
+<h5 id="4-Stanford-Named-Entity-Recognizer"><a href="#4-Stanford-Named-Entity-Recognizer" class="headerlink" title="4. Stanford Named Entity Recognizer"></a>4. Stanford Named Entity Recognizer</h5><p>采用条件随机场模型的命名实体工具。</p>
+<h5 id="5-Stanford-Parser"><a href="#5-Stanford-Parser" class="headerlink" title="5. Stanford Parser"></a>5. Stanford Parser</h5><p>进行语法分析的工具，支持英文、中文、阿拉伯文和法语。</p>
+<h5 id="6-Stanford-Classifier"><a href="#6-Stanford-Classifier" class="headerlink" title="6. Stanford Classifier"></a>6. Stanford Classifier</h5><p>采用Java编写的分类器。</p>
+<h3 id="HanLP"><a href="#HanLP" class="headerlink" title="HanLP"></a>HanLP</h3><p><a href="https://github.com/hankcs/HanLP" target="_blank" rel="external">https://github.com/hankcs/HanLP</a></p>
+<p><strong>HanLP</strong>是由一系列模型与算法组成的Java工具包，目标是普及自然语言处理在生产环境中的应用。<strong>HanLP</strong>具备功能完善、性能高效、架构清晰、语料时新、可自定义的特点。</p>
+<p><strong>HanLP</strong>提供下列功能：</p>
+<blockquote>
+<ul>
+<li>中文分词<ul>
+<li>最短路分词</li>
+<li>N-最短路分词</li>
+<li>CRF分词</li>
+<li>索引分词</li>
+<li>极速词典分词</li>
+<li>用户自定义词典</li>
+</ul>
+</li>
+<li>词性标注</li>
+<li>命名实体识别<ul>
+<li>中国人名识别</li>
+<li>音译人名识别</li>
+<li>日本人名识别</li>
+<li>地名识别</li>
+<li>实体机构名识别</li>
+</ul>
+</li>
+<li>关键词提取<ul>
+<li>TextRank关键词提取</li>
+</ul>
+</li>
+<li>自动摘要<ul>
+<li>TextRank自动摘要</li>
+</ul>
+</li>
+<li>短语提取<ul>
+<li>基于互信息和左右信息熵的短语提取</li>
+</ul>
+</li>
+<li>拼音转换<ul>
+<li>多音字</li>
+<li>声母</li>
+<li>韵母</li>
+<li>声调</li>
+</ul>
+</li>
+<li>简繁转换<ul>
+<li>繁体中文分词</li>
+<li>简繁分歧词（简体、繁体、臺灣正體、香港繁體）</li>
+</ul>
+</li>
+<li>文本推荐<ul>
+<li>语义推荐</li>
+<li>拼音推荐</li>
+<li>字词推荐</li>
+</ul>
+</li>
+<li>依存句法分析<ul>
+<li>基于神经网络的高性能依存句法分析器</li>
+<li>MaxEnt依存句法分析</li>
+<li>CRF依存句法分析</li>
+</ul>
+</li>
+<li>语料库工具<ul>
+<li>分词语料预处理</li>
+<li>词频词性词典制作</li>
+<li>BiGram统计</li>
+<li>词共现统计</li>
+<li>CoNLL语料预处理</li>
+<li>CoNLL UA/LA/DA评测工具</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>在提供丰富功能的同时，<strong>HanLP</strong>内部模块坚持低耦合、模型坚持惰性加载、服务坚持静态提供、词典坚持明文发布，使用非常方便，同时自带一些语料处理工具，帮助用户训练自己的模型。</p>
+<h3 id="Apache-OpenNLP"><a href="#Apache-OpenNLP" class="headerlink" title="Apache OpenNLP"></a>Apache OpenNLP</h3><p><a href="http://opennlp.apache.org/index.html" target="_blank" rel="external">http://opennlp.apache.org/index.html</a></p>
+<p>Apache的OpenNLP库是自然语言文本的处理基于机器学习的工具包。它支持最常见的NLP任务，如断词，句子切分，部分词性标注，命名实体提取，分块，解析和指代消解。</p>
+<p>官方提供了文档说明以及API，有命令行调用和程序代码使用两种方式。</p>
+<h3 id="LingPipe"><a href="#LingPipe" class="headerlink" title="LingPipe"></a>LingPipe</h3><p><a href="http://alias-i.com/lingpipe/" target="_blank" rel="external">http://alias-i.com/lingpipe/</a></p>
+<p>LingPipe是一个由alias公司开发的自然语言处理的Java开源工具包。LingPipe目前已有很丰富的功能，包括主题分类（Top Classification）、命名实体识别（Named Entity Recognition）、词性标注（Part-of Speech Tagging）、句题检测（Sentence Detection）、查询拼写检查（Query Spell Checking）、兴趣短语检测（Interseting Phrase Detection）、聚类（Clustering）、字符语言建模（Character Language Modeling）、医学文献下载/解析/索引（MEDLINE Download, Parsing and Indexing）、数据库文本挖掘（Database Text Mining）、中文分词（Chinese Word Segmentation）、情感分析（Sentiment Analysis）、语言辨别（Language Identification）等API。</p>
+<h2 id="分词工具"><a href="#分词工具" class="headerlink" title="分词工具"></a>分词工具</h2><h3 id="1-IKAnalyzer"><a href="#1-IKAnalyzer" class="headerlink" title="1.IKAnalyzer"></a>1.IKAnalyzer</h3><p>IK Analyzer是一个开源的，基于Java语言开发的轻量级的中文分词工具包。IK支持细粒度和智能分词两种切分模式，支持英文字母、数字、中文词汇等分词处理，兼容韩文、日文字符。可以支持用户自定义的词典，通过配置IKAnalyzer.cfg.xml文件来实现，可以配置自定义的扩展词典和停用词典。</p>
+<p>特点：IK简单、易于扩展，分词结果较好并且采用Java编写。</p>
+<h3 id="2-结巴"><a href="#2-结巴" class="headerlink" title="2.结巴"></a>2.结巴</h3><p> 最好的python中文分词组件</p>
+<ul>
+<li>支持三种分词模式：<ul>
+<li>精确模式，试图将句子最精确地切开，适合文本分析；</li>
+<li>全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；</li>
+<li>搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。</li>
+</ul>
+</li>
+<li>支持繁体分词</li>
+<li>支持自定义词典</li>
+</ul>
+<h3 id="3-paoding"><a href="#3-paoding" class="headerlink" title="3.paoding"></a>3.paoding</h3><p>庖丁中文分词库是一个使用Java开发的，可结合到Lucene应用中的，为互联网、企业内部网使用的中文搜索引擎分词组件。</p>
+<p>中文分词具有极 <em>高效率</em> 和 <em>高扩展性</em> 。引入隐喻，采用完全的面向对象设计，构思先进。</p>
+<p>高效率：在PIII 1G内存个人机器上，<strong>1秒</strong> 可准确分词 <strong>100万</strong> 汉字。</p>
+<p>采用基于 <em>不限制个数</em> 的词典文件对文章进行有效切分，使能够将对词汇分类定义。</p>
+<p>能够对未知的词汇进行合理解析</p>
+<h3 id="4-mmseg4j"><a href="#4-mmseg4j" class="headerlink" title="4.mmseg4j"></a>4.mmseg4j</h3><p>mmseg4j core 使用 Chih-Hao Tsai 的 MMSeg 算法(<a href="http://technology.chtsai.org/mmseg/" target="_blank" rel="external">http://technology.chtsai.org/mmseg/</a> )实现的中文分词器。</p>
+<p>MMSeg 算法有两种分词方法：Simple和Complex，都是基于正向最大匹配。Complex 加了四个规则过虑。mmseg4j 已经实现了这两种分词算法。</p>
+<p>词语的正确识别率达到了 98.41%。</p>
+<p>附:关于中文分词器性能比较的一篇文章(2014.05.27更新)<br><a href="http://www.cnblogs.com/wgp13x/p/3748764.html" target="_blank" rel="external">http://www.cnblogs.com/wgp13x/p/3748764.html</a></p>
+<h2 id="算法开发包"><a href="#算法开发包" class="headerlink" title="算法开发包"></a>算法开发包</h2><h3 id="1-crf项目"><a href="#1-crf项目" class="headerlink" title="1.crf项目"></a>1.crf项目</h3><p>crf++ </p>
+<h3 id="2-svm"><a href="#2-svm" class="headerlink" title="2.svm"></a>2.svm</h3><p>svm-light 和 lib svm</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://blog.csdn.net/cuixianpeng/article/details/16288307" target="_blank" rel="external">自然语言处理（NLP）常用开源工具总结—-不定期更新</a></p>
+<p><a href="http://blog.intelligencecomputing.io/nlp/12125/repost-hit-scir-ltp%E6%BA%90%E4%BB%A3%E7%A0%81" target="_blank" rel="external">HIT-SCIR LTP源代码</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/15/mysql/" itemprop="url">
                   mysql
                 </a>
@@ -1450,292 +1692,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/24/char-encoding/" itemprop="url">
-                  字符编码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T22:22:15+08:00" content="2016-10-24">
-              2016-10-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/24/char-encoding/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/char-encoding/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符编码问题"><a href="#字符编码问题" class="headerlink" title="字符编码问题"></a>字符编码问题</h1><p>java：</p>
-<p>1.<a href="https://www.oschina.net/question/54100_25358" target="_blank" rel="external">java使用jchardet检测文本文件(字节流)的编码方式</a> wings里面使用的就是这个。</p>
-<p>2.<a href="http://geeklu.com/2009/12/dive-into-the-charset-of-java/" target="_blank" rel="external">深度剖析Java的字符编码</a></p>
-<p>3.<a href="http://www.cnblogs.com/yejg1212/p/3402322.html" target="_blank" rel="external">java自动探测文件的字符编码</a></p>
-<p>4.<a href="http://www.cnblogs.com/amunote/p/4178472.html" target="_blank" rel="external">借助JCharDet获取文件字符集</a></p>
-<h3 id="编码教程"><a href="#编码教程" class="headerlink" title="编码教程"></a>编码教程</h3><h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><ul>
-<li><p>ASCII是最基本的，最早的，用的最广泛的，字符编码</p>
-</li>
-<li><ul>
-<li>但是只支持普通的基本字符，即常见英文字母，数字，下划线等</li>
-</ul>
-</li>
-<li><p>简体中文的编码</p>
-</li>
-<li><ul>
-<li>发展路径以此是：GB2312 &lt; GBK &lt; GB18030</li>
-<li>对应的所包含的字符个数，也是以此增加</li>
-</ul>
-</li>
-<li><p>繁体中文的编码</p>
-</li>
-<li><ul>
-<li>最常见的是BIG5</li>
-</ul>
-</li>
-<li><p>西欧字符编码</p>
-</li>
-<li><ul>
-<li><p>最常用的就是ISO8895-1</p>
-</li>
-<li><ul>
-<li>ISO8859是从1到15，是一系列的编码</li>
-<li>ISO8859-1是属于ISO8859系列编码其下的，但是用的最广泛的的</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>统一了世界上所有字符的Unicode</p>
-</li>
-<li><ul>
-<li><p>Unicode，可以叫做大一统的编码，包含了世界上所有的字符</p>
-</li>
-<li><p>但是Unicode只是字符编码集</p>
-</li>
-<li><ul>
-<li>字符（编码）集，只表示包含了哪些字符</li>
-<li>字符编码，表示了用何种方式去表示此字符集</li>
-<li>Unicode这个字符集，可以有多种字符编码表示出来，最常见的包括UTF-8，UTF-16，UTF-32等等</li>
-<li>最最常用的是UTF-8</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>网页中的编码，一般是通过charset指定的；很多中文网页，charset用的GB2312；但是部分网页，所声明的编码和实际编码不同：虽然charset指定的是GB2312，但是实际上用的是（包含了更多字符的）GBK；导致的情况是：如果你按照GB2312去解码，由于部分字符是属于GBK的，而非GB2312，则会出现解码失败。解决办法是：尝试用GBK，或包含更多字符的GB18030去解码，则一般都可以正常解码的。</p>
-<p>参见<a href="http://www.crifan.com/character_encoding_charset_simpile_tutorial/" target="_blank" rel="external">字符编码简明教程</a></p>
-<h4 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h4><p>当你通过浏览器，打开某个网站，即某个url地址的时候，你所能正常看到网页的内容，各种文字，都可以正常显示，且没有显示乱码。此过程，涉及到，浏览器帮你正确解析HTML源码。</p>
-<p>流程如下所示：</p>
-<p>1.浏览器访问对应的url地址，并获取对应的html（或者，以及，其他的css，javascript等）网页源码</p>
-<p>2.浏览器识别解析HTML源码内容</p>
-<p>其中包含了，解析html的头部（header），找到对应的charset=xxx这部分的内容，然后把根据xxx所指示的字符编码类型，去解码对应的html内容，显示对应的文字，以保证不是乱码，可以正确的显示文字信息；</p>
-<blockquote>
-<p>所以爬虫在抓取了网页的源代码后，也要跟浏览器一样去对网页进行解码。</p>
-</blockquote>
-<p>注：有个别的html网页本身做的不规范，导致本身自己声明的是某种编码类型，但是实际上，并不全是该类型的编码，导致你去按照其所声明的编码去解析，有时候仍会出现乱码。比如，其html中明明写的是charset=gb2312，但是实际上，其部分字符是属于GBK的，导致你按照gb2312去解码，有些字符仍会是乱码，而安装gbk去解码，就全都正常显示了，没有乱码了。即实际上应该是charset=gbk。</p>
-<h3 id="python编码问题"><a href="#python编码问题" class="headerlink" title="python编码问题"></a>python编码问题</h3><blockquote>
-<p>乱码问题是我原本用的某种编码方式，如果要进行解码，也应该要用对应的解码格式去解码，或者用兼容性更大的，比如gb2312，也可以用gbk或gb18030去解码，但不能用utf-8去解码，虽然他能表达的编码更多。</p>
-<p>GB2312，GBK，GB18030，编码技术上都是兼容的。</p>
-</blockquote>
-<p>参见写的很不错的这篇</p>
-<p><a href="http://www.crifan.com/eclipse_pydev_console_messy_char_for_console_is_utf8/" target="_blank" rel="external">python解析网页源代码返回乱码问题</a></p>
-<p>抓取的网页是gb2312的，然后直接输出到console里面是乱码，原因是console采用的是utf-8编码的，解决方案</p>
-<p>1.run Configuration，修改console的编码，从UTF-8改为GBK（或GB2312，或GB18030)。</p>
-<p>2.修改代码获得GB2312的html后，去decode为Unicode，然后直接输出Unicode字符串到UTF-8的Eclipse+PyDev的console中，</p>
-<p>则比如也是可以正常显示无乱码的。(内部会自动将输出的Unicode转换为当前console的UTF-8编码的字符串的)。</p>
-<p>3.基于上面那种方式，(不改Eclipse+PyDev的console的字符编码，仍保持旧的UTF-8的配置)，但是在转换为Unicode后，再故意转为输出目标（此处的Eclipse+PyDev的console）的编码，即UTF-8。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">uniCodehtml = html.decode(&quot;GBK&quot;) //此处只是转化为了unicode，并不是utf-8</div><div class="line">utf8html = uniCodehtml.encode(&quot;UTF-8&quot;)</div><div class="line">print utf8html</div></pre></td></tr></table></figure>
-<h5 id="关于beautifulsoup的总结"><a href="#关于beautifulsoup的总结" class="headerlink" title="关于beautifulsoup的总结"></a>关于beautifulsoup的总结</h5><p>以后用python的Beautiful Soup去解析中文网页的话：</p>
-<p>1.如果本身网页的编码自己标称的，和本身其中文字符所用编码完全符合的话，即没有部分字符超出了其所标称的编码，比如标称为GBK，网页所有的内容，都的确是GBK编码，没有超出的其他字符（比如属于GB18030的编码），那么，是可以通过：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">page = urllib2.urlopen(url)</div><div class="line">soup = BeautifulSoup(page) #此处不需要传递参数，BeautifulSoup也完全可以自己去解析网页内容所使用的编码</div><div class="line">print soup.originalEncoding</div></pre></td></tr></table></figure>
-<p>而得到真实的网页的编码的。</p>
-<p> 2.讨论中文乱码问题之前，先解释关于中文字符编码：</p>
-<p>时间上的发展先后是，GB2312，GBK，GB18030，编码技术上都是兼容的。</p>
-<p>从所包含的中文字符个数来说，算是：GB2312 &lt; GBK &lt; GB18030，也因此，才可能会出现上面所说的，标称GB2312的，部分字符用到了GBK里面的，或者是标称GBK的，部分字符用到了GB18030里面的，所以被人家编码工具解析错误，退回认为编码是最基本的windows-2152了。</p>
-<p>所以：</p>
-<p>（1）如果是网页标称为GB2312，但是部分字符用到了GBK的了，那么解决办法就是在调用BeautifulSoup，传递参数fromEncoding=”GBK”</p>
-<p>（2）如果是网页标称为GBK，但是部分字符用到了GB18030的了，那么解决办法就是在调用BeautifulSoup，传递参数fromEncoding=”GB18030”。</p>
-<p>（3）实际上由于GB18030从字符数上都涵盖了GB2312和GBK，所以如果是上述两种任意情况，即只要是中文字符出现乱码，不管是标称GB2312中用到了GBK，还是标称GBK中用到了GB18030，那么都直接传递GB18030，也是可以的，即：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">soup = BeautifulSoup(page, fromEncoding=&quot;GB18030&quot;)</div></pre></td></tr></table></figure>
-<p>参见<a href="http://powerelite.blog.163.com/blog/static/429658912014394820777/" target="_blank" rel="external">python中文字符乱码（GB2312，GBK，GB18030相关的问题）</a></p>
-<p>可能遇到的坑: beautifulsoup在输出文本时默认以UTF-8的方式编码，无论原文是否以它进行编码的.即即使你用了正确的编码格式，如gb18030，但是beautifulsoup默认是使用utf-8输出，所以依旧乱码。</p>
-<p>参见<a href="http://www.jianshu.com/p/69401b84419e" target="_blank" rel="external">requests和BeautifulSoup中文编码转换心得</a></p>
-<h5 id="chardet代码"><a href="#chardet代码" class="headerlink" title="chardet代码"></a>chardet代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import urllib</div><div class="line">&gt;&gt;&gt; rawdata = urllib.urlopen(&apos;http://www.google.cn/&apos;).read()</div><div class="line">&gt;&gt;&gt; import chardet</div><div class="line">&gt;&gt;&gt; chardet.detect(rawdata)</div><div class="line">&#123;&apos;confidence&apos;: 0.98999999999999999, &apos;encoding&apos;: &apos;GB2312&apos;&#125;</div></pre></td></tr></table></figure>
-<h5 id="encode-amp-decode"><a href="#encode-amp-decode" class="headerlink" title="encode &amp; decode"></a>encode &amp; decode</h5><blockquote>
-<p>字符串在Python内部的表示是unicode编码，因此，在做编码转换时，通常需要以unicode作为中间编码，即先将其他编码的字符串解码（decode）成unicode，再从unicode编码（encode）成另一种编码。</p>
-</blockquote>
-<p>decode的作用是将其他编码的字符串转换成unicode编码，如str1.decode(‘gb2312’)，表示将gb2312编码的字符串str1转换成unicode编码。</p>
-<p>encode的作用是将unicode编码转换成其他编码的字符串，如str2.encode(‘gb2312’)，表示将unicode编码的字符串str2转换成gb2312编码。</p>
-<p>因此，转码的时候一定要先搞明白，字符串str是什么编码，然后decode成unicode，然后再encode成其他编码。</p>
-<blockquote>
-<p>代码中字符串的默认编码与代码文件本身的编码一致。</p>
-</blockquote>
-<p>如：s=’中文’。如果是在utf8的文件中，该字符串就是utf8编码，如果是在gb2312的文件中，则其编码为gb2312。这种情况下，要进行编码转换，都需 要先用decode方法将其转换成unicode编码，再使用encode方法将其转换成其他编码。</p>
-<p>通常，在没有指定特定的编码方式时，都是使用的系统默 认编码创建的代码文件。如果字符串是这样定义：s=u’中文’，则该字符串的编码就被指定为unicode了，即python的内部编码，而与代码文件本身的编码无关。因此，对于这种情况做编码转换，只需要直接使用encode方法将其转换成指定编码即可。</p>
-<p>如果一个字符串已经是unicode了，再进行解码则将出错，因此通常要对其编码方式是否为unicode进行判断：</p>
-<p>isinstance(s, unicode) #用来判断是否为unicode，用非unicode编码形式的str来encode会报错</p>
-<p>如何获得系统的默认编码？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding=utf-8</div><div class="line">import sys</div><div class="line">print sys.getdefaultencoding()</div></pre></td></tr></table></figure>
-<p>该段程序在英文WindowsXP上输出为：ascii。</p>
-<p>在某些IDE中，字符串的输出总是出现乱码，甚至错误，其实是由于IDE的结果输出控制台自身不能显示字符串的编码，而不是程序本身的问题。</p>
-<p>如在UliPad中运行如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s=u&quot;中文&quot;</div><div class="line">print s</div></pre></td></tr></table></figure>
-<p>会提示：UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-1: ordinal not in range(128)。这是因为UliPad在英文WindowsXP上的控制台信息输出窗口是按照ascii编码输出的（英文系统的默认编码是 ascii），而上面代码中的字符串是Unicode编码的，所以输出时产生了错误。</p>
-<p>将最后一句改为：print s.encode(‘gb2312’)，则能正确输出“中文”两个字。</p>
-<p>若最后一句改为：print s.encode(‘utf8’)，则输出：\xe4\xb8\xad\xe6\x96\x87，这是控制台信息输出窗口按照ascii编码输出utf8编码的字符串的结果。</p>
-<p>unicode(str,’gb2312’)与str.decode(‘gb2312’)是一样的，都是将gb2312编码的str转为unicode编码。</p>
-<p>使用str.<strong>class</strong>可以查看str的编码形式。</p>
-<p>特别推荐这篇:</p>
-<p><a href="http://blog.csdn.net/waleking/article/details/7600328" target="_blank" rel="external">python新手必碰到的问题—encode与decode，中文乱码</a></p>
-<p>2.</p>
-<p>处理流程，可以这么使用，把python看做一个水池，一个入口，一个出口</p>
-<p>入口处，全部转成unicode, 池里全部使用unicode处理，出口处，再转成目标编码(当然，有例外，处理逻辑中要用到具体编码的情况)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">读文件</div><div class="line"></div><div class="line">外部输入编码，decode转成unicode</div><div class="line"></div><div class="line">处理(内部编码，统一unicode)</div><div class="line"></div><div class="line">encode转成需要的目标编码</div><div class="line"></div><div class="line">写到目标输出(文件或控制台)</div></pre></td></tr></table></figure>
-<p>IDE和控制台报错，原因是print时，编码和IDE自身编码不一致导致</p>
-<p>输出时将编码转换成一致的就可以正常输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; print u&apos;中文&apos;.encode(&apos;gbk&apos;)</div><div class="line">����</div><div class="line">&gt;&gt;&gt; print u&apos;中文&apos;.encode(&apos;utf-8&apos;)</div><div class="line">中文</div></pre></td></tr></table></figure>
-<p>处理顺序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. Decode early</div><div class="line">2. Unicode everywhere</div><div class="line">3. Encode later</div></pre></td></tr></table></figure>
-<p>引用自<a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" target="_blank" rel="external">PYTHON-进阶-编码处理小结</a></p>
-<h5 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h5><p>在python中，使用unicode类型作为编码的基础类型，编解码要以其为中间形式过渡，即进行<code>str</code>和<code>unicode</code>之间的转换。<br>解码然后再编码的过程，即<code>str</code>-&gt;<code>unicode</code>-&gt;<code>str</code>的过程。中间得到的叫做unicode对象。</p>
-<p>这里需要强调的是unicode是一种字符编码方法，是 “与存储无关的表示”，而utf8是一种以unicode进行编码的计算机二进制表示，或者说传输规范。gbk，gb2312，gb18030, utf8等属于不同的字符集，转换编码就是在它们中的任意两者间进行。</p>
-<p>具体的转换，比如直接将一个字符串encode成另一种字符集表示，注意此处是字符串，即<code>type</code>为<code>str</code>的，引号前没有加<code>u</code>前缀的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># coding: utf8</div><div class="line">s=&apos;美丽&apos;</div><div class="line">s.encode(&apos;gbk&apos;)</div></pre></td></tr></table></figure>
-<p>则实际上会先以默认编码进行<code>decode</code>，即<code>decode(&#39;ascii&#39;)</code>(假设系统默认的是)，开头声明了utf8，<code>s</code>的编码就是<code>utf8</code>，ascii解码不了<code>utf8</code>的字符会报错。那就改默认编码，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># coding: utf8</div><div class="line">import sys</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(&apos;utf-8&apos;)</div><div class="line"></div><div class="line">s=&apos;美丽&apos;</div><div class="line">s.encode(&apos;gbk&apos;)</div></pre></td></tr></table></figure>
-<p>这样把默认编码改成utf8，<code>decode</code>的时候就以默认编码<strong>utf8</strong>来进行，能够成功运行.</p>
-<p>或者<code>decode</code>时指定类型，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># coding: utf8</div><div class="line">import sys</div><div class="line"></div><div class="line">s=&apos;美丽&apos;</div><div class="line">s.decode(&apos;utf8&apos;).encode(&apos;gbk&apos;)</div></pre></td></tr></table></figure>
-<p>对于<code>type</code>为<code>unicode</code>的，即加了<code>u</code>前缀的字符串，如上所说，直接<code>encode</code>即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># coding: utf8</div><div class="line">import sys</div><div class="line"></div><div class="line">s = u&apos;美丽&apos;</div><div class="line">s.encode(&apos;gbk&apos;)</div></pre></td></tr></table></figure>
-<h3 id="java编码"><a href="#java编码" class="headerlink" title="java编码"></a>java编码</h3><p>1.</p>
-<p>JVM里面的任何字符串资源都是Unicode，就是说，任何String类型的数据都是Unicode编码。没有例外。既然只有一种编码，那么，我们可以这么说，JVM里面的String是不带编码的。String相当于 char[]。<br>JVM里面的 byte[] 数据是带编码的。比如，Big5，GBK，GB2312，UTF-8之类的。<br>一个GBK编码的byte[] 转换成 String，其实就是从GBK编码向Unicode编码转换。<br>一个String转换成一个Big5编码的byte[]，其实就是从Unicode编码向Big5编码转换。所以，Unicode是所有编码转换的中间介质。所有的编码都有一个转换器可以转换到Unicode，而Unicode也可以转换到其他所有的编码。这样构成了一个总线结构。</p>
-<p>最容易出问题的地方是浏览器和服务器JVM之间.我们把浏览器编码叫做 Browser_Charset，把JVM编码叫做JVM_Charset（通常等于服务器系统编码）。<br>当浏览器的数据过来的时候，是一个带有Browser_Charset的byte[]。<br>如果用户处理程序需要一个String类型的数据，那么JVM会好心好意地把这个byte[]转换成String。使用的转换器是 JVM_Charset -&gt; Unicode。<br>注意，如果这个时候，Browser_Charset 和 JVM_Charset并不相等。那么，这个自动转换是错误的。<br>为了弥补这个错误。我们需要做两步工作。<br>(1) Unicode -&gt; JVM_Charset，把这个String 转换回到原来的 byte[]。<br>(2) Browser_Charset -&gt; Unicode，把这个还原的byte[]转换成 String。</p>
-<p>这个效果，和直接从HTTP Request取得byte[]，然后执行 (2) Browser_Charset -&gt; Unicode 的效果是一样的。如果在Request里面设置了CharacterEncoding，那么POST Data参数就不需要自己手工转换了，web server的自动转换就是正确的。URL的参数编码还涉及到URL编码，需要考虑的问题多一些，没有这么简单。</p>
-<p>JVM把数据发到浏览器的时候。也需要考虑编码问题。可以在Response里面设置。另外，HTML Meta Header里面也可以设置编码，提醒Browser选择正确编码。</p>
-<p>2.</p>
-<h5 id="JAVA中字符的表达"><a href="#JAVA中字符的表达" class="headerlink" title="JAVA中字符的表达"></a>JAVA中字符的表达</h5><p>JAVA 中有char、byte、String这几个概念。char 指的是一个UNICODE字符，为16位的整数。byte 是字节，字符串在网络传输或存储前需要转换为byte数组。在从网络接收或从存储设备读取后需要将byte数组转换成String。String是字符串，可以看成是由char组成的数组。String 和 char 为内存形式，byte是网络传输或存储的序列化形式。</p>
-<h5 id="编码方式的简介"><a href="#编码方式的简介" class="headerlink" title="编码方式的简介"></a>编码方式的简介</h5><p>String序列化成byte数组或反序列化时需要选择正确的编码方式。如果编码方式不正确，就会得到一些0x3F的值。</p>
-<h5 id="J2SE中相关的函数"><a href="#J2SE中相关的函数" class="headerlink" title="J2SE中相关的函数"></a>J2SE中相关的函数</h5><blockquote>
-<p>String是unicode，所以new String()得到的是unicode，str.getBytes()得到的是带编码格式的bytes。两种bytes互相转换需要通过unicode。然后，对于console里面的输出，他跟输出到文本是一样的，console和文件一样，且关联系统的编码。console里面的编码如果与之前编码的不一致的话，就会出现乱码现象。</p>
-</blockquote>
-<p>String str =”英”;<br>//取得GB2312编码的字节<br>byte[] bytesGB2312 = str.getBytes(“GB2312”);<br>//取得平台缺省编码的字节(solaris为ISO8859_1,windows为GB2312)<br>byte[] bytesDefault = str.getBytes();<br>//用指定的编码将字节转换成字符串<br>String newStrGB = new String(bytesGB2312, “GB2312”);</p>
-<p>//用平台缺省的编码将字节转换成字符串(solaris为ISO8859_1,windows为GB2312)<br>String newStrDefault = new String(bytesDefault);<br>//用指定的编码从字节流里面读取字符<br>InputStream in = xxx;<br>InputStreamReader reader = InputStreamReader( in, “GB2312”);<br>char aChar = reader.read();</p>
-<h5 id="JSP、数据库的编码"><a href="#JSP、数据库的编码" class="headerlink" title="JSP、数据库的编码"></a>JSP、数据库的编码</h5><p>1.JSP中的编码<br>(1) 静态声明:<br>CHARSET有两个作用：<br>JSP文件的编码方式：在读取JSP文件、生成JAVA类时，源JSP文件中汉字的编码<br>JSP输出流的编码方式：在执行JSP时，往response流里面写入数据的编码方式<br>(2) 动态改变:在往response流里面写数据前可以调用response.setContentType()，设定正确的编码类型。<br>(3) 在TOMCAT中，由Request.getParameter() 得到的参数，编码方式都是ISO8859_1。所以如果在浏览器输入框内输入一个汉字“英”，在服务器端就得到一个ISO8859_1编码的（0x00,0xD3,0x00,0xA2）。所以通常在接收参数时转码：<br>String wrongStr = response.getParameter(“name”);<br>String correctStr = new String(wrongStr.getBytes(“ISO8859_1”),”GB2312”);<br>在最新的SERVLET规范里面，也可以在获取参数之前执行如下代码：<br>request.setCharacterEncoding(“GB2312”);</p>
-<p>2.数据库的编码</p>
-<p>(1) 数据库使用UTF-16<br>如果String中是UNICODE字符，写入读出时不需要转码<br>(2) 数据库使用ISO8859_1<br>如果String中是UNICODE字符，写入读出时需要转码<br>写入：String newStr = new String(oldStr.getByte(“GB2312”), “ISO8859_1”);<br>读出：String newStr = new String(oldStr.getByte(“ISO8859_1”),”GB2312”);</p>
-<p>3.</p>
-<p>String newStr = new String(oldStr.getBytes(), “UTF-8”);</p>
-<p>java中的String类是按照unicode进行编码的，当使用String(byte[] bytes, String encoding)构造字符串时，encoding所指的是bytes中的数据是按照那种方式编码的，而不是最后产生的String是什么编码方式，换句话说，是让系统把bytes中的数据由encoding编码方式转换成unicode编码。如果不指明，bytes的编码方式将由jdk根据操作系统决定。</p>
-<p>当我们从文件中读数据时，最好使用InputStream方式，然后采用String(byte[] bytes, String encoding)指明文件的编码方式。不要使用Reader方式，因为Reader方式会自动根据jdk指明的编码方式把文件内容转换成unicode 编码。</p>
-<p>当我们从数据库中读文本数据时，采用ResultSet.getBytes()方法取得字节数组，同样采用带编码方式的字符串构造方法即可。</p>
-<p>ResultSet rs;<br>bytep[] bytes = rs.getBytes();<br>String str = new String(bytes, “gb2312”);</p>
-<p>不要采取下面的步骤。</p>
-<p>ResultSet rs;<br>String str = rs.getString();<br>str = new String(str.getBytes(“iso8859-1”), “gb2312”);</p>
-<p>这种编码转换方式效率底。之所以这么做的原因是，ResultSet在getString()方法执行时，默认数据库里的数据编码方式为 iso8859-1。系统会把数据依照iso8859-1的编码方式转换成unicode。使用str.getBytes(“iso8859-1”)把数据还原，然后利用new String(bytes, “gb2312”)把数据从gb2312转换成unicode，中间多了好多步骤。</p>
-<p>从HttpRequest中读参数时，利用reqeust.setCharacterEncoding()方法设置编码方式，读出的内容就是正确的了。</p>
-<p>以上参见<a href="http://blog.sina.com.cn/s/blog_000598fc0100tvlz.html" target="_blank" rel="external">JAVA 字符串编码总结</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1781,7 +1737,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -258,6 +258,228 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/09/elasticsearch/" itemprop="url">
+                  elasticsearch
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T14:20:47+08:00" content="2016-10-09">
+              2016-10-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index">
+                    <span itemprop="name">big-data</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/09/elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/elasticsearch/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><p>官网地址：<a href="https://www.elastic.co/learn" target="_blank" rel="external">https://www.elastic.co/learn</a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>安装elasticsearch，可视化管理工具marvel，kibana。</p>
+<p>在本机，都安装在cellar中，目前插件只安装了marvel和kibana，ik,head。</p>
+<p><a href="http://www.cnblogs.com/hanyinglong/p/5409003.html" target="_blank" rel="external">Elasticsearch初步使用(安装、Head配置、分词器配置)</a></p>
+<p>安装head:</p>
+<p><code>bin/plugin install mobz/elasticsearch-head</code></p>
+<p>进入head:<a href="http://localhost:9200/_plugin/head/" target="_blank" rel="external">http://localhost:9200/_plugin/head/</a> </p>
+<p>查看插件的url可以参照上面。推荐使用head，好用多了。</p>
+<blockquote>
+<p>启动ElasticSearch很简单，执行安装目录下bin/elasticsearch即可；ElasticSearch 1.0.0的启动机制有一些变化，默认在前台运行，-d参数表示在后台运行；另外还提供-p参数，后接文件名，保存当前ElasticSearch进程的pid，方便关闭进程；使用ps aux|grep elasticsearch可以查看是否启动 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/elasticsearch -d -p /tmp/es.pid</div><div class="line">$ kill `cat /tmp/es.pid`</div></pre></td></tr></table></figure>
+<p>servicewrapper插件不支持2.x的版本，所以不使用其来控制es。</p>
+<p>关闭es</p>
+<p>前台运行:可以通过”CTRL+C”组合键来停止运行<br>后台运行，可以通过”kill -9 进程号”停止.也可以通过REST API接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -XPOST http://主机IP：9200/_cluster/nodes/_shutdown</div></pre></td></tr></table></figure>
+<p>来关闭整个集群，通过:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -XPOST http://主机IP：9200/_cluster/nodes/节点标示符(如es-node1)/_shutdown</div></pre></td></tr></table></figure>
+<p>来关闭单个节点。也可以通过head来关闭。</p>
+<p>注：shutdown接口已经被弃用。</p>
+<p><a href="http://www.cnblogs.com/ae6623/p/5110927.html" target="_blank" rel="external">ElasticSearch关闭重启命令</a></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>可以参见<a href="http://blog.csdn.net/sinat_28224453/article/details/51134978。" target="_blank" rel="external">http://blog.csdn.net/sinat_28224453/article/details/51134978。</a></p>
+<p><a href="http://www.qixing318.com/article/elasticsearch-distributed-search-engine-used-in-the-installation-of-the-linux-platform.html" target="_blank" rel="external">http://www.qixing318.com/article/elasticsearch-distributed-search-engine-used-in-the-installation-of-the-linux-platform.html</a></p>
+<p><a href="http://bigbo.github.io/pages/2015/04/10/elasticsearch_config/" target="_blank" rel="external">elasticsearch配置小记</a></p>
+<h3 id="2-分词"><a href="#2-分词" class="headerlink" title="2.分词"></a>2.分词</h3><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">ik git地址</a></p>
+<p>如果版本对不上，可以改ik的pom文件的es版本号。</p>
+<p>分词教程：</p>
+<p><a href="http://zhaoyanblog.com/archives/495.html" target="_blank" rel="external">elasticsearch的实现全文检索</a></p>
+<p><a href="http://keenwon.com/1404.html" target="_blank" rel="external">为Elasticsearch添加中文分词，对比分词器效果</a></p>
+<p><a href="http://www.cnblogs.com/xing901022/p/5235993.html" target="_blank" rel="external">Elasticsearch——分词器对String的作用</a></p>
+<blockquote>
+<h3 id="field-must-be-set-when-search-analyzer-is-set"><a href="#field-must-be-set-when-search-analyzer-is-set" class="headerlink" title="field must be set when search_analyzer is set"></a>field must be set when search_analyzer is set</h3><ul>
+<li>请求参数：<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”indexAnalyzer”:”ik”,”searchAnalyzer”:”ik”}}}}’</li>
+<li>问题日志：<br>{“error”:{“root_cause”:[{“type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”}],”type”:”mapper_parsing_exception”,”reason”:”analyzer on field [name] must be set when search_analyzer is set”},”status”:400}</li>
+<li>问题解决：参考旧版本教程的坑，V2.3.4的参数改了，应为<br>curl -XPUT <a href="http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty" target="_blank" rel="external">http://es1.es.com:9200/cloudx_web_v3/T_EVENT_LOG/_mapping?pretty</a>-d ‘{“T_EVENT_LOG”:{“properties”:{“name”:{“type”:”string”,”analyzer”:”ik”,”search_analyzer”:”ik”}}}}’</li>
+</ul>
+</blockquote>
+<p>Mapping语法：</p>
+<blockquote>
+<p>curl -XPUT localhost:9200/索引名称/类型名称/_mapping?pretty -d ‘{“类型名称”:{“properties”:{“字段名称”:{“type”:”字段类型”,”store”:”是否存储”,”index”:”索引方式、是否分析”}}}}’</p>
+</blockquote>
+<p>分词的配置，推荐在创建mapping的时候，对index analyzer进行ik_max_word,对查询则ik_smart。参见<a href="http://blog.csdn.net/molong1208/article/details/50557253" target="_blank" rel="external">Elasticsearch中使用ik分词器 java api</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">index:</div><div class="line">  analysis:                   </div><div class="line">    analyzer:      </div><div class="line">      ik:</div><div class="line">          alias: [ik_analyzer]</div><div class="line">          type: ik</div><div class="line">      ik_max_word:</div><div class="line">          type: ik</div><div class="line">          use_smart: false</div><div class="line">      ik_smart:</div><div class="line">          type: ik</div><div class="line">          use_smart: true</div><div class="line">index.analysis.analyzer.default.type: ik</div></pre></td></tr></table></figure>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><h4 id="elasticsearch-mapper-attachments"><a href="#elasticsearch-mapper-attachments" class="headerlink" title="elasticsearch-mapper-attachments"></a>elasticsearch-mapper-attachments</h4><p><a href="https://github.com/elastic/elasticsearch-mapper-attachments" target="_blank" rel="external">https://github.com/elastic/elasticsearch-mapper-attachments</a></p>
+<p><a href="http://elasticsearch.cn/article/49" target="_blank" rel="external">通过elasticsearch-mapper attachment插件实现文件建立索引</a></p>
+<p><a href="http://www.voidcn.com/blog/jingkyks/article/p-3255066.html" target="_blank" rel="external">elasticsearch索引文档-attachment</a></p>
+<h4 id="tika"><a href="#tika" class="headerlink" title="tika"></a>tika</h4><p><a href="http://blog.csdn.net/wxwzy738/article/details/8882391" target="_blank" rel="external">Tika文本提取工具的使用(word、pdf、excel等)</a></p>
+<p> <a href="http://blog.csdn.net/pelick/article/details/8520352" target="_blank" rel="external">Apache Tika:通用的内容分析工具</a></p>
+<p><a href="https://yq.aliyun.com/articles/28250" target="_blank" rel="external">【NLP】Tika 文本预处理：抽取各种格式文件内容</a></p>
+<p><a href="https://wizardforcel.gitbooks.io/tutorialspoint-java/content/tika/119.html" target="_blank" rel="external">Tika教程</a></p>
+<h4 id="基于内容的推荐"><a href="#基于内容的推荐" class="headerlink" title="基于内容的推荐"></a>基于内容的推荐</h4><p>more like this 关键字段</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="1-在java中使用elasticSearch"><a href="#1-在java中使用elasticSearch" class="headerlink" title="1)在java中使用elasticSearch"></a>1)在java中使用elasticSearch</h4><p> <a href="https://www.elastic.co/blog/found-java-clients-for-elasticsearch" target="_blank" rel="external">https://www.elastic.co/blog/found-java-clients-for-elasticsearch</a></p>
+<p>官方java api的翻译版</p>
+<p><a href="https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html" target="_blank" rel="external">https://endymecy.gitbooks.io/elasticsearch-guide-chinese/content/java-api/README.html</a></p>
+<p>源码 api : <a href="http://javadoc.kyubu.de/elasticsearch/v1.7.3/" target="_blank" rel="external">http://javadoc.kyubu.de/elasticsearch/v1.7.3/</a></p>
+<h5 id="1-native-client"><a href="#1-native-client" class="headerlink" title="1.native client"></a>1.native client</h5><p><a href="http://www.cnblogs.com/bmaker/p/5472035.html" target="_blank" rel="external">elasticsearch 2种客户端的区别</a></p>
+<p><a href="http://www.cnblogs.com/lujiao_cs/p/3700375.html" target="_blank" rel="external">ElasticSearch 之 Client</a></p>
+<h5 id="2-jest"><a href="#2-jest" class="headerlink" title="2.jest"></a>2.jest</h5><p><a href="http://itindex.net/detail/54095-elasticsearch-restful-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E" target="_blank" rel="external">elasticsearch RESTful搜索引擎-(java jest 使用[入门])</a></p>
+<h5 id="3-spring-data-elasticsearch"><a href="#3-spring-data-elasticsearch" class="headerlink" title="3.spring-data-elasticsearch"></a>3.spring-data-elasticsearch</h5><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="external">spring-data-elasticsearch git地址</a></p>
+<p><a href="https://www.gitbook.com/book/giraffe0813/spring-data-elasticsearch/details" target="_blank" rel="external">spring-data-elasticsearch gitBook</a></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="调用restful-api"><a href="#调用restful-api" class="headerlink" title="调用restful api"></a>调用restful api</h4><p><a href="https://yq.aliyun.com/articles/33987" target="_blank" rel="external">ElasticSearch实战－编码实践</a></p>
+<h4 id="java-api实例"><a href="#java-api实例" class="headerlink" title="java api实例"></a>java api实例</h4><p><a href="http://minirick.duapp.com/yong-elasticsearchwei-ni-de-xiang-mu-ti-gong-chui-zhi-sou-suo-fu-wu/" target="_blank" rel="external">用elasticsearch为你的项目提供垂直搜索服务</a></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>1)es小结 : <a href="http://blog.inet198.cn/?wojiushiwo987/article/details/52244917" target="_blank" rel="external">Elasticsearch学习，请先看这一篇</a></p>
+<p>2)Elasticsearch 现在主要的应用场景有三块。</p>
+<p>1.站内搜索，主要和 Solr 竞争，属于后起之秀。</p>
+<p>2.NoSQL json文档数据库，主要抢占 Mongo 的市场，它在读写性能上优于 Mongo（见文末比较链接），同时也支持地理位置查询，还方便地理位置和文本混合查询，属于歪打正着。</p>
+<p>3.监控，统计以及日志类时间序的数据的存储和分析以及可视化，这方面是引领者。</p>
+<p><a href="http://lutaf.com/158.htm" target="_blank" rel="external">开源搜索引擎评估:lucene sphinx elasticsearch</a></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>建议阅读源码</p>
+<p><a href="https://my.oschina.net/original123/blog/734095" target="_blank" rel="external">搜索引擎框架－elasticsearch</a></p>
+<h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><p><a href="http://www.cnblogs.com/huangfox/p/3543134.html" target="_blank" rel="external">elasticsearch口水篇</a></p>
+<p><a href="http://blog.csdn.net/geloin/article/details/8934289" target="_blank" rel="external">分布式搜索Elasticsearch——项目过程（二）</a></p>
+<h5 id="restful系列教程"><a href="#restful系列教程" class="headerlink" title="restful系列教程"></a>restful系列教程</h5><p>(ElasticSearch权威教程)<a href="http://www.cnblogs.com/richaaaard/category/783901.html" target="_blank" rel="external">ElasticSearch 2</a></p>
+<h5 id="java-api系列教程"><a href="#java-api系列教程" class="headerlink" title="java api系列教程"></a>java api系列教程</h5><p><a href="http://blog.csdn.net/ljc2008110/article/details/48652937" target="_blank" rel="external">ElasticSearch的Java API</a></p>
+<p><a href="http://blog.csdn.net/laigood12345/article/category/1113868/" target="_blank" rel="external">elasticsearch</a></p>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a href="http://udn.yyuap.com/doc/mastering-elasticsearch/chapter-8/index.html" target="_blank" rel="external">elasticsearch教程</a></p>
+<p><a href="http://riching.iteye.com/blog/1921625" target="_blank" rel="external">使用java访问elasticsearch创建索引</a></p>
+<p><a href="https://segmentfault.com/a/1190000006431332" target="_blank" rel="external">Elasticsearch，为了搜索</a></p>
+<p><a href="http://siddontang.com/2015/01/18/elasticsearch-note/" target="_blank" rel="external">Elasticsearch学习笔记</a></p>
+<p><a href="http://www.importnew.com/19418.html" target="_blank" rel="external">搜索引擎solr和elasticsearch</a></p>
+<p><a href="http://www.open-open.com/lib/view/open1452046497511.html#articleHeader3" target="_blank" rel="external">使用 Elasticsearch 实现博客站内搜索</a></p>
+<p>问题：</p>
+<p><a href="http://m.blog.csdn.net/article/details?id=42462863" target="_blank" rel="external">elasticsearch出现TranslogCorruptedException导致shard不能启动的问题修复</a></p>
+<p>配置远程访问：</p>
+<p>在服务器的es的config文件里面把network.host改为0.0.0.0</p>
+<p><a href="http://kuka.im/2016/05/25/2016-05-25-Elasticsearch%E9%9B%86%E7%BE%A4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="external">ES集群遇到的问题</a></p>
+<p>es启动出现问题</p>
+<p>一定不要用ctrl+z，要ctrl+c去停止，前者只是暂停，不是终止。</p>
+<blockquote>
+<p>CTRL-Z和CTRL-C都是中断命令,但是他们的作用却不一样.<br>CTRL-C是强制中断程序的执行,<br>而CTRL-Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg/bg操作继续前台或后台的任务,fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.<br>例如:<br>当你vi一个文件是,如果需要用shell执行别的操作,但是你又不打算关闭vi,因为你得<br>存盘推出,你可以简单的按下CTRL-Z,shell会将vi进程挂起~,当你结束了那个shell操作之后,你可以用fg命令继续vi你的文件.</p>
+<p><strong>ctrl-d: </strong>( Terminate input, or exit shell ) 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；</p>
+</blockquote>
+<h3 id="Elasticsearch与mysql的实时增量更新"><a href="#Elasticsearch与mysql的实时增量更新" class="headerlink" title="Elasticsearch与mysql的实时增量更新"></a>Elasticsearch与mysql的实时增量更新</h3><p>想要增量同步，有一些先决条件。首先数据库中要维护一个update_time的时间戳，这个字段表示了该记录的最后更新时间。然后定时执行一个任务，这个任务中执行的sql就是根据时间戳判断该记录是否应该被更新。</p>
+<p>出自系列教程<a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/column/details/deep-elasticsearch.html" target="_blank" rel="external">深入理解elasticsearch</a></p>
+<h5 id="将mysql导入到es中"><a href="#将mysql导入到es中" class="headerlink" title="将mysql导入到es中"></a>将mysql导入到es中</h5><p>常用的插件是elasticsearch-jdbc, elasticsearch-river-MySQL , <a href="http://lib.csdn.net/base/go" target="_blank" rel="external">Go</a>-mysql-elasticsearch, logstash-input-jdbc这四种。之间的比较参见这篇<a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/51771621" target="_blank" rel="external">mysql 与elasticsearch实时同步常用插件及优缺点对比</a></p>
+<h5 id="logstash-input-jdbc"><a href="#logstash-input-jdbc" class="headerlink" title="logstash-input-jdbc"></a>logstash-input-jdbc</h5><p><a href="https://www.zghhome.cn/?p=258" target="_blank" rel="external">使用logstash将数据库的数据导入elasticsearch</a></p>
+<p>参数说明参见：<a href="http://www.cnblogs.com/licongyu/p/5383334.html" target="_blank" rel="external">logstash input jdbc连接数据库</a></p>
+<p><a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/51747266" target="_blank" rel="external">logstash-input-jdbc实现mysql 与elasticsearch实时同步深入详解</a></p>
+<p>官方说明：</p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html#plugins-inputs-jdbc-type" target="_blank" rel="external">https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html#plugins-inputs-jdbc-type</a></p>
+<p><a href="https://github.com/logstash-plugins/logstash-input-jdbc" target="_blank" rel="external">https://github.com/logstash-plugins/logstash-input-jdbc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">  jdbc &#123;</div><div class="line">    jdbc_driver_library =&gt; &quot;/path/to/mysql-connector-java-5.1.33-bin.jar&quot;</div><div class="line">    jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">    jdbc_connection_string =&gt; &quot;jdbc:mysql://host:port/database&quot;</div><div class="line">    jdbc_user =&gt; &quot;user&quot;</div><div class="line">    jdbc_password =&gt; &quot;password&quot;</div><div class="line">  # or jdbc_password_filepath =&gt; &quot;/path/to/my/password_file&quot;</div><div class="line">    clean_run =&gt; false</div><div class="line">    use_column_value =&gt; true</div><div class="line">    tracking_column =&gt; BUG_ID</div><div class="line">    record_last_run =&gt; true</div><div class="line">    last_run_metadata_path =&gt; &quot;/etc/logstash/run_metadata.d/my_info&quot;</div><div class="line">    lowercase_column_names =&gt; false</div><div class="line">    statement_filepath =&gt; &quot;/etc/logstash/statement_file.d/my_info.sql&quot;</div><div class="line">    schedule =&gt; &quot;* * * * *&quot;</div><div class="line">    jdbc_paging_enabled =&gt; &quot;true&quot;</div><div class="line">    jdbc_page_size =&gt; &quot;50000&quot;</div><div class="line">    type =&gt; &quot;es_type&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">filter &#123;</div><div class="line">  [some filters here]</div><div class="line">&#125;</div><div class="line"></div><div class="line">output &#123;</div><div class="line">  stdout &#123;</div><div class="line">    codec =&gt; rubydebug</div><div class="line">  &#125;</div><div class="line">  elasticsearch_http &#123;</div><div class="line">    host =&gt; &quot;host&quot;</div><div class="line">    index =&gt; &quot;es_index&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="将不同类型的数据导入到elasticsearch中"><a href="#将不同类型的数据导入到elasticsearch中" class="headerlink" title="将不同类型的数据导入到elasticsearch中"></a>将不同类型的数据导入到elasticsearch中</h5><p><a href="http://46aae4d1e2371e4aa769798941cef698.devproxy.yunshipei.com/laoyang360/article/details/52304223" target="_blank" rel="external">如何将不同类型数据导入Elaticsearch中</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/linux/" itemprop="url">
                   linux
                 </a>
@@ -1485,127 +1707,6 @@ Son son = (Son) father;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/google-guava/" itemprop="url">
-                  google-guava
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T20:51:58+08:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/google-guava/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/07/google-guava/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="google-guava"><a href="#google-guava" class="headerlink" title="google-guava"></a>google-guava</h1><p>Guava 是一个 Google 的基于java1.6的类库集合的扩展项目，包括 collections, caching, primitives support, concurrency libraries, common annotations, string processing, I/O, 等等. 这些高质量的 API 可以使你的JAVa代码更加优雅，更加简洁。</p>
-<p>参见<a href="http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html" target="_blank" rel="external">Guava学习笔记：Google Guava 类库简介</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1651,7 +1752,7 @@ Son son = (Son) father;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

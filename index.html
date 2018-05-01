@@ -258,6 +258,234 @@
             
               
                 
+                <a class="post-title-link" href="/2018/05/01/git/" itemprop="url">
+                  git
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-01T13:30:54+08:00" content="2018-05-01">
+              2018-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/05/01/git/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/01/git/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>之前老是把git的一些命令给记错，或者不记得了，现发现一篇总结的比较好的博客，摘录如下。</p>
+<h3 id="1-git版本管理的基本操作"><a href="#1-git版本管理的基本操作" class="headerlink" title="1.git版本管理的基本操作"></a>1.git版本管理的基本操作</h3><blockquote>
+<p>git  init 建立本地git repository仓库并对文件进行追踪用</p>
+<p>git  status  查看状态</p>
+<p>git  add . / git  add -A  这两个命令是全部添加到暂存区，也可以添加指定文件到暂存区 git add index.html</p>
+<p>git  commit  -m”对这次提交的描述”   ,这样就将修改提交到本地的 repository仓库中, 描述就是为了方便后期再次查看时好理解</p>
+<p>git remote add origin  <a href="https://github.com/***/ch1701.git" target="_blank" rel="external">https://github.com/***/ch1701.git</a>    把本地的仓库和gitHub仓库想关联</p>
+<p>git   pull  origin  master        从gitHub仓库的master分支拉取代码到本地</p>
+<p>git  pull origin master      –allow-unrelated-histories         //强制拉取线上到本地合并（）</p>
+<p>git  push  -u  origin  master     提交到gitHub仓库的master分支，第一次的时候需要 -u 参数，后面再提交就不需要 -u 了</p>
+<p>git  push  -u  origin  master  -f      //强制把本地推到线上覆盖（当回退线上仓库时会用到）</p>
+<p>git  cat  help.txt         查看内容</p>
+<p>git  rm   help.txt         删除help.txt文件</p>
+<p>reset    清屏，实质是清除屏幕记录； ctrl  +  l  也是清屏，实质是把记录上移，以确保当前显示框干净</p>
+<p>git  diff   </p>
+</blockquote>
+<p>至于上文中的gitHub仓库的来源，直接去github网站上注册一个账号，点右上角加号new repository，然后取个名字回车就好了</p>
+<h3 id="2-分支操作"><a href="#2-分支操作" class="headerlink" title="2.分支操作"></a>2.分支操作</h3><blockquote>
+<p>创建分支：  git  branch  aaa    ,这里aaa为新建的分支名字</p>
+<p>查看本地分支：git  branch          不给参数默认本地分支</p>
+<p>查看远程分支：git  branch  -r      ,r代表remote即远程分支</p>
+<p>查看所有分支：git  branch  -a      ,a代表all即所有分支</p>
+<p>切换分支：git  checkout   aaa   ,从master分支切换到aaa分支</p>
+<p>推送新分支放到远程：git  push  origin  aaa     ,会自动 在远程添加aaa分支</p>
+<p>删除本地分支：git  branch -d   aaa    删除aaa分支前确保切换到非aaa分支上再执行此命令</p>
+<p>删除远程分支：git push origin :aaa  (origin 后面有空格)</p>
+</blockquote>
+<p>当页面内容很多时，可以用按 f 键下一页，按 b 键上一页，：wq是退出当前</p>
+<h3 id="3-查看提交记录操作"><a href="#3-查看提交记录操作" class="headerlink" title="3.查看提交记录操作"></a>3.查看提交记录操作</h3><blockquote>
+<p>git  log    查看详细提交日志，按f键想下翻页，按b键向上翻页，按q退出</p>
+<p>git  log  –oneline     显示只有一行的简单提交日志</p>
+<p>git  log  –oneline   -6     显示最近的6条提交日志</p>
+<p>git  log  –oneline  –author=”hu”    显示指定作者的提交日志</p>
+<p>git  log  –oneline  –grep=”index.html”    显示index.html的提交日志</p>
+<p>git  log  –oneline  –before=’2017-07-20’    显示2017-07-20日期之前（包含这一天）的提交日志</p>
+<p>git  log  –oneline  –before=’3 days’    显示最近3天的提交日志</p>
+<p>git  log  –oneline  –before=’1 weeks’    显示最近1周的提交日志</p>
+<p>git  log  –oneline  –graph     显示带图形效果的提交日志</p>
+</blockquote>
+<p>当回滚、回退后会看不到当前版本后的提交记录，这时可以执行 git  reflog 这个命令会记录每一次操作记录   </p>
+<h3 id="4-checkout操作-（回退版本方法一）（不推荐）"><a href="#4-checkout操作-（回退版本方法一）（不推荐）" class="headerlink" title="4.checkout操作 （回退版本方法一）（不推荐）"></a>4.checkout操作 （回退版本方法一）（不推荐）</h3><p>对于在工作区（未加入暂存区）的修改，想要放弃修改使用这个方法：</p>
+<blockquote>
+<p>git checkout .  撤销对所有已修改但未放入暂存区的文件的修改，但不包括新增的文件</p>
+<p>git  checkout  – .    同上</p>
+<p>git checkout  [filename]    撤销对指定文件的修改，[filename]为文件名</p>
+<p>git  checkout  –  [filename]     同上</p>
+</blockquote>
+<p>对于已经<strong>git  add </strong>加入暂存区的文件想要放弃修改的话需要这样操作：</p>
+<blockquote>
+<pre><code>git  reset  HEAD  index.html    可以把暂存区的修改撤销掉，重新放回工作区,然后就回到上面的那个方法了
+</code></pre></blockquote>
+<p>对于已经<strong>commit </strong>的文件,如果想要回退就要使用以下这个方法：</p>
+<pre><code>先git  log  --oneline  查看提交信息
+
+**git  checkout  a9db330**    会回退到测试2的提交，并创建一个临时分支放测试2节点的代码，此时输入**git  branch**  可以看到分支在临时分支上，本地代码也变回测试2的。如果又想回到最近的那次提交只需要切换回主分支master就好了，执行**git  checkout  master **，本地代码会变回最新的提交版本测试4的状态，同时临时分支会消失。如果想保存测试2那个分支，那就在切换master分之前新建一个分支执行**git  checkout  -b   aaa**，再执行**git  branch**会发现临时分支也不见了，只有master和aaa,其中master是最新测试的状态，aaa就是测试2的状态。如下图：
+</code></pre><h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p><strong>这里需要注意一点，当回退到测试版本2后，测试版本2后的提交记录都会不见的，我们就不能通过git  log找到测试版本4的commit_id了，我们可以用 git  reflog查看每一次操作的记录找到测试版本4的commit_id 。想要回到最近的一次提交测试4只需要切换到master分支就好了，如下图。</strong></p>
+<hr>
+<p>回退后的git  log  –oneline</p>
+<h3 id="5-reset操作-（回退版本方法二）-比较推荐"><a href="#5-reset操作-（回退版本方法二）-比较推荐" class="headerlink" title="5.reset操作 （回退版本方法二） 比较推荐"></a><strong>5.reset操作 （回退版本方法二）</strong> 比较推荐</h3><p><strong>先git  log  –oneline  查看提交信息</strong></p>
+<hr>
+<p>执行<strong>git  reset  –hard  HEAD^    </strong>会回退到最近的提交版本的前一个版本(3065b27)</p>
+<p>执行<strong>git  reset  –hard  HEAD^    </strong>会回退到最近的提交版本的前两个版本(3065b27)</p>
+<p>执行<strong>git  reset  –hard  HEAD~20   </strong>会回退到最近的提交版本的前20个版本</p>
+<p>也可以根据提交的commit_id来回退：</p>
+<p>执行 <strong>git   reset  –hard  a9db330</strong>    ,  <strong>a9db330</strong>是通过git  log查看到的额测试2提交的<strong>commit_id</strong></p>
+<p>git  reset  –hard  a9db330</p>
+<p><strong>这里需要注意的是：</strong>执行此方法后不会像<strong>checkout</strong>那样新建一个临时分支，而是直接把本地的代码会退到指定的版本，如果回退完后又想返回最新版本，执行<strong> git  reset  –hard  commit_id4， </strong>这里的<strong>commit_id4</strong>是最新提交版本的id, 可以在回退之前截个图保存下来，或者通过 <strong>git  reflog </strong>查看。当回退到测试版本2后，测试版本2后的提交记录都会不见的，我们就不能通过<strong>git  log</strong>找到测试版本4的<strong>commit_id</strong>了，这时候又想回到测试提交4的版本怎么办，我们就可以用 <strong>git  reflog</strong>查看每一次操作的记录找到测试版本4的commit_id4然后再 <strong>git  reset  –hard  commit_id4 </strong>就又回到最新的提交版本</p>
+<h3 id="6-remote操作"><a href="#6-remote操作" class="headerlink" title="6.remote操作"></a>6.remote操作</h3><blockquote>
+<p>git  remote  查看远程分支(没有改动的话默认是master)</p>
+<p>git  remote  -v    查看git远程仓库地址</p>
+</blockquote>
+<h4 id="修改远程仓库地址："><a href="#修改远程仓库地址：" class="headerlink" title="修改远程仓库地址："></a><strong>修改远程仓库地址：</strong></h4><p>  1.修改命令</p>
+<blockquote>
+<pre><code>git  remote  origin  set-url  [url]
+</code></pre></blockquote>
+<p>  2.先删后加</p>
+<blockquote>
+<pre><code>git remote rm origin
+
+git remote add origin [url]
+</code></pre></blockquote>
+<h3 id="7-clone-克隆"><a href="#7-clone-克隆" class="headerlink" title="7.clone 克隆"></a>7.clone 克隆</h3><p>把git仓库的代码克隆到本地，只需要执行    </p>
+<p>git  clone   <a href="https://github.com/×××.git" target="_blank" rel="external">https://github.com/×××.git</a>      这样会在当前目录下建立一个跟git仓库同名的文件夹，文件夹里是代码</p>
+<p>git  clone  <a href="https://github.com/×××.git" target="_blank" rel="external">https://github.com/×××.git</a>    test    ，这样会在当前目录下新建一个test文件夹用来放git远程代码  </p>
+<h3 id="8-gitignore-忽略"><a href="#8-gitignore-忽略" class="headerlink" title="8.gitignore 忽略"></a>8.gitignore 忽略</h3><p>在我们使用github提交本地代码时，有些库文件和日志文件是不必要提交的，这个时候我们就会用到.gitignore文件了。</p>
+<p>首先,<strong>.gitignore</strong>文件应该是创建在你的项目的根目录下面的，执行命令创建 .gitignore文件,也可以直接在文件管理中去创建</p>
+<blockquote>
+<p>vim .gitignore</p>
+<p>或者    touch  .gitignore</p>
+</blockquote>
+<p>添加忽略的目录和文件：</p>
+<blockquote>
+<p>node_modules/                                       //该文件下所有文件</p>
+<p>dist/</p>
+<p>.project                                                   //所有以.project结尾的文件</p>
+<p>*.log                                                        //所有以.project结尾的文件</p>
+<p>！aaa.log                                                //不过滤aaa.log文件，该文件会被提交到线上仓库</p>
+<p>platforms/</p>
+<p>plugins/</p>
+</blockquote>
+<p>这些文件都是库文件以及自动生成的模块，都是不必要提交的。</p>
+<p><strong>对于已经提交，现在又不想提交的文件（不想让它出现在远程版本库里），应该这样操作：</strong> (这个很有用！！！)</p>
+<pre><code>去项目根目录下创建.gitignore文件，并且添加需要忽略提交的文件（方法同上），然后执行
+</code></pre><blockquote>
+<p>git  rm  -r  –cached  node_modules                    （node_modules为要删除的文件名）</p>
+</blockquote>
+<pre><code>然后再 push 到远程，这时去github的库里去就会发现刚刚删除的东西不见了
+</code></pre><p>Ref：</p>
+<p><a href="https://www.jianshu.com/p/d82a4be14bd4" target="_blank" rel="external">https://www.jianshu.com/p/d82a4be14bd4</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/04/17/java-concurrency/" itemprop="url">
                   java-multiprocess
                 </a>
@@ -1501,127 +1729,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/04/04/idea-maven-configuration/" itemprop="url">
-                  idea maven configuration
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-04-04T13:00:59+08:00" content="2018-04-04">
-              2018-04-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2018/04/04/idea-maven-configuration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/04/idea-maven-configuration/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="idea-maven的配置"><a href="#idea-maven的配置" class="headerlink" title="idea maven的配置"></a>idea maven的配置</h1><p>之前一直用eclipse和Maven来开发项目，结果今天因为要搭建spring boot，所以想着用idea，但是maven这块一直出错。首先不记得自己配没配置过maven，所以先查了半天，结果发现是idea自带的maven，然后改成了自己的，然后maven index那里一直有问题，显示connection error，搜了半天最后才搜到，原来是hosts文件出问题，把文件里面的ip映射删掉就行了。。不过我也学到了一个，要学会看log文件，比如idea的Log文件就在help里面，一直报着connection error的错误。</p>
-<p>就是这个问题 <a href="http://blog.csdn.net/u011768325/article/details/76013840" target="_blank" rel="external">http://blog.csdn.net/u011768325/article/details/76013840</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1667,7 +1774,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
